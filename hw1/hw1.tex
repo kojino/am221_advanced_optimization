@@ -1,0 +1,389 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage{algorithm,algorithmic}
+
+
+\newcommand{\INPUT}{\item[{\bf Input:}]}
+\newcommand{\OUTPUT}{\item[{\bf Output:}]}
+\newcommand{\RR}{{\mathbb R}}
+\newcommand{\myvec}[1]{\mathbf{#1}}
+\newcommand{\ignore}[1]{}%
+
+
+\DeclareMathOperator*{\E}{\mathbb{E}}
+\let\Pr\relax
+\DeclareMathOperator*{\Pr}{\mathbb{P}}
+%\DeclareMathOperator*{\myv}{\mathbf{#1}}
+\newcommand{\mv}[1]{\mathbf{#1}}
+\newcommand{\mynorm}[1]{\|{#1}\|}
+
+
+\newcommand{\eps}{\varepsilon}
+\newcommand{\inprod}[1]{\left\langle #1 \right\rangle}
+
+\newcommand{\handout}[5]{
+  \noindent
+  \begin{center}
+  \framebox{
+    \vbox{
+      %\hbox to 5.78in { {\bf AM 221: Advanced Optimization } \hfill #2 }
+            \hbox to 6.38in { {\bf AM 221: Advanced Optimization } \hfill #2 }
+      \vspace{4mm}
+      %\hbox to 5.78in { {\Large \hfill #5  \hfill} }
+            \hbox to 6.38in { {\Large \hfill #5  \hfill} }
+      \vspace{2mm}
+            \hbox to 6.38in { {\em #3 \hfill #4} }
+      %\hbox to 5.78in { {\em #3 \hfill #4} }
+    }
+  }
+  \end{center}
+  \vspace*{4mm}
+}
+
+\newcommand{\lecture}[3]{\handout{#1}{#2}{#3}{Lecture #1}}
+\newcommand{\homework}[3]{\handout{#1}{#2}{#3}{Problem Set #1}}
+\newcommand{\sect}[3]{\handout{#1}{#2}{#3}{Section #1}}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{observation}[theorem]{Observation}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{assumption}[theorem]{Assumption}
+
+\newtheorem*{theorem*}{Theorem}
+\newtheorem*{corollary*}{Corollary}
+\newtheorem*{conjecture*}{Conjecture}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem*{thm*}{Theorem}
+\newtheorem*{prop*}{Proposition}
+\newtheorem*{obs*}{Observation}
+\newtheorem*{rem*}{Remark}
+\newtheorem*{definition*}{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{rec*}{Recommendation}
+
+
+% 1-inch margins, from fullpage.sty by H.Partl, Version 2, Dec. 15, 1988.
+\topmargin 0pt
+\advance \topmargin by -\headheight
+\advance \topmargin by -\headsep
+\textheight 8.9in
+\oddsidemargin 0pt
+\evensidemargin \oddsidemargin
+\marginparwidth 0.5in
+\textwidth 6.5in
+
+\parindent 0in
+\parskip 1.5ex
+
+%Basics
+\newcommand{\new}[1]{{\em #1\/}}		% New term (set in italics).
+
+\newcommand{\boxdef}[1]
+{
+\fbox{
+\begin{minipage}{42em}
+\begin{definition*}
+{#1}
+\end{definition*}
+\end{minipage}
+}
+}
+
+\newcommand{\boxthm}[1]
+{
+\fbox{
+\begin{minipage}{42em}
+\begin{theorem*}
+{#1}
+\end{theorem*}
+\end{minipage}
+}
+}
+
+
+
+%Probability
+\newcommand{\prob}[2][]{\text{\bf P}\ifthenelse{\not\equal{}{#1}}{_{#1}}{}\!\left(#2\right)}
+\newcommand{\expect}[2][]{\text{\bf E}\ifthenelse{\not\equal{}{#1}}{_{#1}}{}\!\left[#2\right]}
+\newcommand{\var}[2][]{\text{\bf Var}\ifthenelse{\not\equal{}{#1}}{_{#1}}{}\!\left[#2\right]}
+
+%Sets
+\newcommand{\set}[1]{\{#1\}}			% Set (as in \set{1,2,3})
+\newcommand{\given}{\, : \,}
+\newcommand{\setof}[2]{\{{#1} \given {#2}\}}	% Set (as in \setof{x}{x > 0})
+\newcommand{\compl}[1]{\overline{#1}}		% Complement of ...            
+\newcommand{\zeros}{{\mathbf 0}}
+\newcommand{\ones}{{\mathbf 1}}
+\newcommand{\union}{{\bigcup}}
+\newcommand{\inters}{{\bigcap}}
+
+%Other Math
+\newcommand{\floor}[1]{{\lfloor {#1} \rfloor}}
+\newcommand{\bigfloor}[1]{{\left\lfloor {#1} \right\rfloor}}
+\DeclareMathOperator{\argmax}{argmax}
+\DeclareMathOperator{\argmin}{argmin}
+
+%Numbers
+\newcommand{\C}{\mathbb{C}}	                % Complex numbers.
+\newcommand{\N}{\mathbb{N}}                     % Positive integers.
+\newcommand{\Q}{\mathbb{Q}}                     % Rationals.
+\newcommand{\R}{\mathbb{R}}                     % Reals.
+\newcommand{\Z}{\mathbb{Z}}                     % Integers.
+\newcommand{\M}{\mathcal{M}}                     % Matroids.
+\newcommand{\I}{\mathcal{I}}                     % Independent Sets.
+
+%Headings
+\newcommand{\parta}{\textbf{(a)}}
+\newcommand{\partb}{\textbf{(b)}}
+\newcommand{\partc}{\textbf{(c)}}
+\newcommand{\partd}{\textbf{(d)}}
+\newcommand{\parte}{\textbf{(e)}}
+\newcommand{\bt}{\boldsymbol{\theta}}
+\newcommand{\bx}{\mathbf{x}}
+\newcommand{\bd}{\mathbf{d}}
+\newcommand{\by}{\mathbf{y}}
+\newcommand{\bv}{\mathbf{v}}
+\newcommand{\bz}{\mathbf{z}}
+\newcommand{\bh}{\mathbf{h}}
+\newcommand{\ba}{\mathbf{a}}
+\newcommand{\cl}[1]{\text{\textbf{#1}}}
+\newcommand{\eqdef}{\mathbin{\stackrel{\rm def}{=}}}
+
+
+\begin{document}
+\homework{1 --- {\color{red} Due Wed, Jan 31st at 23:59}}{Spring
+  2018}{Dr.\ Rasmus Kyng}
+
+\paragraph{Instructions:}
+All your solutions should be prepared in \LaTeX \ and the
+PDF and .tex should be submitted to Canvas. 
+	Please submit all your files as ONE archive of filetype zip, 
+        tgz, or tar.gz.
+For each question, a
+well-written and
+correct answer will be selected a sample solution for the entire class to
+enjoy.  If you prefer that we do not use your solutions, please indicate this
+clearly on the first page of your assignment. 
+
+The programming parts can be written in Python, Matlab, or Julia. 
+If you strongly wish to use another language, please contact the
+instructor to ask for permission.
+\newline
+
+\paragraph{1. Sequences, Limits, Functions}
+
+\begin{itemize}
+    \item[a.] Remember that the field $\R$ is characterized (among ordered
+        fields containing $\mathbb{Q}$) by the least upper bound property:
+        every non-empty bounded set has a least upper bound. Use this property
+        to show that any non-decreasing upper-bounded sequence of real numbers
+        is convergent.
+
+\color{blue}
+Let $\{a_n\}$ be a sequence of non-decreasing upper-bounded sequence of real numbers. Since $\{a_n\}$ is a non-empty bounded set of real numbers, from the least upper bound property, $\{a_n\}$ has a leat upperbound. Let $b=sup_n \{a_n\}$ be this least upper bound.
+
+Then, for any $\epsilon$, there exists $a_N \in \{a_n\}$ such that $a_N > b-\epsilon$. This is because if not, $b-\epsilon=sup_n \{a_n\}$ and hence there's a contradiction. Since $\{a_n\}$ is non-decreasing, $|b-a_n| \leq |b-a_N| < c, \forall n \geq N, \forall \epsilon$. Hence, by the definition of limit, $a_n \rightarrow b$ and so $\{a_n\}$ is convergent.
+\color{black}
+
+\item[b.] Let $u = (u_n)_{n\geq 0}$ and $v = (v_n)_{n\geq 0}$ be two sequences of
+real numbers such that:
+\begin{itemize}
+    \item $u$ is non-increasing and $v$ is non-decreasing
+    \item $\lim_{n\to\infty} u_n - v_n = 0$
+\end{itemize}
+Show that both $u$ and $v$ are convergent and that they have the same limit.
+
+\color{blue}
+Suppose $u$ is unbounded and $v$ is bounded. Then $v_n$ has a finite limit, whereas $u_n$ doesn't. Hence $u_n$ dominates $v_n$ in $lim_{n\rightarrow \infty}u_n-v_n$ and hence it doesn't converge. Similarly suppose $u$ is bounded and $v$ is unbounded. Then $v_n$ dominates $u_n$ in $lim_{n\rightarrow \infty}u_n-v_n$ and hence it doesn't converge. Finally, when $u$ and $v$ are both unbounded, because $u$ is non-increasing and $v$ is non-decreasing, $lim_{n\rightarrow \infty}u_n-v_n=-\infty-\infty=-\infty$.
+
+Hence, $u$ and $v$ must be both bounded. From the least upper bound property, $u$ has a lower bound and $v$ has an upper bound. Hence, they are both convergent. Moreover because $lim_{n\rightarrow \infty}u_n-v_n=lim_{n\rightarrow \infty}u_n-lim_{n\rightarrow \infty}v_n=0$, they must have the same limit.
+\color{black}
+
+
+\item[c.] Let $f:\R\to\R$ be a continuous function such that $f(0) > 0$.
+Show that there exists $\eps>0$ such that:
+\begin{displaymath}
+    |x|< \eps \Rightarrow f(x) > 0.
+\end{displaymath}
+
+\color{blue}
+Suppose $u$ is unbounded and $v$ is bounded. Then $v_n$ has a finite limit, whereas $u_n$ doesn't. Hence $u_n$ dominates $v_n$ in $lim_{n\rightarrow \infty}u_n-v_n$ and hence it doesn't converge. Similarly suppose $u$ is bounded and $v$ is unbounded. Then $v_n$ dominates $u_n$ in $lim_{n\rightarrow \infty}u_n-v_n$ and hence it doesn't converge. Finally, when $u$ and $v$ are both unbounded, because $u$ is non-increasing and $v$ is non-decreasing, $lim_{n\rightarrow \infty}u_n-v_n=-\infty-\infty=-\infty$.
+
+Hence, $u$ and $v$ must be both bounded. From the least upper bound property, $u$ has a lower bound and $v$ has an upper bound. Hence, they are both convergent. Moreover because $lim_{n\rightarrow \infty}u_n-v_n=lim_{n\rightarrow \infty}u_n-lim_{n\rightarrow \infty}v_n=0$, they must have the same limit.
+\color{black}
+
+
+\end{itemize}
+
+
+\paragraph{2. Linear Algebra}
+
+$A$ is a matrix in $\R^{m\times n}$ with $m\leq n$.
+
+\begin{itemize}
+\item[a.] Give the definition of the rank of $A$. What is the largest possible
+    rank of $A$?
+    
+\color{blue}
+The rank of $A$ is the dimension of the vector space spanned by its columns. The largest possible rank of $A$ is $m$ because $m\leq n$ and thus there can be at most $m$ linearly independent columns.
+\color{black}
+
+\item[b.] Let us denote by $\ba_1,\dots, \ba_m$ the rows of $A$, \emph{i.e}
+$\ba_i\in \R^n$ and $A = [\ba_1\, \dots\, \ba_m]^\intercal$.
+Show that:
+\begin{displaymath}
+    \text{rank}(A) < m \Leftrightarrow \exists \bx\in \R^m\setminus\{0\},\;
+    \sum_{i=1}^m \ba_i x_i = 0
+\end{displaymath}
+
+\color{blue}
+From the fundamental theorem of linear algebra, the dimension of the vector space spanned by its rows is equivalent to the dimension of the vector space spanned by its columns. Hence, the equivalent definition of the rank of $A$ is the dimension of the vector space spanned by its rows. Therefore
+\begin{align*}
+rank(A) < m &\Leftrightarrow \text{the dimension of the vector space spanned by its rows is less than $m$}&\\
+&\Leftrightarrow \text{$\ba_1,...,\ba_m$ are linearly dependent} &\\
+&\Leftrightarrow \exists \bx \in \mathbb{R}^m \setminus \{0\}, \sum_{i=1}^m \ba_i x_i=0 \quad (\because \text{the definition of linear dependence)}&\\
+\end{align*}
+\color{black}
+
+\end{itemize}
+
+\paragraph{3. Inner product, norm}
+
+For $\bx$ and $\by$ two vectors of $\R^d$, we write $\bx^\intercal \by
+= \sum_{i=1}^d x_iy_i$ their inner product. $\|\bx\| = \sqrt{\bx^\intercal
+\bx}$ denotes the Euclidean norm of $\bx$.
+
+\begin{itemize}
+    \item[a.] Let $\ba\in\R^d$. Show that:
+        \begin{gather*}
+            \ba = 0 \Longleftrightarrow \forall \bx\in\R^d,\;\ba^\intercal \bx = 0\\
+            \ba \geq 0 \Longleftrightarrow \forall \bx\geq 0,\;\ba^\intercal \bx \geq 0
+        \end{gather*}
+        
+\color{blue}
+\color{black}
+
+    \item[b.] Let $(\bx, \by)\in\R^d\times\R^d$. Show that:
+        \begin{displaymath}
+            \bx^\intercal \by = \frac{\|\bx+\by\|^2 - \|\bx\|^2-\|\by\|^2}{2}
+            = \frac{\|\bx\|^2 + \|\by\|^2 - \|\bx-\by\|^2}{2}
+        \end{displaymath}
+        
+\color{blue}
+$$\bx^T\by=\sum_{i=1}^d x_iy_i$$
+\begin{align*}
+\frac{||\bx+\by||^2-||\bx||^2-||\by||^2}{2} &= \frac{(\bx+\by)^T(\bx+\by)-\bx^T\bx-\by^T\by}{2} &\\
+&= \frac{\sum_{i=1}^d(x_i+y_i)^2-\sum_{i=1}^dx_i^2-\sum_{i=1}^dy_i^2}{2} &\\
+&= \sum_{i=1}^d x_iy_i
+\end{align*}
+\begin{align*}
+\frac{||\bx||^2+||\by||^2-||\bx+\by||^2}{2} &= \frac{\bx^T\bx+\by^T\by-(\bx-\by)^T(\bx-\by)}{2} &\\
+&= \frac{\sum_{i=1}^dx_i^2+\sum_{i=1}^dy_i^2-\sum_{i=1}^d(x_i-y_i)^2}{2} &\\
+&= \sum_{i=1}^d x_iy_i
+\end{align*}
+Hence, $$x^Ty=\frac{||x+y||^2-||x||^2-||y||^2}{2}=\frac{||x||^2+||y||^2-||x+y||^2}{2}$$
+\color{black}
+        
+    \item[c.] Deduce the parallelogram law:
+        \begin{displaymath}
+                \|\bx+\by\|^2 + \|\bx-\by\|^2 = 2\|\bx\|^2 + 2\|\by\|^2
+        \end{displaymath}
+ 
+\color{blue}
+From b, 
+$$\frac{||\bx+\by||^2-||\bx||^2-||\by||^2}{2}=\frac{||\bx||^2+||\by||^2-||\bx+\by||^2}{2} \Leftrightarrow \|\bx+\by\|^2 + \|\bx-\by\|^2 = 2\|\bx\|^2 + 2\|\by\|^2$$
+\color{black}
+
+    \item[d.] Let us denote by $B_2(0, 1)$ the unit ball of $\R^d$, $B_2(0,1)\eqdef
+        \{\bx\in\R^d\;|\;\|\bx\|\leq 1\}$ and let us consider $\bv\in\R^d$. Show that:
+        \begin{displaymath}
+            \max_{\bx\in B_2(0,1)}\bv^\intercal \bx = \|\bv\|
+        \end{displaymath}
+
+\color{blue}
+\color{black}
+
+\end{itemize}
+
+\paragraph{4. Multivariate Calculus}
+
+\begin{itemize}
+    \item[a.] Let $f:\R^n\to\R$ be a twice differentiable function twice. For
+$\bx\in\R^n$ and $\bd\in\R^n$, we define the function $f_{\bx, \bd}:\R\to\R$ by:
+\begin{displaymath}
+    f_{\bx,\bd}(\lambda) = f(\bx+\lambda \bd)
+\end{displaymath}
+Express the first and second derivative of $f_{\bx,\bd}$ in terms of the
+gradient and Hessian of $f$. 
+
+\color{blue}
+\color{black}
+
+
+\item[b.] Let $f:\R^n\to\R$ be a differentiable function and let $\bx$ be
+a local minimum of $f$, \emph{i.e} there exists $\eps>0$ such that:
+\begin{displaymath}
+    \|\by-\bx\| \leq \eps \Rightarrow f(\by) \geq f(\bx)
+\end{displaymath}
+show that $\nabla f(\bx) = 0$. \textbf{Hint:} remember the Taylor expansion of
+$f$ at $\bx$:
+\begin{displaymath}
+    f(\bx+\bh) = f(\bx) + \bh^\intercal\nabla f(\bx) + o(\|\bh\|)
+\end{displaymath}
+
+\color{blue}
+\color{black}
+
+
+\item[c.] Let $\ba\in\R^d$ and $M\in\R^{d\times d}$. What are the gradients
+of $f(\bx) = \ba^\intercal \bx$, $g(\bx) = \|\bx\|^2$ and $h(\bx)
+= \bx^\intercal M\bx$?
+\end{itemize}
+
+\color{blue}
+\begin{align*}
+\frac{\partial}{\partial x_i}f(\bx)=\frac{\partial}{\partial x_i}\sum_i a_ix_i=a_i
+\end{align*}
+Hence, $\nabla f(\bx)=\ba$.
+
+\begin{align*}
+\frac{\partial}{\partial x_i}g(\bx)=\frac{\partial}{\partial x_i}\sum_i x_i^2=2x_i
+\end{align*}
+Hence, $\nabla g(\bx)=2\bx$.
+
+\begin{align*}
+\frac{\partial}{\partial x_i}h(\bx)&=\frac{\partial}{\partial x_i}\sum_{j,k} M_{jk}x_jx_k &\\
+&= \frac{\partial}{\partial x_i}(\sum_{j,k\neq i} M_{jk}x_jx_k + \sum_{k\neq i} M_{ik}x_ix_k + \sum_{j\neq i} M_{ji}x_jx_i &\\
+&= \sum_{k\neq i}M_{ik}x_k + \sum_{j\neq i}M_{ji}x_j + 2A_{ii}x_i &\\
+&= \sum_k M_{ik}x_k + \sum_j M_{ji}x_j &\\
+&= (M\bx)_i+(\bx^TM)_i &\\
+&= (M\bx)_i+(M^T\bx)_i &\\
+&= (M+M^T)x_i
+\end{align*}
+Hence, $\nabla h(\bx)=(M+M^T)\bx$.
+\color{black}
+
+\paragraph{5. Programming}
+
+Download the file at \url{http://rasmuskyng.com/am221_spring2018/psets/hw1/access.log}. This file is
+a server log, each line has the following format:
+\begin{center}
+    \begin{verbatim}<time>\t<ip-adress>\end{verbatim}
+\end{center}
+\emph{i.e} it contains a time and the IP address which accessed the server at
+that time; the time and the IP address are separated by a tab character. Using
+the programming language of your choice, write a program to find the list of
+the ten IP addresses who accessed the server the most (in decreasing order). 
+Report the list you obtained, as a text file with one IP address
+per line, and report the code you used.
+
+\end{document}
