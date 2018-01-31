@@ -161,7 +161,7 @@
 
 \begin{document}
 \homework{1 --- {\color{red} Due Wed, Jan 31st at 23:59}}{Spring
-  2018}{Dr.\ Rasmus Kyng}
+  2018}{Kojin Oshiba}
 
 \paragraph{Instructions:}
 All your solutions should be prepared in \LaTeX \ and the
@@ -270,6 +270,15 @@ For $\bx$ and $\by$ two vectors of $\R^d$, we write $\bx^\intercal \by
         \end{gather*}
         
 \color{blue}
+Proof of $ \ba = 0 \Rightarrow \forall \bx\in\R^d,\;\ba^\intercal \bx = 0$
+$$\ba=0 \Rightarrow \forall \bx \in \R^d, \sum_{i=1}^d a_ix_i=0 \Rightarrow \forall \bx \in \R^d, \ba^\intercal \bx=0 $$
+Proof of $ \ba = 0 \Leftarrow \forall \bx\in\R^d,\;\ba^\intercal \bx = 0$
+$$\forall \bx \in \R^d, \ba^\intercal \bx=0 \Rightarrow \ba^\intercal \ba=0 \Rightarrow \ba=0$$
+
+Proof of  $\ba \geq 0 \Rightarrow \forall \bx\geq 0,\;\ba^\intercal \bx \geq 0$
+$$\ba \geq 0 \Rightarrow \forall \bx \geq 0, \sum_{i=1}^d a_ix_i \geq 0 \Rightarrow \forall \bx \geq 0, \ba^\intercal \bx \geq 0$$
+Proof of  $\ba \geq 0 \Leftarrow \forall \bx\geq 0,\;\ba^\intercal \bx \geq 0$
+$$\forall \bx \geq 0, \ba^\intercal \bx \geq 0 \Rightarrow \forall \bx \geq 0, \sum_{i=1}^d a_ix_i \geq 0$$ Suppose for contradiction that $a_i<0$ for some $i$. Then letting $x_i \geq \sum_{j\neq i} x_j$ will result in $\sum_{i=1}^d a_ix_i \leq 0$. This is true if at least one element of $\ba$ is negative. Hence, contradiction. Therefore, all elements of $\ba$ must be positive, meaning $\ba \geq 0$.
 \color{black}
 
     \item[b.] Let $(\bx, \by)\in\R^d\times\R^d$. Show that:
@@ -279,18 +288,18 @@ For $\bx$ and $\by$ two vectors of $\R^d$, we write $\bx^\intercal \by
         \end{displaymath}
         
 \color{blue}
-$$\bx^T\by=\sum_{i=1}^d x_iy_i$$
+$$\bx^\intercal\by=\sum_{i=1}^d x_iy_i$$
 \begin{align*}
-\frac{||\bx+\by||^2-||\bx||^2-||\by||^2}{2} &= \frac{(\bx+\by)^T(\bx+\by)-\bx^T\bx-\by^T\by}{2} &\\
+\frac{||\bx+\by||^2-||\bx||^2-||\by||^2}{2} &= \frac{(\bx+\by)^\intercal (\bx+\by)-\bx^\intercal \bx-\by^\intercal \by}{2} &\\
 &= \frac{\sum_{i=1}^d(x_i+y_i)^2-\sum_{i=1}^dx_i^2-\sum_{i=1}^dy_i^2}{2} &\\
 &= \sum_{i=1}^d x_iy_i
 \end{align*}
 \begin{align*}
-\frac{||\bx||^2+||\by||^2-||\bx+\by||^2}{2} &= \frac{\bx^T\bx+\by^T\by-(\bx-\by)^T(\bx-\by)}{2} &\\
+\frac{||\bx||^2+||\by||^2-||\bx+\by||^2}{2} &= \frac{\bx^\intercal \bx+\by^\intercal \by-(\bx-\by)^\intercal (\bx-\by)}{2} &\\
 &= \frac{\sum_{i=1}^dx_i^2+\sum_{i=1}^dy_i^2-\sum_{i=1}^d(x_i-y_i)^2}{2} &\\
 &= \sum_{i=1}^d x_iy_i
 \end{align*}
-Hence, $$x^Ty=\frac{||x+y||^2-||x||^2-||y||^2}{2}=\frac{||x||^2+||y||^2-||x+y||^2}{2}$$
+Hence, $$x^\intercal y=\frac{||x+y||^2-||x||^2-||y||^2}{2}=\frac{||x||^2+||y||^2-||x+y||^2}{2}$$
 \color{black}
         
     \item[c.] Deduce the parallelogram law:
@@ -310,6 +319,9 @@ $$\frac{||\bx+\by||^2-||\bx||^2-||\by||^2}{2}=\frac{||\bx||^2+||\by||^2-||\bx+\b
         \end{displaymath}
 
 \color{blue}
+$$(\bv^\intercal \bx)^2 = \bv^\intercal \bv \bx^\intercal \bx = ||\bx||^2||\bv||^2 $$
+Since $||\bx|| \leq 1$, $$\max_{\bx\in B_2(0,1)} (\bv^\intercal \bx)^2 = ||\bv||^2$$
+Hence, $$\max_{\bx\in B_2(0,1)} (\bv^\intercal \bx) = ||\bv||$$
 \color{black}
 
 \end{itemize}
@@ -326,6 +338,18 @@ Express the first and second derivative of $f_{\bx,\bd}$ in terms of the
 gradient and Hessian of $f$. 
 
 \color{blue}
+Let $g_{\bx,\bd}(\lambda) = \bx + \lambda \bd$.
+\begin{align*}
+\frac{d}{d\lambda}f_{\bx,\bd}(\lambda) &= \frac{d}{d\lambda}f(g_{\bx,\bd}(\lambda)) &\\
+&=\frac{d}{dg_{\bx,\bd}}f(g_{\bx,\bd}(\lambda)) \frac{d}{d\lambda}g_{\bx,\bd}(\lambda) &\\
+&= \nabla f(g_{\bx,\bd}(\lambda)) \bd &\\
+&=\bd^\intercal  \nabla f(g_{\bx,\bd}(\lambda)) &\\
+\end{align*}
+\begin{align*}
+\frac{d^2}{d\lambda^2} f_{\bx,\bd}(\lambda) &= \bd^\intercal  \frac{d}{d\lambda}  \nabla f(g_{\bx,\bd}(\lambda)) &\\
+&= \bd^\intercal  \frac{d}{dg_{\bx,\bd}} \nabla f(g_{\bx,\bd}(\lambda)) \frac{d}{d\lambda} g_{\bx,\bd}(\lambda) &\\
+&= \bd^\intercal  H(\bx+\lambda) \bd
+\end{align*}
 \color{black}
 
 
@@ -341,6 +365,26 @@ $f$ at $\bx$:
 \end{displaymath}
 
 \color{blue}
+From Taylor expansion of $f$ at $\bx$, we have:
+$$f(\bx+\bh) = f(\bx) + \bh^\intercal\nabla f(\bx) + o(\|\bh\|)$$
+Hence,
+$$\bh^\intercal\nabla f(\bx) = f(\bx+\bh) - f(\bx) - o(\|\bh\|)$$
+Let $y=h+x$. Then,
+$$\bh^\intercal\nabla f(\bx) = f(\by) - f(\bx) - o(\|\by-\bx\|)$$
+Since there exists $\eps>0$ such that:
+\begin{displaymath}
+    \|\by-\bx\| \leq \eps \Rightarrow f(\by) \geq f(\bx)
+\end{displaymath}
+We have that 
+$$\bh^\intercal\nabla f(\bx) \geq 0$$
+From Taylor expansion, we also have:
+$$f(\bx-\bh) = f(\bx) - \bh^\intercal\nabla f(\bx) + o(\|\bh\|)$$
+In a similar procedure, we have that 
+$$\bh^\intercal\nabla f(\bx) \leq 0$$
+Therefore, it must be the case that 
+$$\bh^\intercal\nabla f(\bx) = 0$$
+Because this is true for any $\bh$, 
+$$\nabla f(\bx) = 0$$
 \color{black}
 
 
@@ -365,11 +409,11 @@ Hence, $\nabla g(\bx)=2\bx$.
 &= \frac{\partial}{\partial x_i}(\sum_{j,k\neq i} M_{jk}x_jx_k + \sum_{k\neq i} M_{ik}x_ix_k + \sum_{j\neq i} M_{ji}x_jx_i &\\
 &= \sum_{k\neq i}M_{ik}x_k + \sum_{j\neq i}M_{ji}x_j + 2A_{ii}x_i &\\
 &= \sum_k M_{ik}x_k + \sum_j M_{ji}x_j &\\
-&= (M\bx)_i+(\bx^TM)_i &\\
-&= (M\bx)_i+(M^T\bx)_i &\\
-&= (M+M^T)x_i
+&= (M\bx)_i+(\bx^\intercal M)_i &\\
+&= (M\bx)_i+(M^\intercal \bx)_i &\\
+&= (M+M^\intercal )x_i
 \end{align*}
-Hence, $\nabla h(\bx)=(M+M^T)\bx$.
+Hence, $\nabla h(\bx)=(M+M^\intercal )\bx$.
 \color{black}
 
 \paragraph{5. Programming}
@@ -385,5 +429,9 @@ the programming language of your choice, write a program to find the list of
 the ten IP addresses who accessed the server the most (in decreasing order). 
 Report the list you obtained, as a text file with one IP address
 per line, and report the code you used.
+
+\color{blue}
+The output text file is \verb|top_ten_ips.txt|. The code used is \verb|hw1.py|.
+\color{black}
 
 \end{document}

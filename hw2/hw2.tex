@@ -1,0 +1,287 @@
+%Macros
+
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage{algorithm,algorithmic}
+
+
+\newcommand{\INPUT}{\item[{\bf Input:}]}
+\newcommand{\OUTPUT}{\item[{\bf Output:}]}
+\newcommand{\RR}{{\mathbb R}}
+\newcommand{\myvec}[1]{\mathbf{#1}}
+\newcommand{\ignore}[1]{}%
+
+
+\DeclareMathOperator*{\E}{\mathbb{E}}
+\let\Pr\relax
+\DeclareMathOperator*{\Pr}{\mathbb{P}}
+%\DeclareMathOperator*{\myv}{\mathbf{#1}}
+\newcommand{\mv}[1]{\mathbf{#1}}
+\newcommand{\mynorm}[1]{\|{#1}\|}
+
+
+\newcommand{\eps}{\varepsilon}
+\newcommand{\inprod}[1]{\left\langle #1 \right\rangle}
+
+\newcommand{\handout}[5]{
+  \noindent
+  \begin{center}
+  \framebox{
+    \vbox{
+      %\hbox to 5.78in { {\bf AM 221: Advanced Optimization } \hfill #2 }
+            \hbox to 6.38in { {\bf AM 221: Advanced Optimization } \hfill #2 }
+      \vspace{4mm}
+      %\hbox to 5.78in { {\Large \hfill #5  \hfill} }
+            \hbox to 6.38in { {\Large \hfill #5  \hfill} }
+      \vspace{2mm}
+            \hbox to 6.38in { {\em #3 \hfill #4} }
+      %\hbox to 5.78in { {\em #3 \hfill #4} }
+    }
+  }
+  \end{center}
+  \vspace*{4mm}
+}
+
+\newcommand{\lecture}[3]{\handout{#1}{#2}{#3}{Lecture #1}}
+\newcommand{\homework}[3]{\handout{#1}{#2}{#3}{Problem Set #1}}
+\newcommand{\sect}[3]{\handout{#1}{#2}{#3}{Section #1}}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{observation}[theorem]{Observation}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{assumption}[theorem]{Assumption}
+
+\newtheorem*{theorem*}{Theorem}
+\newtheorem*{corollary*}{Corollary}
+\newtheorem*{conjecture*}{Conjecture}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem*{thm*}{Theorem}
+\newtheorem*{prop*}{Proposition}
+\newtheorem*{obs*}{Observation}
+\newtheorem*{rem*}{Remark}
+\newtheorem*{definition*}{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{rec*}{Recommendation}
+
+
+% 1-inch margins, from fullpage.sty by H.Partl, Version 2, Dec. 15, 1988.
+\topmargin 0pt
+\advance \topmargin by -\headheight
+\advance \topmargin by -\headsep
+\textheight 8.9in
+\oddsidemargin 0pt
+\evensidemargin \oddsidemargin
+\marginparwidth 0.5in
+\textwidth 6.5in
+
+\parindent 0in
+\parskip 1.5ex
+
+%Basics
+\newcommand{\new}[1]{{\em #1\/}}		% New term (set in italics).
+
+\newcommand{\boxdef}[1]
+{
+\fbox{
+\begin{minipage}{42em}
+\begin{definition*}
+{#1}
+\end{definition*}
+\end{minipage}
+}
+}
+
+\newcommand{\boxthm}[1]
+{
+\fbox{
+\begin{minipage}{42em}
+\begin{theorem*}
+{#1}
+\end{theorem*}
+\end{minipage}
+}
+}
+
+
+
+%Probability
+\newcommand{\prob}[2][]{\text{\bf P}\ifthenelse{\not\equal{}{#1}}{_{#1}}{}\!\left(#2\right)}
+\newcommand{\expect}[2][]{\text{\bf E}\ifthenelse{\not\equal{}{#1}}{_{#1}}{}\!\left[#2\right]}
+\newcommand{\var}[2][]{\text{\bf Var}\ifthenelse{\not\equal{}{#1}}{_{#1}}{}\!\left[#2\right]}
+
+%Sets
+\newcommand{\set}[1]{\{#1\}}			% Set (as in \set{1,2,3})
+\newcommand{\given}{\, : \,}
+\newcommand{\setof}[2]{\{{#1} \given {#2}\}}	% Set (as in \setof{x}{x > 0})
+\newcommand{\compl}[1]{\overline{#1}}		% Complement of ...            
+\newcommand{\zeros}{{\mathbf 0}}
+\newcommand{\ones}{{\mathbf 1}}
+\newcommand{\union}{{\bigcup}}
+\newcommand{\inters}{{\bigcap}}
+
+%Other Math
+\newcommand{\floor}[1]{{\lfloor {#1} \rfloor}}
+\newcommand{\bigfloor}[1]{{\left\lfloor {#1} \right\rfloor}}
+\DeclareMathOperator{\argmax}{argmax}
+\DeclareMathOperator{\argmin}{argmin}
+
+\newcommand{\PRIMAL}{{\textsc{Primal }}}
+\newcommand{\DUAL}{{\textsc{Dual }}}
+
+
+
+%Numbers
+\newcommand{\C}{\mathbb{C}}	                % Complex numbers.
+\newcommand{\N}{\mathbb{N}}                     % Positive integers.
+\newcommand{\Q}{\mathbb{Q}}                     % Rationals.
+\newcommand{\R}{\mathbb{R}}                     % Reals.
+\newcommand{\Z}{\mathbb{Z}}                     % Integers.
+\newcommand{\M}{\mathcal{M}}                     % Matroids.
+\newcommand{\I}{\mathcal{I}}                     % Independent Sets.
+
+%Headings
+\newcommand{\parta}{\textbf{(a)}}
+\newcommand{\partb}{\textbf{(b)}}
+\newcommand{\partc}{\textbf{(c)}}
+\newcommand{\partd}{\textbf{(d)}}
+\newcommand{\parte}{\textbf{(e)}}
+
+\newcommand{\bt}{\boldsymbol{\theta}}
+\newcommand{\bx}{\mathbf{x}}
+\newcommand{\bd}{\mathbf{d}}
+\newcommand{\by}{\mathbf{y}}
+\newcommand{\bv}{\mathbf{v}}
+\newcommand{\bz}{\mathbf{z}}
+\newcommand{\bh}{\mathbf{h}}
+\newcommand{\ba}{\mathbf{a}}
+\newcommand{\cl}[1]{\text{\textbf{#1}}}
+\newcommand{\eqdef}{\mathbin{\stackrel{\rm def}{=}}}
+
+
+\begin{document}
+\homework{2 --- {\color{red} Due Wed, Feb 7th at 23:59}}{Spring
+  2018}{Dr.\ Rasmus Kyng}
+
+%\renewcommand{\abstractname}{}
+\paragraph{Instructions:}
+All your solutions should be prepared in \LaTeX \ and the
+PDF and .tex should be submitted to canvas. For each question, the best and
+correct answers will be selected as sample solutions for the entire class to
+enjoy.  If you prefer that we do not use your solutions, please indicate this
+clearly on the first page of your assignment. 
+
+The programming parts can be written in the programming language of your choice
+and the code should be submitted alongside your solutions.
+\newline
+
+\paragraph{1. Convex Sets.} Prove or give a counterexample:
+\begin{itemize}
+\item [a.] The intersection of convex sets is a convex set.
+\item [b.] A half-space is a convex set.
+\item [c.] Every polyhedron is a convex set (remember that a polyhedron is the
+    feasible set of a linear program, \emph{i.e.} it is defined by a finite set
+    of linear inequalities)
+\end{itemize}
+
+\paragraph{2. Convex Hulls.}
+
+Let us define the \emph{convex hull} of a set $X$ as the smallest (for the
+partial order defined by inclusion) convex set containing $X$ and denote it by
+$C(X)$. In other words, there is no other convex set $C'$ such that $X\subseteq
+C'\subset C(X)$.
+
+\begin{itemize}
+    \item[a.]  Show that $C(X)$ is the intersection of all convex sets
+        containing $X$ that is:
+        \begin{displaymath}
+            C(X) = \bigcap \left \{ C \,|\, X\subseteq C \text{ and } C \text{
+            is convex}\right\}
+        \end{displaymath}
+    \item[b.] What is the convex hull of a convex set?
+    \item[c.]
+        Show that when $X = \{\bx_1,\ldots,\ldots \bx_n\}$ is finite, then
+        $C(X)$ can also be written as: \begin{displaymath} C(X)
+            = \left\{\sum_{i=1}^n \lambda_i \bx_i\;|\;\lambda_i\geq 0,\;1\leq
+            i\leq n\text{ and } \sum_{i=1}^n \lambda_i=1\right\}
+        \end{displaymath}
+    \item [d.] What is the convex hull of two points? three points?
+\end{itemize}
+
+\paragraph{3. Strict Convexity of the $\ell_2$ norm.}
+
+Let $y$ be an arbitrary point in $\mathbb{R}^n$ and let us define the function
+``distance to y'' by:
+\begin{displaymath}
+    d_{\by}(\bx) = \|\bx-\by\|_2^2,
+    \quad \bx\in\mathbb{R}^n
+\end{displaymath}
+Show that the function $d_{\by}$ is strictly convex. Remember that a function $f$
+defined over $\mathbb{R}^n$ is strictly convex if and only if for any pair of
+points $\bx, \by\in\mathbb{R}^n$ with $\bx\neq \by$ and any $\lambda\in(0,1)$:
+\begin{displaymath}
+    f\big(\lambda \bx + (1-\lambda)\by\big) < \lambda f(\bx) + (1-\lambda) f(\by)
+\end{displaymath}
+
+\paragraph{4. Infeasibility and Unboundedness.} 
+
+Discuss the feasibility and boundedness of the following linear programs:
+\begin{alignat*}{4}
+    &\text{maximize }   & 2x_2 + x_3&  &\qquad\qquad&\text{minimize}&x+y+z+w&\\
+    &\text{subject to } & x_1 - x_2 &\leq 5&\qquad\qquad&\text{subject to}&x+3y+2z+4w&\leq 5\\
+    &                   & -2x_1 + x_2 &\leq 3&\qquad\qquad&&3x+y+2z+w&\leq 4\\
+    &                   & x_1 - 2x_3&\leq 5&\qquad\qquad&&5x+3y+3z+3w&=9\\
+    &                   &x_1, x_2, x_3&\geq 0&\qquad\qquad&&x, y, z, w&\geq 0\\
+\end{alignat*}
+
+
+\paragraph{5. Linear Classifiers and the Perceptron Algorithm}
+
+In this problem, we will work on the Iris dataset available at
+\url{https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data}.
+The dataset is a single comma-separated value (CSV) file. The first 4 fields of
+each line contain the measurements of a sample of Iris flower, the
+last field is the name of this sample's species of Iris. More information about
+the dataset can be found at
+\url{https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.names}.
+
+The goal of this problem is to construct a classifier to distinguish the
+\emph{Iris setosa} from the other species of Iris. That is, we want to construct
+a function $f$ which takes as input the vector $\bx\in\mathbb{R}^4$ of
+measurements of a sample and return $f(\bx)\in\{0,1\}$ such that:
+\begin{displaymath}
+    f(\bx) = \begin{cases}
+        1& \text{if the sample is an Iris setosa}\\
+        0& \text{otherwise}
+    \end{cases}
+\end{displaymath}
+
+\begin{itemize}
+    \item[a.] Download the dataset, choose a pair of coordinates (that is, any
+        two of the first four fields) and draw a scatter plot of the dataset
+        for this pair of coordinates. The color of the points should be
+        determined by the Iris species.
+    \item[b.] Are the samples of Iris setosa linearly separable (that is, does
+        there exist a separating hyperplane) from the samples from the other
+        species? Is a linearly separable dataset always separable after having
+        been projected on an arbitrary pair of coordinates? (prove of describe
+        a counter-example)?
+    \item[c.] Explain why finding a separating hyperplane as described in the
+        previous part is sufficient to construct a classifier $f$ as
+        described in the introduction of this problem. A classifier constructed
+        in such a way is called a \emph{linear classifier}.
+    \item[d.] Implement the perceptron algorithm in the programming language of
+        your choice. Run your algorithm on the Iris dataset to find
+        a hyperplane separating the Iris setosa samples from the other samples.
+        Report the weights defining the hyperplane as well as the code you
+        wrote.
+\end{itemize}
+\end{document}
