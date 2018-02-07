@@ -14,7 +14,9 @@
 \newcommand{\RR}{{\mathbb R}}
 \newcommand{\myvec}[1]{\mathbf{#1}}
 \newcommand{\ignore}[1]{}%
-
+\newenvironment{redmatrix}
+  {\left(\array{@{}rrrr|c@{}}}
+  {\endarray\right)}
 
 \DeclareMathOperator*{\E}{\mathbb{E}}
 \let\Pr\relax
@@ -169,7 +171,7 @@
 
 \begin{document}
 \homework{2 --- {\color{red} Due Wed, Feb 7th at 23:59}}{Spring
-  2018}{Dr.\ Rasmus Kyng}
+  2018}{Kojin Oshiba}
 
 %\renewcommand{\abstractname}{}
 \paragraph{Instructions:}
@@ -191,6 +193,21 @@ and the code should be submitted alongside your solutions.
     feasible set of a linear program, \emph{i.e.} it is defined by a finite set
     of linear inequalities)
 \end{itemize}
+
+\color{blue}
+\begin{itemize}
+\item [a.] If the intersection is an empty set or has a single element, the intersection is convex by definition. If not, take any two points in the intersection. Since the two points must be contained in the same convex set (because we are taking the intersection), the intersection must be convex.
+\item [b.] WLOG, let the half space be $H=\{\bx \in \mathbb{R}^n: \ba^T \bx \geq \alpha\}$. Let $\bx_1,\bx_2 \in H$. Then, $\forall \lambda \in [0,1]$
+\begin{align*}
+\ba^T(\lambda \bx_1 + (1-\lambda) \bx_2) &= \lambda \ba^T \bx_1 + (1 - \lambda) \ba^T \bx_2 &\\
+& \geq \lambda \alpha + (1 - \lambda) \alpha = \alpha, 
+\end{align*}
+Hence, $\lambda \bx_1 + (1-\lambda) \bx_2 \in H, \forall \lambda \in [0,1]$. Therefore, it is a convex set.
+\item [c.] Polyhedron can be defined as $P=\{\bx \in \mathbb{R}^n: A\bx \leq \textbf{b} \}$ for some $A\in \mathbb{R}^{m\times n}$ and some $\textbf{b} \in \mathbb{R}^m$.
+Note that $P=\{\bx \in \mathbb{R}^n: \ba_1^T \bx \leq \textbf{b}, \ba_2^T \bx \leq \textbf{b}, ..., \ba_n^T \bx \leq \textbf{b} \}$.
+This means that polyhedron is an intersection of half spaces. Since in $\ba,\textbf{b}$, we showed that the intersection of convex sets are convex and that half spaces are convex, we have that polyhedron is convex.
+\end{itemize}
+\color{black}
 
 \paragraph{2. Convex Hulls.}
 
@@ -216,6 +233,31 @@ C'\subset C(X)$.
     \item [d.] What is the convex hull of two points? three points?
 \end{itemize}
 
+\color{blue}
+\begin{itemize}
+\item [a.] Let $Z = \bigcap \{C| \text{$X \subseteq C$ and $C$ is convex}\}$. $Z$ is convex because it is an intersection of convex sets. Suppose $Z \neq C(X)$. Then, there exists a convex set $C'$ such that $X \subseteq C' \subset Z$. However, from how $Z$ is defined, it must be the case that $Z \subseteq C'$. Hence, contradiction. Therefore, $Z=C(X)$.
+\item [b.] Convex hull of a convex set is itself.
+\item [c.] Let $Comb(X) = \{\sum_{i=1}^n \lambda_i \bx_i | \lambda_i \geq 0, 1 \leq i \leq n, \sum_{i=1}^n \lambda_i = 1 \}$. We would like to show that $C(X)=Comb(X)$. First we show that $Comb(X) \subseteq C(X)$. To show this, it suffices to show that if a set $C$ is convex, then any convex combination of points in $C$ is in $C$. We prove this by induction.
+$n=1$ is trivial. $n=2$ follows from the definition of convex sets.
+Suppose, for $n=k$, we have $\bx = \sum_{i=1}^k \lambda_i \bx_i \in C$, where $\bx_1, ..., \bx_k \in C, \sum_{i=1}^k \lambda_i = 1, \lambda_i \geq 0 \forall i$ 
+Then, for $n=k+1$, 
+\begin{align*}
+\bx &= \sum_{i=1}^{k+1} \lambda_i \bx_i &\\
+&= \sum_{i=1}^k \lambda_i \bx_i + \lambda_{k+1} \bx_{k+1} &\\
+&= (1 - \lambda_{k+1}) \sum_{i=1}^k \frac{\lambda_i}{1-\lambda_{k+1}}\bx_i + \lambda_{k+1} \bx_{k+1} 
+\end{align*}
+Because $\sum_{i=1}^k \frac{\lambda_i}{1-\lambda_{k+1}} = 1, \frac{\lambda_i}{1-\lambda_{k+1}} \geq 0 \ \forall i, \sum_{i=1}^k \frac{\lambda_i}{1-\lambda_{k+1}} \bx_i \in C$
+Hence, $\bx$ is also in $C$. Therefore, we have $Comb(X) \subseteq C(X)$.
+
+By setting $\lambda_i=1$ and the rest to $0$ for $\bx_i \in \bx$, $X \subseteq Comb(X)$. So, all we need to show now is that $Comb(X)$ is convex.
+Let $y,z \in Comb(X)$ and $y=\sum_i \ba_i \bx_i, z=\sum_i \textbf{b}_i \bx_i$. Then,
+
+$cy+(1-c)z = c\sum_i \ba_i \bx_i + (1-c) \sum_i \textbf{b}_i \bx_i = \sum_i \bd_i \bx_i$ where $\bd_i = c\ba_i + (1-c) \textbf{b}_i$.
+Hence, $c y + (1-c) z \in Comb(X)$.
+\item [d.] Convex hull of two points is the straight line connecting the two points. Convex hull of three points is inside of the triangle (edge inclusive) where the three points correspond to the vertices.
+\end{itemize}
+\color{black}
+
 \paragraph{3. Strict Convexity of the $\ell_2$ norm.}
 
 Let $y$ be an arbitrary point in $\mathbb{R}^n$ and let us define the function
@@ -230,7 +272,15 @@ points $\bx, \by\in\mathbb{R}^n$ with $\bx\neq \by$ and any $\lambda\in(0,1)$:
 \begin{displaymath}
     f\big(\lambda \bx + (1-\lambda)\by\big) < \lambda f(\bx) + (1-\lambda) f(\by)
 \end{displaymath}
-
+\color{blue}
+\begin{align*}
+d_{\by}(\lambda\bx_1+(1-\lambda)\bx_2) &= \|\lambda \bx_1+(1-\lambda)\bx_2-\by\|_2^2 &\\
+&= \|\lambda (\bx_1-\by)+(1-\lambda)(\bx_2-\by)\|_2^2 &\\
+&\leq (\|\lambda (\bx_1-\by)\|_2+\| (1-\lambda)(\bx_2-\by) \|_2)^2 \ (\because \text{triangle inequality}) &\\
+&= (\lambda \| \bx_1-\by\|_2+(1-\lambda) \| \bx_2-\by \|_2)^2  &\\
+&< \lambda \| \bx_1-\by\|_2^2 + (1-\lambda) \| \bx_2-\by \|_2^2  \ (\because \text{strict convexity of the quadratic})
+\end{align*}
+\color{black}
 \paragraph{4. Infeasibility and Unboundedness.} 
 
 Discuss the feasibility and boundedness of the following linear programs:
@@ -241,7 +291,83 @@ Discuss the feasibility and boundedness of the following linear programs:
     &                   & x_1 - 2x_3&\leq 5&\qquad\qquad&&5x+3y+3z+3w&=9\\
     &                   &x_1, x_2, x_3&\geq 0&\qquad\qquad&&x, y, z, w&\geq 0\\
 \end{alignat*}
+\color{blue}
+\textbf{First LP}
 
+Let 
+$A = 
+\begin{pmatrix}
+1 & -1 & 0 \\
+-2 & 1 & 0 \\
+1 & 0 & -2 
+\end{pmatrix}$,
+$\bx = 
+\begin{pmatrix}
+\bx_1 \\
+\bx_2 \\
+\bx_3
+\end{pmatrix}$,
+$\textbf{b} = 
+\begin{pmatrix}
+5 \\
+3 \\
+5
+\end{pmatrix}$.
+
+$A\bx = \textbf{b}$ has a single solution $\bx = \begin{pmatrix}
+-8 \\
+-13 \\
+-6.5
+\end{pmatrix}$.
+However, this doesn't satisfy $\bx \geq 0$. Hence from Farka's lemma, this LP is infeasible. We can't really discuss boundedness here since LP is infeasible.
+
+\textbf{Second LP}
+
+Let 
+$A = 
+\begin{pmatrix}
+-1 & -3 & -2 & -4 \\
+-3 & -1 & -2 & -1 \\
+-5 & -3 & -3 & -3 \\
+5 & 3 & 3 & 3 \\ 
+\end{pmatrix}$,
+$\textbf{b} = 
+\begin{pmatrix}
+-5 \\
+-4 \\
+-9 \\
+9
+\end{pmatrix}$,
+$\textbf{c} = 
+\begin{pmatrix}
+1 \\
+1 \\
+1 \\
+1
+\end{pmatrix}$.
+
+Then the primal LP can be written as:
+
+$min \ \textbf{c}^T \bx$, subject to $A\bx \geq \textbf{b}$.
+
+Then, the dual LP can be written as:
+
+$max \ \textbf{b}^T \by$ subject to $A^T \by = \textbf{c}, \by \geq 0$
+
+Since row-echelon form of $A$ can be written as
+$
+\begin{redmatrix}
+1&0&0&-0.375&0\\
+0&1&0&1.125&0.25\\
+0&0&1&0.5&-1\\
+0&0&0&0&2
+\end{redmatrix}
+$,
+
+$A^T \by = \textbf{c}$ doesn't have a solution. Hence, this dual LP is infeasible.
+
+From strong duality, if dual LP is infeasible, primal is either infeasible or unbounded. But since we have that the primal is feasible, it must be the case that the primal is unbounded.
+\color{black}
 
 \paragraph{5. Linear Classifiers and the Perceptron Algorithm}
 
@@ -284,4 +410,17 @@ measurements of a sample and return $f(\bx)\in\{0,1\}$ such that:
         Report the weights defining the hyperplane as well as the code you
         wrote.
 \end{itemize}
+
+\color{blue}
+\begin{itemize}
+\item[a.] I chose the first two coordinates.
+
+\includegraphics[scale=0.8]{iris}
+\item[b.] To answer the first question, yes, it is linearly separable because it is linearly separable in a subset of all features. To answer the second question, not necessarily. Even if the data is linearly separable given all features, it does not mean that it is liearly separable in the projected space. Consider a separating (hyper)plane in 3D space that is parallel to the x and y axes. Then the data is clearly separable in 3D, but when project onto the x-y 2D plane, the data is no longer seperable if, say one point from two clusters have the same x,y coordinates (but different z coordinate).
+\item[c.] Because $f(\bx)$ can be defined as an indicator variable that returns 1 if a data point is above the hyperplane and 0 otherwise. If the hyperplane completely separates the two labels, then that means that $f$ classifies the datapoints entirely.
+\item[d.] The weights are [-0.03152507, -0.19633574,  0.29397583,  0.12135334,  0.04675983]. The code is in `hw2.py`.
+\end{itemize}
+\color{black}
+
+
 \end{document}

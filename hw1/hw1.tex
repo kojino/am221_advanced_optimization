@@ -191,7 +191,7 @@ instructor to ask for permission.
 \color{blue}
 Let $\{a_n\}$ be a sequence of non-decreasing upper-bounded sequence of real numbers. Since $\{a_n\}$ is a non-empty bounded set of real numbers, from the least upper bound property, $\{a_n\}$ has a leat upperbound. Let $b=sup_n \{a_n\}$ be this least upper bound.
 
-Then, for any $\epsilon$, there exists $a_N \in \{a_n\}$ such that $a_N > b-\epsilon$. This is because if not, $b-\epsilon=sup_n \{a_n\}$ and hence there's a contradiction. Since $\{a_n\}$ is non-decreasing, $|b-a_n| \leq |b-a_N| < c, \forall n \geq N, \forall \epsilon$. Hence, by the definition of limit, $a_n \rightarrow b$ and so $\{a_n\}$ is convergent.
+Then, for any $\epsilon$, there exists $a_N \in \{a_n\}$ such that $a_N > b-\epsilon$. This is because if not, $b-\epsilon=sup_n \{a_n\}$ and hence there's a contradiction. Since $\{a_n\}$ is non-decreasing, $|b-a_n| \leq |b-a_N| < \epsilon, \forall n \geq N, \forall \epsilon$. Hence, by the definition of limit, $a_n \rightarrow b$ and so $\{a_n\}$ is convergent.
 \color{black}
 
 \item[b.] Let $u = (u_n)_{n\geq 0}$ and $v = (v_n)_{n\geq 0}$ be two sequences of
@@ -205,7 +205,7 @@ Show that both $u$ and $v$ are convergent and that they have the same limit.
 \color{blue}
 Suppose $u$ is unbounded and $v$ is bounded. Then $v_n$ has a finite limit, whereas $u_n$ doesn't. Hence $u_n$ dominates $v_n$ in $lim_{n\rightarrow \infty}u_n-v_n$ and hence it doesn't converge. Similarly suppose $u$ is bounded and $v$ is unbounded. Then $v_n$ dominates $u_n$ in $lim_{n\rightarrow \infty}u_n-v_n$ and hence it doesn't converge. Finally, when $u$ and $v$ are both unbounded, because $u$ is non-increasing and $v$ is non-decreasing, $lim_{n\rightarrow \infty}u_n-v_n=-\infty-\infty=-\infty$.
 
-Hence, $u$ and $v$ must be both bounded. From the least upper bound property, $u$ has a lower bound and $v$ has an upper bound. Hence, they are both convergent. Moreover because $lim_{n\rightarrow \infty}u_n-v_n=lim_{n\rightarrow \infty}u_n-lim_{n\rightarrow \infty}v_n=0$, they must have the same limit.
+Hence, $u$ and $v$ must be both bounded. From the least upper bound property, $u$ has a lower bound and $v$ has an upper bound for $\lim_{n\to\infty} u_n - v_n = 0$ to hold. Hence, they are both convergent. Moreover because $lim_{n\rightarrow \infty}u_n-v_n=lim_{n\rightarrow \infty}u_n-lim_{n\rightarrow \infty}v_n=0$, they must have the same limit.
 \color{black}
 
 
@@ -216,9 +216,12 @@ Show that there exists $\eps>0$ such that:
 \end{displaymath}
 
 \color{blue}
-Suppose $u$ is unbounded and $v$ is bounded. Then $v_n$ has a finite limit, whereas $u_n$ doesn't. Hence $u_n$ dominates $v_n$ in $lim_{n\rightarrow \infty}u_n-v_n$ and hence it doesn't converge. Similarly suppose $u$ is bounded and $v$ is unbounded. Then $v_n$ dominates $u_n$ in $lim_{n\rightarrow \infty}u_n-v_n$ and hence it doesn't converge. Finally, when $u$ and $v$ are both unbounded, because $u$ is non-increasing and $v$ is non-decreasing, $lim_{n\rightarrow \infty}u_n-v_n=-\infty-\infty=-\infty$.
+By the definition of continuity, 
+$$\forall \delta > 0, \exists > 0, \forall x \in \R, |x-x_0| < \epsilon \Rightarrow |f(x)-f(x_0)| < \delta$$
+Let $x_0=0$. Then, 
+$$\forall \delta > 0, \exists > 0, \forall x \in \R, |x| < \epsilon \Rightarrow |f(x)-f(0)| < \delta$$
+Since $f(0) > 0$, we can choose $\delta$ such that $f(0) - \delta \geq 0$, which implies $f(x)>0$.
 
-Hence, $u$ and $v$ must be both bounded. From the least upper bound property, $u$ has a lower bound and $v$ has an upper bound. Hence, they are both convergent. Moreover because $lim_{n\rightarrow \infty}u_n-v_n=lim_{n\rightarrow \infty}u_n-lim_{n\rightarrow \infty}v_n=0$, they must have the same limit.
 \color{black}
 
 
@@ -278,7 +281,8 @@ $$\forall \bx \in \R^d, \ba^\intercal \bx=0 \Rightarrow \ba^\intercal \ba=0 \Rig
 Proof of  $\ba \geq 0 \Rightarrow \forall \bx\geq 0,\;\ba^\intercal \bx \geq 0$
 $$\ba \geq 0 \Rightarrow \forall \bx \geq 0, \sum_{i=1}^d a_ix_i \geq 0 \Rightarrow \forall \bx \geq 0, \ba^\intercal \bx \geq 0$$
 Proof of  $\ba \geq 0 \Leftarrow \forall \bx\geq 0,\;\ba^\intercal \bx \geq 0$
-$$\forall \bx \geq 0, \ba^\intercal \bx \geq 0 \Rightarrow \forall \bx \geq 0, \sum_{i=1}^d a_ix_i \geq 0$$ Suppose for contradiction that $a_i<0$ for some $i$. Then letting $x_i \geq \sum_{j\neq i} x_j$ will result in $\sum_{i=1}^d a_ix_i \leq 0$. This is true if at least one element of $\ba$ is negative. Hence, contradiction. Therefore, all elements of $\ba$ must be positive, meaning $\ba \geq 0$.
+
+Suppose for contradiction that $a_i<0$ for some $i$. Then, for $\bx$ where $x_i=1$ and $0$ o.w., we have $\ba^\intercal \bx <0$ and hence, contradiction. Thefore, $\ba \geq 0$.
 \color{black}
 
     \item[b.] Let $(\bx, \by)\in\R^d\times\R^d$. Show that:
@@ -299,7 +303,7 @@ $$\bx^\intercal\by=\sum_{i=1}^d x_iy_i$$
 &= \frac{\sum_{i=1}^dx_i^2+\sum_{i=1}^dy_i^2-\sum_{i=1}^d(x_i-y_i)^2}{2} &\\
 &= \sum_{i=1}^d x_iy_i
 \end{align*}
-Hence, $$x^\intercal y=\frac{||x+y||^2-||x||^2-||y||^2}{2}=\frac{||x||^2+||y||^2-||x+y||^2}{2}$$
+Hence, $$\bx^\intercal \by=\frac{||x+y||^2-||x||^2-||y||^2}{2}=\frac{||x||^2+||y||^2-||x+y||^2}{2}$$
 \color{black}
         
     \item[c.] Deduce the parallelogram law:
@@ -369,7 +373,7 @@ From Taylor expansion of $f$ at $\bx$, we have:
 $$f(\bx+\bh) = f(\bx) + \bh^\intercal\nabla f(\bx) + o(\|\bh\|)$$
 Hence,
 $$\bh^\intercal\nabla f(\bx) = f(\bx+\bh) - f(\bx) - o(\|\bh\|)$$
-Let $y=h+x$. Then,
+Let $\by=\bh+\bx$. Then,
 $$\bh^\intercal\nabla f(\bx) = f(\by) - f(\bx) - o(\|\by-\bx\|)$$
 Since there exists $\eps>0$ such that:
 \begin{displaymath}
@@ -406,7 +410,7 @@ Hence, $\nabla g(\bx)=2\bx$.
 
 \begin{align*}
 \frac{\partial}{\partial x_i}h(\bx)&=\frac{\partial}{\partial x_i}\sum_{j,k} M_{jk}x_jx_k &\\
-&= \frac{\partial}{\partial x_i}(\sum_{j,k\neq i} M_{jk}x_jx_k + \sum_{k\neq i} M_{ik}x_ix_k + \sum_{j\neq i} M_{ji}x_jx_i &\\
+&= \frac{\partial}{\partial x_i}(\sum_{j,k\neq i} M_{jk}x_jx_k + \sum_{k\neq i} M_{ik}x_ix_k + \sum_{j\neq i} M_{ji}x_jx_i) &\\
 &= \sum_{k\neq i}M_{ik}x_k + \sum_{j\neq i}M_{ji}x_j + 2A_{ii}x_i &\\
 &= \sum_k M_{ik}x_k + \sum_j M_{ji}x_j &\\
 &= (M\bx)_i+(\bx^\intercal M)_i &\\
@@ -431,7 +435,7 @@ Report the list you obtained, as a text file with one IP address
 per line, and report the code you used.
 
 \color{blue}
-The output text file is \verb|top_ten_ips.txt|. The code used is \verb|hw1.py|.
+The output text file is \verb|top_ten_ips.txt|. The code used is \verb|hw1.py|. They are located in the same folder as this PDF.
 \color{black}
 
 \end{document}
