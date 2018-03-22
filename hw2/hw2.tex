@@ -196,7 +196,7 @@ and the code should be submitted alongside your solutions.
 
 \color{blue}
 \begin{itemize}
-\item [a.] If the intersection is an empty set or has a single element, the intersection is convex by definition. If not, take any two points in the intersection. Since the two points must be contained in the same convex set (because we are taking the intersection), the intersection must be convex.
+\item [a.] If the intersection is an empty set or has a single element, the intersection is convex by definition. If not, take any two points in the intersection. Since the two points must be contained in the same convex set (because we are taking the intersection), the intersection of convex sets must be convex.
 \item [b.] WLOG, let the half space be $H=\{\bx \in \mathbb{R}^n: \ba^T \bx \geq \alpha\}$. Let $\bx_1,\bx_2 \in H$. Then, $\forall \lambda \in [0,1]$
 \begin{align*}
 \ba^T(\lambda \bx_1 + (1-\lambda) \bx_2) &= \lambda \ba^T \bx_1 + (1 - \lambda) \ba^T \bx_2 &\\
@@ -205,7 +205,7 @@ and the code should be submitted alongside your solutions.
 Hence, $\lambda \bx_1 + (1-\lambda) \bx_2 \in H, \forall \lambda \in [0,1]$. Therefore, it is a convex set.
 \item [c.] Polyhedron can be defined as $P=\{\bx \in \mathbb{R}^n: A\bx \leq \textbf{b} \}$ for some $A\in \mathbb{R}^{m\times n}$ and some $\textbf{b} \in \mathbb{R}^m$.
 Note that $P=\{\bx \in \mathbb{R}^n: \ba_1^T \bx \leq \textbf{b}, \ba_2^T \bx \leq \textbf{b}, ..., \ba_n^T \bx \leq \textbf{b} \}$.
-This means that polyhedron is an intersection of half spaces. Since in $\ba,\textbf{b}$, we showed that the intersection of convex sets are convex and that half spaces are convex, we have that polyhedron is convex.
+This means that polyhedron is an intersection of half spaces. Since in questions $a,b$, we showed that the intersection of convex sets are convex and that half spaces are convex, we have that polyhedron is convex.
 \end{itemize}
 \color{black}
 
@@ -235,9 +235,10 @@ C'\subset C(X)$.
 
 \color{blue}
 \begin{itemize}
-\item [a.] Let $Z = \bigcap \{C| \text{$X \subseteq C$ and $C$ is convex}\}$. $Z$ is convex because it is an intersection of convex sets. Suppose $Z \neq C(X)$. Then, there exists a convex set $C'$ such that $X \subseteq C' \subset Z$. However, from how $Z$ is defined, it must be the case that $Z \subseteq C'$. Hence, contradiction. Therefore, $Z=C(X)$.
+\item [a.] Let $Z = \bigcap \{C| \text{$X \subseteq C$ and $C$ is convex}\}$. $Z$ is convex because it is an intersection of convex sets (using the result from 1.a). Suppose $Z \neq C(X)$. Then, there exists a convex set $C'$ such that $X \subseteq C' \subset Z$. However, from how $Z$ is defined, it must be the case that $Z \subseteq C'$. Hence, contradiction. Therefore, $Z=C(X)$.
 \item [b.] Convex hull of a convex set is itself.
-\item [c.] Let $Comb(X) = \{\sum_{i=1}^n \lambda_i \bx_i | \lambda_i \geq 0, 1 \leq i \leq n, \sum_{i=1}^n \lambda_i = 1 \}$. We would like to show that $C(X)=Comb(X)$. First we show that $Comb(X) \subseteq C(X)$. To show this, it suffices to show that if a set $C$ is convex, then any convex combination of points in $C$ is in $C$. We prove this by induction.
+\item [c.] Let $Comb(X) = \{\sum_{i=1}^n \lambda_i \bx_i | \lambda_i \geq 0, 1 \leq i \leq n, \sum_{i=1}^n \lambda_i = 1 \}$. We would like to show that $C(X)=Comb(X)$. First we show that $Comb(X) \subseteq C(X)$. To show this, it suffices to show that if a set $C$ is convex, then any convex combination of points in $C$ is in $C$. We prove this by induction. This is because  $Comb(X)$ is a set of all convex combination of points in $X$, which is a subset of a convex set $C(X)$.
+
 $n=1$ is trivial. $n=2$ follows from the definition of convex sets.
 Suppose, for $n=k$, we have $\bx = \sum_{i=1}^k \lambda_i \bx_i \in C$, where $\bx_1, ..., \bx_k \in C, \sum_{i=1}^k \lambda_i = 1, \lambda_i \geq 0 \forall i$ 
 Then, for $n=k+1$, 
@@ -246,14 +247,17 @@ Then, for $n=k+1$,
 &= \sum_{i=1}^k \lambda_i \bx_i + \lambda_{k+1} \bx_{k+1} &\\
 &= (1 - \lambda_{k+1}) \sum_{i=1}^k \frac{\lambda_i}{1-\lambda_{k+1}}\bx_i + \lambda_{k+1} \bx_{k+1} 
 \end{align*}
-Because $\sum_{i=1}^k \frac{\lambda_i}{1-\lambda_{k+1}} = 1, \frac{\lambda_i}{1-\lambda_{k+1}} \geq 0 \ \forall i, \sum_{i=1}^k \frac{\lambda_i}{1-\lambda_{k+1}} \bx_i \in C$
-Hence, $\bx$ is also in $C$. Therefore, we have $Comb(X) \subseteq C(X)$.
+Because $\sum_{i=1}^k \frac{\lambda_i}{1-\lambda_{k+1}} = 1, \frac{\lambda_i}{1-\lambda_{k+1}} \geq 0 \ \forall i, \sum_{i=1}^k \frac{\lambda_i}{1-\lambda_{k+1}} \bx_i \in C$ from the assumption we made for $n=k$.
+Hence, simply by the definition of convex sets, $\bx$ is also in $C$. Therefore, we have $Comb(X) \subseteq C(X)$.
 
-By setting $\lambda_i=1$ and the rest to $0$ for $\bx_i \in \bx$, $X \subseteq Comb(X)$. So, all we need to show now is that $Comb(X)$ is convex.
+So, all we need to show now is that $Comb(X)$ is convex. Because if $Comb(X) \subseteq C(X)$ and $Comb(X)$ is convex, it must be the case that $Comb(X)=C(X)$ by the definiton of $C(X)$.
 Let $y,z \in Comb(X)$ and $y=\sum_i \ba_i \bx_i, z=\sum_i \textbf{b}_i \bx_i$. Then,
 
 $cy+(1-c)z = c\sum_i \ba_i \bx_i + (1-c) \sum_i \textbf{b}_i \bx_i = \sum_i \bd_i \bx_i$ where $\bd_i = c\ba_i + (1-c) \textbf{b}_i$.
 Hence, $c y + (1-c) z \in Comb(X)$.
+Therefore, we proved that $C(X)=Comb(X)$.
+
+
 \item [d.] Convex hull of two points is the straight line connecting the two points. Convex hull of three points is inside of the triangle (edge inclusive) where the three points correspond to the vertices.
 \end{itemize}
 \color{black}
@@ -278,8 +282,12 @@ d_{\by}(\lambda\bx_1+(1-\lambda)\bx_2) &= \|\lambda \bx_1+(1-\lambda)\bx_2-\by\|
 &= \|\lambda (\bx_1-\by)+(1-\lambda)(\bx_2-\by)\|_2^2 &\\
 &\leq (\|\lambda (\bx_1-\by)\|_2+\| (1-\lambda)(\bx_2-\by) \|_2)^2 \ (\because \text{triangle inequality}) &\\
 &= (\lambda \| \bx_1-\by\|_2+(1-\lambda) \| \bx_2-\by \|_2)^2  &\\
-&< \lambda \| \bx_1-\by\|_2^2 + (1-\lambda) \| \bx_2-\by \|_2^2  \ (\because \text{strict convexity of the quadratic})
+&< \lambda \| \bx_1-\by\|_2^2 + (1-\lambda) \| \bx_2-\by \|_2^2  \ (\because \text{strict convexity of the quadratic}) &\\
+&= \lambda d_{\by}(\bx_1) + (1-\lambda) d_{\by}(\bx_2)
 \end{align*}
+
+Hence, we have that $d_{\by}$ is strictly convex.
+
 \color{black}
 \paragraph{4. Infeasibility and Unboundedness.} 
 
@@ -344,11 +352,19 @@ $\textbf{c} =
 1 \\
 1 \\
 1
-\end{pmatrix}$.
+\end{pmatrix}$,
+$\textbf{x} = 
+\begin{pmatrix}
+x \\
+y \\
+z \\
+w
+\end{pmatrix}$
+.
 
 Then the primal LP can be written as:
 
-$min \ \textbf{c}^T \bx$, subject to $A\bx \geq \textbf{b}$.
+$min \ \textbf{c}^T \bx$, subject to $A\bx \geq \textbf{b}, \bx\geq 0$.
 
 Then, the dual LP can be written as:
 
@@ -366,7 +382,7 @@ $,
 
 $A^T \by = \textbf{c}$ doesn't have a solution. Hence, this dual LP is infeasible.
 
-From strong duality, if dual LP is infeasible, primal is either infeasible or unbounded. But since we have that the primal is feasible, it must be the case that the primal is unbounded.
+From strong duality, if dual LP is infeasible, primal is either infeasible or unbounded. But since we have shown that the primal is feasible, it must be the case that the primal is unbounded.
 \color{black}
 
 \paragraph{5. Linear Classifiers and the Perceptron Algorithm}
@@ -416,7 +432,7 @@ measurements of a sample and return $f(\bx)\in\{0,1\}$ such that:
 \item[a.] I chose the first two coordinates.
 
 \includegraphics[scale=0.8]{iris}
-\item[b.] To answer the first question, yes, it is linearly separable because it is linearly separable in a subset of all features. To answer the second question, not necessarily. Even if the data is linearly separable given all features, it does not mean that it is liearly separable in the projected space. Consider a separating (hyper)plane in 3D space that is parallel to the x and y axes. Then the data is clearly separable in 3D, but when project onto the x-y 2D plane, the data is no longer seperable if, say one point from two clusters have the same x,y coordinates (but different z coordinate).
+\item[b.] To answer the first question, yes, it is linearly separable because it is linearly separable in a subset of all features. If it is separable in a lower dimension, it must be the case that in a higher dimension, it is also separable. To answer the second question, not necessarily, because the converse of what I just said is not always true. Even if the data is linearly separable given all features, it does not mean that it is liearly separable in the projected space. Consider a separating (hyper)plane in 3D space that is parallel to the x and y axes. Then the data is clearly separable in 3D, but when projected onto the x-y 2D plane, the data is no longer separable if, say one point from two clusters have the same x,y coordinates (but different z coordinate).
 \item[c.] Because $f(\bx)$ can be defined as an indicator variable that returns 1 if a data point is above the hyperplane and 0 otherwise. If the hyperplane completely separates the two labels, then that means that $f$ classifies the datapoints entirely.
 \item[d.] The weights are [-0.03152507, -0.19633574,  0.29397583,  0.12135334,  0.04675983]. The code is in `hw2.py`.
 \end{itemize}

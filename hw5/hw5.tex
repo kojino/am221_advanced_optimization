@@ -1,0 +1,490 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage{algorithm,algorithmic}
+\usepackage[T1]{fontenc}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+
+
+\newcommand{\INPUT}{\item[{\bf Input:}]}
+\newcommand{\OUTPUT}{\item[{\bf Output:}]}
+\newcommand{\RR}{{\mathbb R}}
+\newcommand{\myvec}[1]{\mathbf{#1}}
+\newcommand{\ignore}[1]{}%
+
+
+\DeclareMathOperator*{\E}{\mathbb{E}}
+\let\Pr\relax
+\DeclareMathOperator*{\Pr}{\mathbb{P}}
+%\DeclareMathOperator*{\myv}{\mathbf{#1}}
+\newcommand{\mv}[1]{\mathbf{#1}}
+\newcommand{\mynorm}[1]{\|{#1}\|}
+
+
+\newcommand{\eps}{\varepsilon}
+\newcommand{\inprod}[1]{\left\langle #1 \right\rangle}
+
+\newcommand{\handout}[5]{
+  \noindent
+  \begin{center}
+  \framebox{
+    \vbox{
+      %\hbox to 5.78in { {\bf AM 221: Advanced Optimization } \hfill #2 }
+            \hbox to 6.38in { {\bf AM 221: Advanced Optimization } \hfill #2 }
+      \vspace{4mm}
+      %\hbox to 5.78in { {\Large \hfill #5  \hfill} }
+            \hbox to 6.38in { {\Large \hfill #5  \hfill} }
+      \vspace{2mm}
+            \hbox to 6.38in { {\em #3 \hfill #4} }
+      %\hbox to 5.78in { {\em #3 \hfill #4} }
+    }
+  }
+  \end{center}
+  \vspace*{4mm}
+}
+
+\newcommand{\lecture}[3]{\handout{#1}{#2}{#3}{Lecture #1}}
+\newcommand{\homework}[3]{\handout{#1}{#2}{#3}{Problem Set #1}}
+\newcommand{\sect}[3]{\handout{#1}{#2}{#3}{Section #1}}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{observation}[theorem]{Observation}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{assumption}[theorem]{Assumption}
+
+\newtheorem*{theorem*}{Theorem}
+\newtheorem*{corollary*}{Corollary}
+\newtheorem*{conjecture*}{Conjecture}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem*{thm*}{Theorem}
+\newtheorem*{prop*}{Proposition}
+\newtheorem*{obs*}{Observation}
+\newtheorem*{definition*}{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{example}{Example}
+\newtheorem*{rem*}{Remark}
+\newtheorem*{rec*}{Recommendation}
+
+
+% 1-inch margins, from fullpage.sty by H.Partl, Version 2, Dec. 15, 1988.
+\topmargin 0pt
+\advance \topmargin by -\headheight
+\advance \topmargin by -\headsep
+\textheight 8.9in
+\oddsidemargin 0pt
+\evensidemargin \oddsidemargin
+\marginparwidth 0.5in
+\textwidth 6.5in
+
+\parindent 0in
+\parskip 1.5ex
+
+%Basics
+\newcommand{\new}[1]{{\em #1\/}}		% New term (set in italics).
+
+\newcommand{\boxdef}[1]
+{
+\fbox{
+\begin{minipage}{42em}
+\begin{definition*}
+{#1}
+\end{definition*}
+\end{minipage}
+}
+}
+
+\newcommand{\boxthm}[1]
+{
+\fbox{
+\begin{minipage}{42em}
+\begin{theorem*}
+{#1}
+\end{theorem*}
+\end{minipage}
+}
+}
+
+\newcommand{\boxfact}[1]
+{
+\fbox{
+\begin{minipage}{42em}
+%\begin{theorem*}
+\emph{{#1}
+%\end{theorem*}
+}
+\end{minipage}
+}
+}
+
+
+
+
+%Probability
+\newcommand{\prob}[2][]{\text{\bf P}\ifthenelse{\not\equal{}{#1}}{_{#1}}{}\!\left(#2\right)}
+\newcommand{\expect}[2][]{\text{\bf E}\ifthenelse{\not\equal{}{#1}}{_{#1}}{}\!\left[#2\right]}
+\newcommand{\var}[2][]{\text{\bf Var}\ifthenelse{\not\equal{}{#1}}{_{#1}}{}\!\left[#2\right]}
+
+%Sets
+\newcommand{\set}[1]{\{#1\}}			% Set (as in \set{1,2,3})
+\newcommand{\given}{\, : \,}
+\newcommand{\setof}[2]{\{{#1} \given {#2}\}}	% Set (as in \setof{x}{x > 0})
+\newcommand{\compl}[1]{\overline{#1}}		% Complement of ...            
+\newcommand{\zeros}{{\mathbf 0}}
+\newcommand{\ones}{{\mathbf 1}}
+\newcommand{\union}{{\bigcup}}
+\newcommand{\inters}{{\bigcap}}
+
+%Other Math
+\newcommand{\floor}[1]{{\lfloor {#1} \rfloor}}
+\newcommand{\bigfloor}[1]{{\left\lfloor {#1} \right\rfloor}}
+\DeclareMathOperator{\argmax}{argmax}
+\DeclareMathOperator{\argmin}{argmin}
+
+\newcommand{\PRIMAL}{{\textsc{Primal}}}
+\newcommand{\DUAL}{{\textsc{Dual}}}
+
+
+
+%Numbers
+\newcommand{\C}{\mathbb{C}}	                % Complex numbers.
+\newcommand{\N}{\mathbb{N}}                     % Positive integers.
+\newcommand{\Q}{\mathbb{Q}}                     % Rationals.
+\newcommand{\R}{\mathbb{R}}                     % Reals.
+\newcommand{\Z}{\mathbb{Z}}                     % Integers.
+\newcommand{\M}{\mathcal{M}}                     % Matroids.
+\newcommand{\I}{\mathcal{I}}                     % Independent Sets.
+
+%Headings
+\newcommand{\parta}{\textbf{(a)}}
+\newcommand{\partb}{\textbf{(b)}}
+\newcommand{\partc}{\textbf{(c)}}
+\newcommand{\partd}{\textbf{(d)}}
+\newcommand{\parte}{\textbf{(e)}}
+
+
+\newcommand{\bt}{\boldsymbol{\theta}}
+\newcommand{\cl}[1]{\text{\textbf{#1}}}
+\newcommand{\eqdef}{\mathbin{\stackrel{\rm def}{=}}}
+\newcommand{\bx}{\mathbf{x}}
+\newcommand{\bq}{\mathbf{q}}
+\newcommand{\by}{\mathbf{y}}
+\newcommand{\bb}{\mathbf{b}}
+\newcommand{\bu}{\mathbf{u}}
+\newcommand{\bd}{\mathbf{d}}
+\newcommand{\ba}{\mathbf{a}}
+\newcommand{\bc}{\mathbf{c}}
+\newcommand{\bl}{\mathbf{l}}
+\newcommand{\bp}{\mathbf{p}}
+\newcommand{\bw}{\mathbf{w}}
+\newcommand{\bz}{\mathbf{z}}
+
+
+\begin{document}
+\homework{5 --- {\color{red} Due Wednesday, Feb. 28th at 23:59}}{Spring
+  2018}{Kojin Oshiba}
+
+%\renewcommand{\abstractname}{}
+\paragraph{Instructions:}
+
+\begin{itemize}
+\item 
+All your solutions should be prepared in \LaTeX \ and the
+PDF and .tex should be submitted to Canvas. 
+	Please submit all your files as ONE archive of filetype zip, 
+        tgz, or tar.gz.
+\item
+Name the file
+  {[your-first-name]}\_{[your-last-name]}.{[filetype]}.
+  For example, I would call my submission
+  rasmus\_kyng.zip. 
+\item 
+INCLUDE your name in the submisson pdf and any files with code.
+\item 
+{\color{red}
+If the TFs cannot easily deduce your identity from your files alone, they may
+decide not to grade your submission.
+}
+\item 
+For each question, a
+well-written and
+correct answer will be selected a sample solution for the entire class to
+enjoy.  If you prefer that we do not use your solutions, please indicate this
+clearly on the first page of your assignment. 
+\end{itemize}
+
+
+
+
+
+\paragraph{1. Least-squares regression.}
+
+In lecture 1, we introduced the problem of least-squares regression. Given
+a dataset of $n$ data points $(\bx_i,y_i)\in\R^d\times\R$, $1\leq i\leq n$, the
+goal is to find $\ba\in\R^d$ and $b\in\R$ so as to minimize:
+\begin{displaymath}
+    RSS(\ba, b) = \frac{1}{n}\sum_{i=1}^n(y_i-\bx_i^\intercal \ba - b)^2
+\end{displaymath}
+In other words, we are trying to approximate $y_i\simeq \bx_i^\intercal \ba
+- b$ and the approximatation error is measured by the function $RSS$ above.
+
+\begin{itemize}
+    \item[a.] Rewrite the least-squares regression problem in matrix form, that
+        is find $X\in\R^{n\times (d+1)}$ and $Y\in\R^n$ such that the problem
+        above takes the form:
+        \begin{displaymath}
+            \min_{\bd\in\R^{d+1}} \|X\bd-Y\|^2
+        \end{displaymath}
+        and express $X$ and $Y$ in terms of the data points $(\bx_i, y_i)$.
+    \item[b.] Define $f:\R^{d+1}\to\R$ by $f(\bd) = \|X\bd-Y\|^2$ for all
+        $\bd\in\R^{d+1}$. Compute the gradient and Hessian of $f$ and show that
+        $f$ is convex.
+    \item[c.] Give a sufficient and necessary condition for $f$ to be strongly
+        convex.
+\end{itemize}
+In all the following questions, we will assume that the condition of part c. is
+satisfied.
+\begin{itemize}
+    \item[d.] Solve the equation $\nabla f(\bx) = 0$ and explain how you would
+        use this to find an optimal solution to the least-squares regression
+        problem.
+    \item[e.] An alternative approach to d. is to use gradient descent. For
+        this, we need to solve for any direction $\delta\in\R^{d+1}$ the
+        following line search problem:
+        \begin{displaymath}
+            \min_{\lambda\in\R} f(\bd+\lambda\delta)
+        \end{displaymath}
+        Give a closed-form formula for the optimal solution to the line-search
+        problem. The solution should be expressed in termes of $X, Y, \bd$ and
+        $\delta$.
+\end{itemize}
+
+\color{blue}
+\begin{itemize}
+\item[a.] Let
+$$Y=\frac{1}{\sqrt{n}}\begin{pmatrix}
+y_1  \\
+ y_2 \\
+ \vdots \\
+ y_n
+\end{pmatrix}, X=\frac{1}{\sqrt{n}}\begin{pmatrix}
+\bx_1^\intercal & 1  \\
+\bx_2^\intercal & 1 \\ 
+ \vdots & \vdots \\
+\bx_n^\intercal & 1 
+\end{pmatrix}, \bd=\begin{pmatrix}
+\ba \\
+b 
+\end{pmatrix}$$
+Then can rewrite the given optimization problem as:
+ \begin{displaymath}
+            \min_{\bd\in\R^{d+1}} \|X\bd-Y\|^2
+        \end{displaymath}
+
+\item[b.]
+Since $f(\bd)=||X\bd-Y||^2=||Y||^2-2X^\intercal Y\bd + ||X\bd||^2$,
+$$\nabla f(\bd)=-2X^\intercal Y+2X^\intercal (X\bd ) = -2X^\intercal(X\bd -Y)$$
+$$H_f(\bd) = 2X^\intercal X $$
+Because for $\textbf{v} \in \R^n$, $\textbf{v}^\intercal X^\intercal X \textbf{v} = ||X\textbf{v} ||^2 > 0$, $H_f(\bd)$ is positive semi-definite. Hence we have that $f$ is convex.
+
+\item[c.]
+From the definition of strong convexity, we would like to have, for some $m < M \in \R_{\geq 0}$,
+
+$$mI \leq H_f(\bx) \leq MI $$.
+
+Hence, the sufficient and necessary condition for $f$ to be strongly convex is
+
+$$mI \leq X^\intercal X \leq MI$$
+
+\item[d.]
+\begin{align*}
+\nabla f(\bx)=0 &\Leftrightarrow 2X^\intercal (X\bd-Y) &\\
+& \Leftrightarrow X^\intercal X \bd = X^\intercal Y &\\
+& \Leftrightarrow \bd = (X^\intercal X)^{-1} X^\intercal Y
+\end{align*}
+
+\item[e.]
+
+Since $f$ is convex, the stationary point is the global minimum. Hence,
+
+\begin{align*}
+\nabla f(\bd+\lambda \delta)=0 &\Leftrightarrow 2(X\delta)^\intercal(X(\bd+\lambda \delta)-Y) = 0&\\
+&\Leftrightarrow (X\delta)^\intercal X(\bd+\lambda \delta) = (X\delta)^\intercal Y&\\
+&\Leftrightarrow ||X\delta||^2 \lambda = (X\delta)^\intercal Y- (X\delta)^\intercal X\bd &\\
+&\Leftrightarrow  \lambda = \frac{(X\delta)^\intercal (Y-X\bd)}{||X\delta||^2} &\\
+\end{align*}
+
+\end{itemize}
+\color{black}
+
+\paragraph{2. Wine quality revisited.}
+
+In this problem, we will re-use the dataset from Homework 3 available at
+\url{http://rasmuskyng.com/am221_spring18/psets/hw3/wines.csv}. Please
+refer to Homework 3 for
+a description of the dataset. We will again fit a linear model to predict wine
+quality as a function of the chemical measurements. However we will use
+least-squares regression (as presented in Problem 1 above) instead of
+$\ell_1$-regression.
+\begin{itemize}
+    \item[a.] Verify that for this dataset, matrix $X$ as defined in Problem
+        3 satisfies the condition of Problem 3, part c.
+    \item[b.] Write code to compute the optimal solution to the least-squares
+        regression problem using the method derived in Problem 3, part d.
+        Report your code, the linear model ($\ba$ and $b$) and the value of
+        function $RSS$ for this model.
+    \item[c.] Implement the gradient descent algorithm for the least-squares
+        regression problem. You are not allowed to use already existing
+        implementations of gradient descent (but you can of course use
+        libraries for matrix computation). You should use exact line search as
+        derived in Problem 3, part e. Report your code, the linear model and
+        the value of $RSS$ for this model. How does this compare to the result
+        found in part b.?
+    \item[d.] Compute from matrix $X$ an upper-bound on the convergence rate of
+        the gradient descent algorithm. Discuss the relative strengths and
+        weaknesses of method b. and method c.
+\end{itemize}
+
+\color{blue}
+\begin{itemize}
+\item[a.] See hw5.py.
+\item[b.] a: [  2.49905528e-02  -1.08359026e+00  -1.82563950e-01   1.63312698e-02
+  -1.87422516e+00   4.36133331e-03  -3.26457970e-03  -1.78811638e+01
+  -4.13653144e-01   9.16334413e-01   2.76197699e-01] 
+  
+b: 21.9652084243 
+
+val: 0.416767167221
+
+See hw5.py for code.
+
+\item [c.]
+a: [ 0.05153577 -1.16512617 -0.26828834  0.00558491 -0.44400488  0.00370356
+ -0.00251642  0.43634826  0.08281569  0.78552489  0.3120705 ] 
+ 
+b: 1.49761264935 
+
+val: 0.423019391955
+
+The value is very similar to the optimal solution, although it's not entirely the same. The weights and bias are different from the values in b.
+
+See hw5.py for code.
+
+\item[d.]
+The upperbound of the convergence rate is:
+$$f(\bd^{(k+1)})-\alpha^*) \leq (1-\frac{m}{M})^k (f(\bx^{(0)})-\alpha^*)$$
+
+With $k=100000$, the upperbound is, $21.7$.
+
+The strength of method b is that the solution is guranteed to be optimal. The weakness of method b is that weight matrix must be invertible, and even if it is, inverting it might take depending on the dataset size. 
+
+The strength of method b is that the weight matrices don't have to be invertible, and if the number of iterations is not too high, the algorithm runs fast. The weakness of method d is that the solution is not guranteed to be optimal. And as we just saw, the theoretical gurantee of convergence is actually quite weak. So we are not certain if the solution reached is optimal.
+
+\end{itemize}
+\color{black}
+
+\paragraph{3. Lipschitz-continuous Gradient.} A common smoothness assumption
+made to show convergence of optimization algorithms for convex functions is to
+assume that the gradient is Lipschitz-continuous. 
+We say that a differentiable
+function $f$ from $\R^n$ to $\R$ has a gradient which is
+$L$-Lipschitz-continuous iff:
+\begin{displaymath}
+    \|\nabla f(\bx) - \nabla f(\by)\| \leq L\|\bx-\by\|,\;
+    (\bx,\by)\in\R^n\times\R^n
+\end{displaymath}
+In class, we saw a definition of $L$-Lipschitz-continuous for the
+special case of \emph{twice} differentiable functions.
+In this problem, you will show (among other things) that the
+definition state above implies the condition stated in class whenever
+the function is twice differentiable.
+
+
+\begin{itemize}
+    \item[a.] Show that a differentiable function $g:\R^n\to\R$ is convex if
+        and only if:
+        \begin{displaymath}
+            \big(\nabla g(\bx) - \nabla g(\by)\big)^\intercal (\bx-\by) \geq
+            0,\; (\bx,\by)\in\R^n\times\R^n
+        \end{displaymath}
+    \item[b.] Assume that $f$'s gradient is $L$-Lipschitz continuous ($f$ is
+        not necessarily convex), then show that the function $g$ defined by:
+        \begin{displaymath}
+            g(\bx) = \frac{L}{2}\|\bx\|^2 - f(\bx),\;\bx\in\R^n
+        \end{displaymath}
+        is convex.
+    \item[c.] Assume that $f$ twice differentiable and that its
+        gradient is $L$-Lipschitz-continuous, then show that:
+        \begin{displaymath}
+            H_f(\bx) \preceq LI_n,\; \bx\in\R^n
+        \end{displaymath}
+        where $I_n\in\R^{n\times n}$ is the identity matrix.
+\begin{rem*} It is possible to show that when $f$ is convex, the reverse
+    statement is true: if $H_f(\bx)\preceq LI_n$ for all $\bx$, then $f$'s
+    gradient is $L$-Lipschitz-continuous.
+\end{rem*}
+\end{itemize}
+
+\color{blue}
+\begin{itemize}
+\item[a.] We would like to show (i) $g: \R^n \rightarrow \R$ is convex $\Leftrightarrow$ (ii) $(\nabla g(\bx)-\nabla g(\by))^\intercal (\bx-\by) \geq 0, (\bx,\by)\in \R^n \times \R^n$.
+
+\textbf{Proof of (i) $\rightarrow$ (ii)}
+
+Since $g$ is convex,
+$$g(\by) \geq g(\bx) + \nabla g(\bx)^\intercal (\by-\bx)$$
+$$g(\bx) \geq g(\by) + \nabla g(\by)^\intercal (\bx-\by)$$
+Adding these two inequalities, we have
+$$g(\by) + g(\bx) \geq g(\bx) + g(\by) 0 (\nabla g(\bx)-\nabla g(\by))^\intercal (\by-\bx)$$
+Hence,
+$$(\nabla g(\bx)-\nabla g(\by))^\intercal (\bx-\by) \geq 0$$
+
+\textbf{Proof of (ii) $\rightarrow$ (i)}
+
+(ii) $\rightarrow$ $\nabla f: \R^n \rightarrow \R^n$ is monotone. Let $$h(t) = g(\bx+t(\by-\bx))$$ Then, $$h'(t) = \nabla g(\bx+t(\by-\bx))^\intercal (\by-\bx)$$
+Because $\nabla f$ is monotone, we have that $h'(t) \geq h'(0)$ for $t\geq 0$. Hence, 
+\begin{align*}
+g(\by) &= h(1) &\\
+&= h(0)+\int_0^1 h'(t)dt &\\
+&\geq h(0)+h'(0) &\\
+&= g(\bx) + \nabla g(\bx)^\intercal (\by-\bx)
+\end{align*}
+Hence, $g$ is convex.
+
+\item[b.]
+$\nabla g(\bx)= L\bx - \nabla f(\bx)$. Since $\R^n$ is a convex set, all we need to show is that $\nabla g(\bx)$ is monotone. 
+
+\begin{align*}
+& ||\nabla f(\bx)-\nabla f(\by)|| \leq L||\bx-\by|| &\\
+\Rightarrow& ||\nabla f(\bx)-\nabla f(\by)||||\bx-\by||  \leq L||\bx-\by||^2 &\\
+\Rightarrow& (\nabla f(\bx)-\nabla f(\by))^\intercal (\bx-\by)  \leq L||\bx-\by||^2 \ (\because \text{Cauchy-Shwartz}) &\\
+\Rightarrow& (L(\bx-\by) -(\nabla f(\bx)-\nabla f(\by)))^\intercal (\bx-\by)  \geq 0 &\\
+\Rightarrow& (\nabla g(\bx)-\nabla g(\by))^\intercal (\bx-\by)  \geq 0 
+\end{align*}
+
+Hence, $\nabla g(\bx)$ is monotone. Thus, $g(\bx)$ is convex.
+
+\item[c.]
+Since $f$ is twice differentiable,
+$$\nabla g(\bx) = L\bx - \nabla f(\bx)$$
+$$H_g(\bx) = LI_n - H_f(\bx)$$
+Since we know that $g(\bx)$ is convex from (b), $H_g(\bx) \geq 0$. Hence
+$$H_f(\bx) \leq LI_n$$
+\end{itemize}
+\color{black}
+
+\end{document}

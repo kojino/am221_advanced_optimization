@@ -1,0 +1,597 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage{algorithm,algorithmic}
+\usepackage[T1]{fontenc}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+
+
+\newcommand{\INPUT}{\item[{\bf Input:}]}
+\newcommand{\OUTPUT}{\item[{\bf Output:}]}
+\newcommand{\RR}{{\mathbb R}}
+\newcommand{\myvec}[1]{\mathbf{#1}}
+\newcommand{\ignore}[1]{}%
+\newenvironment{redmatrix}
+  {\left(\array{@{}rrrr|c@{}}}
+  {\endarray\right)}
+
+\DeclareMathOperator*{\E}{\mathbb{E}}
+\let\Pr\relax
+\DeclareMathOperator*{\Pr}{\mathbb{P}}
+%\DeclareMathOperator*{\myv}{\mathbf{#1}}
+\newcommand{\mv}[1]{\mathbf{#1}}
+\newcommand{\mynorm}[1]{\|{#1}\|}
+
+
+\newcommand{\eps}{\varepsilon}
+\newcommand{\inprod}[1]{\left\langle #1 \right\rangle}
+
+\newcommand{\handout}[5]{
+  \noindent
+  \begin{center}
+  \framebox{
+    \vbox{
+      %\hbox to 5.78in { {\bf AM 221: Advanced Optimization } \hfill #2 }
+            \hbox to 6.38in { {\bf AM 221: Advanced Optimization } \hfill #2 }
+      \vspace{4mm}
+      %\hbox to 5.78in { {\Large \hfill #5  \hfill} }
+            \hbox to 6.38in { {\Large \hfill #5  \hfill} }
+      \vspace{2mm}
+            \hbox to 6.38in { {\em #3 \hfill #4} }
+      %\hbox to 5.78in { {\em #3 \hfill #4} }
+    }
+  }%
+  \end{center}
+  \vspace*{4mm}
+}
+
+\newcommand{\lecture}[3]{\handout{#1}{#2}{#3}{Lecture #1}}
+\newcommand{\homework}[3]{\handout{#1}{#2}{#3}{Problem Set #1}}
+\newcommand{\sect}[3]{\handout{#1}{#2}{#3}{Section #1}}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{observation}[theorem]{Observation}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{assumption}[theorem]{Assumption}
+
+\newtheorem*{theorem*}{Theorem}
+\newtheorem*{corollary*}{Corollary}
+\newtheorem*{conjecture*}{Conjecture}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem*{thm*}{Theorem}
+\newtheorem*{prop*}{Proposition}
+\newtheorem*{obs*}{Observation}
+\newtheorem*{definition*}{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{example}{Example}
+\newtheorem*{rem*}{Remark}
+\newtheorem*{rec*}{Recommendation}
+
+
+% 1-inch margins, from fullpage.sty by H.Partl, Version 2, Dec. 15, 1988.
+\topmargin 0pt
+\advance \topmargin by -\headheight
+\advance \topmargin by -\headsep
+\textheight 8.9in
+\oddsidemargin 0pt
+\evensidemargin \oddsidemargin
+\marginparwidth 0.5in
+\textwidth 6.5in
+
+\parindent 0in
+\parskip 1.5ex
+
+%Basics
+\newcommand{\new}[1]{{\em #1\/}}		% New term (set in italics).
+
+\newcommand{\boxdef}[1]
+{
+\fbox{
+\begin{minipage}{42em}
+\begin{definition*}
+{#1}
+\end{definition*}
+\end{minipage}
+}
+}
+
+\newcommand{\boxthm}[1]
+{
+\fbox{
+\begin{minipage}{42em}
+\begin{theorem*}
+{#1}
+\end{theorem*}
+\end{minipage}
+}
+}
+
+\newcommand{\boxfact}[1]
+{
+\fbox{
+\begin{minipage}{42em}
+%\begin{theorem*}
+\emph{{#1}
+%\end{theorem*}
+}
+\end{minipage}
+}
+}
+
+
+
+
+%Probability
+\newcommand{\prob}[2][]{\text{\bf P}\ifthenelse{\not\equal{}{#1}}{_{#1}}{}\!\left(#2\right)}
+\newcommand{\expect}[2][]{\text{\bf E}\ifthenelse{\not\equal{}{#1}}{_{#1}}{}\!\left[#2\right]}
+\newcommand{\var}[2][]{\text{\bf Var}\ifthenelse{\not\equal{}{#1}}{_{#1}}{}\!\left[#2\right]}
+
+%Sets
+\newcommand{\set}[1]{\{#1\}}			% Set (as in \set{1,2,3})
+\newcommand{\given}{\, : \,}
+\newcommand{\setof}[2]{\{{#1} \given {#2}\}}	% Set (as in \setof{x}{x > 0})
+\newcommand{\compl}[1]{\overline{#1}}		% Complement of ...            
+\newcommand{\zeros}{{\mathbf 0}}
+\newcommand{\ones}{{\mathbf 1}}
+\newcommand{\union}{{\bigcup}}
+\newcommand{\inters}{{\bigcap}}
+
+%Other Math
+\newcommand{\floor}[1]{{\lfloor {#1} \rfloor}}
+\newcommand{\bigfloor}[1]{{\left\lfloor {#1} \right\rfloor}}
+\DeclareMathOperator{\argmax}{argmax}
+\DeclareMathOperator{\argmin}{argmin}
+
+\newcommand{\PRIMAL}{{\textsc{Primal}}}
+\newcommand{\DUAL}{{\textsc{Dual}}}
+
+
+
+%Numbers
+\newcommand{\C}{\mathbb{C}}	                % Complex numbers.
+\newcommand{\N}{\mathbb{N}}                     % Positive integers.
+\newcommand{\Q}{\mathbb{Q}}                     % Rationals.
+\newcommand{\R}{\mathbb{R}}                     % Reals.
+\newcommand{\Z}{\mathbb{Z}}                     % Integers.
+\newcommand{\M}{\mathcal{M}}                     % Matroids.
+\newcommand{\I}{\mathcal{I}}                     % Independent Sets.
+
+%Headings
+\newcommand{\parta}{\textbf{(a)}}
+\newcommand{\partb}{\textbf{(b)}}
+\newcommand{\partc}{\textbf{(c)}}
+\newcommand{\partd}{\textbf{(d)}}
+\newcommand{\parte}{\textbf{(e)}}
+
+
+\newcommand{\bt}{\boldsymbol{\theta}}
+\newcommand{\cl}[1]{\text{\textbf{#1}}}
+\newcommand{\eqdef}{\mathbin{\stackrel{\rm def}{=}}}
+\newcommand{\bx}{\mathbf{x}}
+\newcommand{\bq}{\mathbf{q}}
+\newcommand{\by}{\mathbf{y}}
+\newcommand{\bb}{\mathbf{b}}
+\newcommand{\bu}{\mathbf{u}}
+\newcommand{\bd}{\mathbf{d}}
+\newcommand{\ba}{\mathbf{a}}
+\newcommand{\bc}{\mathbf{c}}
+\newcommand{\bl}{\mathbf{l}}
+\newcommand{\bp}{\mathbf{p}}
+\newcommand{\bw}{\mathbf{w}}
+\newcommand{\bz}{\mathbf{z}}
+
+
+\begin{document}
+\homework{3 --- {\color{red} Due Wed, Feb. 14th at 23:59}}{Spring
+  2018}{Kojin Oshiba}
+
+%\renewcommand{\abstractname}{}
+\paragraph{Instructions:}
+All your solutions should be prepared in \LaTeX \ and the
+PDF and .tex should be submitted to Canvas. 
+	Please submit all your files as ONE archive of filetype zip, 
+        tgz, or tar.gz.
+For each question, a
+well-written and
+correct answer will be selected a sample solution for the entire class to
+enjoy.  If you prefer that we do not use your solutions, please indicate this
+clearly on the first page of your assignment. 
+
+The programming parts can be written in Python, Matlab, or Julia. 
+If you strongly wish to use another language, please contact the
+instructor to ask for permission.
+\newline
+
+\paragraph{1. Unboundedness.} Let us consider the polytope $P
+= \{\bx\in\R^n\,|\, A\bx\leq \bb\}$ for some $A\in\R^{m\times n}$ and
+$\bb\in\R^m$. In this problem, we are interested in the following linear
+program:
+\begin{equation}
+    \label{eq:lp}
+    \max_{\bx\in P} \bc^\intercal\bx
+    \tag{LP}
+\end{equation}
+We define the \emph{recession cone} $P^o$ associated with $P$ by:
+\begin{displaymath}
+    P^o \eqdef \{\bd\in\R^n\,|\, \forall \bx\in P,\forall \lambda\geq 0,\; \bx+\lambda
+    \bd\in P\}
+\end{displaymath}
+\begin{itemize}
+    \item[a.] Show that $P^o = \{\bd\in\R^n\,|\, A\bd\leq 0\}$.
+    \item[b.] Show that $P^o$ is a convex set.
+    \item[c.] Show that the linear program \eqref{eq:lp} above is unbounded if
+        and only if there exists $\bd\in P^o$ such that $\bc^\intercal \bd
+        > 0$.
+\end{itemize}
+
+\color{blue}
+\begin{itemize}
+\item[a.] 
+\begin{align*}
+& \forall \bx \in P, \forall \lambda \geq 0, \bx + \lambda \bd \in P &\\
+\Leftrightarrow & \forall \bx \in P, \forall \lambda \geq 0, A(\bx + \lambda \bd) \leq \textbf{b} \ (\because \text{definition of P})&\\
+\Leftrightarrow & \forall \bx \in P, \forall \lambda > 0, A(\bx + \lambda \bd) \leq \textbf{b} \ (\because \text{when $\lambda=0$, $A\bx \leq \textbf{b}$ is satisfied by default beucase $\bx \in P$}) &\\
+\Leftrightarrow & \forall \bx \in P, \forall \lambda > 0, A\bd \leq \frac{\textbf{b}-A\bx}{\lambda} &\\
+\Leftrightarrow & A\bd \leq 0 
+\end{align*}
+The last equivalence comes from the fact that $\textbf{b}-A\bx \geq 0$, since $\bx \in P$. So, for $A\bd \leq \frac{\textbf{b}-A \bx}{\lambda}, \forall \bx \in P, \forall \lambda >0$, we need $A\bd \leq 0$ because the lower bound of $\frac{\textbf{b}-A \bx}{\lambda}$ is 0.
+
+\item[b.]
+Let $d_1 \in P_0$ and $d_2 \in P_0$. Then,
+\begin{align*}
+A(\lambda \bd_1 + (1-\lambda) \bd_2) &= \lambda A\bd_1 + (1-\lambda) A \bd_2 &\\
+&\leq \lambda 0 + (1-\lambda) 0 \ (\because \ \text{(a)}) &\\
+&= 0
+\end{align*}
+
+\item[c.]
+Let (i) $max_{\bx \in P} \bc^T \bx$ is unbounded, (ii) $\exists \bd \in P^0 \ \text{s.t.} \ \bc^T\bd > 0$.
+
+Proof of (i) $\Rightarrow$ (ii):
+\begin{align*}
+& max_{\bx \in P} \bc^T \bx \ \text{is unbounded} &\\
+\Leftrightarrow & min_{\bx \in \R^n} \bc^T \bx \ \text{s.t.} \  A\bx \geq \textbf{b} \ \text{is unbounded} &\\
+\Leftrightarrow & \text{the dual of this LP} \ max_{\by \in \R^m} \textbf{b}^T \by \ \text{s.t.} \  A^T\by=c, y \geq 0 \ \text{is infeasible} \ (\because \text{weak duality})&\\
+\Rightarrow & \{\by \in \R^m: A^T\by =\bc, y\geq 0\} = \phi &\\
+\Rightarrow & \ max_{\by \in \R^m} \textbf{0}^T \by \ \text{s.t.} \  A^T\by=c, y \geq 0 \ \text{is infeasible} &\\
+\Rightarrow & \text{the dual of this LP} \ min_{\bx \in \R^n} \bc^T \bx \ \text{s.t.} \  A\bx \geq \textbf{0} \ \text{is unbounded} &\\
+&(\because \text{weak duality. But since $\bx=0$ is a feasible solution, it is unbounded})&\\
+\Rightarrow & \ max_{\bx \in \R^n} \bc^T \bx \ \text{s.t.} \  A\bx \leq \textbf{0} \ \text{is unbounded} &\\
+\Rightarrow & \ min_{\bd \in P^0} \bc^T \bd \ \text{is unbounded} &\\
+\Rightarrow & \exists \bd \in P^0 \ \text{s.t.} \ \bc^T\bd > 0
+\end{align*}
+
+Proof of (ii) $\Rightarrow$ (i):
+\begin{align*}
+& \exists \bd \in P^0 \ \text{s.t.} \ \bc^T\bd > 0 &\\
+& \Rightarrow \forall \bx \in P, \forall \lambda \geq 0, \bx + \lambda \bd \in P \ \text{and} \ \bc^T\bd > 0 &\\
+& \Rightarrow \text{$\bc^T(\bx+\lambda \bd)$ can be arbitrarily large by choosing $\lambda$ arbitrarily large.} &\\ 
+& \Rightarrow max_{\bx \in P} \bc^T \bx \ \text{is unbounded}
+\end{align*}
+
+\end{itemize}
+\color{black}
+
+\paragraph{2. Linearly Separable Datasets.}
+
+In linear classification, we are given a dataset $\mathcal{D} = \big\{(\bx_1,
+y_1),\newline\dots, (\bx_n, y_n)\big\}$ with $\bx_i\in\R^d$ and
+$y_i\in\{-1,+1\}$. $y_i$ is the \emph{label} of data point $i$. Remember that
+we defined a dataset to be (strictly) linearly separable if and only if there
+exists $\bw\in\R^d$ and $b\in\R$ such that:
+\begin{displaymath}
+    y_i\big(\bw^\intercal x_i - b) > 0,\quad 1\leq i\leq n
+\end{displaymath}
+\begin{itemize}
+    \item[a.] Show that the condition of being linearly separable is equivalent
+        to the following condition: there exists $\bw\in\R^d$ and $b\in\R$ such
+        that
+        \begin{displaymath}
+            y_i\big(\bw^\intercal x_i - b)\geq 1,\quad 1\leq i\leq n 
+        \end{displaymath}
+    \item[b.] Let us define $X^+ \eqdef \{\bx_i\,|\, y_i = +1,\; 1\leq i\leq n\}$
+        and $X^- \eqdef \{\bx_i\,|\, y_i = -1,\; 1\leq i\leq n\}$. Using Farkas'
+        lemma, show that if $\mathcal{D}$ is not linearly separable then
+        $C(X^+)\cap C(X^-) \neq\emptyset$. Remember from the second problem set
+        that $C(X)$ denotes the convex hull of $X$.
+\end{itemize}
+
+\color{blue}
+\begin{itemize}
+\item[a.]
+Let $c=min\{b' \in \R: b+1 < b'\}$
+\begin{align*}
+& \exists \bw \in \R^d, b \in \R \ \text{s.t.} \ y_i (\bw^\intercal x_i - b)> 0,\quad 1\leq i\leq n &\\
+\Leftrightarrow & \exists \bw \in \R^d, c \in \R \ \text{s.t.} \ y_i (\bw^\intercal x_i - (c-1)) \geq 0,\quad 1\leq i\leq n &\\
+\Leftrightarrow & \exists \bw \in \R^d, c \in \R \ \text{s.t.} \ y_i (\bw^\intercal x_i - c) \geq 1,\quad 1\leq i\leq n &\\
+\end{align*}
+
+\item[b.]
+We show that the contraposition is true.
+To show this, we use the Seperation Theorem I, referenced \href{https://en.wikipedia.org/wiki/Hyperplane_separation_theorem}{here}. We first show that $C(X^+)$ is compact. $C(X^+)$ is closed by definition of a convex hull. Furthermore, since there are only finitely many points in $X^+$, $C(X^+)$ is also bounded. Hence, $C(X^+)$ is compact. Therefore, it follows from the Seperation Theorem I that there exist a nonzero vector $v$ and real numbers $c_1 < c_2$ such that $\langle x,v \rangle > c_2$ and $\langle y,v \rangle< c_1$ for all $x \in C(X^+)$ and $y \in C(X^-)$.
+\end{itemize}
+\color{black}
+
+\paragraph{3.  Fractional Knapsack Problem.}
+In the Fractional Knapsack Problem, there is a set of $n$ items, each item $i$,
+$1\leq i\leq n$ has a value $v_i\in\R_+$ (representing your ``happiness'' for
+owning this item) and a cost $c_i\in\R_+$. There is a budget constraint
+$b\in\R_+$ on the total amount of money you can spend and your goal is to buy
+the set of items of maximum value while not spending more than $b$. We assume
+that the items are infinitely divisible, meaning that you can buy a fraction
+$x_i$, $0\leq x_i \leq 1$ of item $i$ for a fraction $x_ic_i$ of its cost, but
+this will only give you a fraction $x_iv_i$ of its value.
+
+Formally, we want to solve the following linear program:
+\begin{displaymath}
+    \begin{aligned}
+        \max_{\bx\in\R^n}&\; \sum_{i=1}^n v_ix_i\\
+        \text{s.t} &\; \sum_{i=1}^n c_ix_i\leq b\\
+                   &\; x_i\geq 0,\;1\leq i\leq n\\
+                   &\; x_i\leq 1,\;1\leq i\leq n
+    \end{aligned}
+\end{displaymath}
+We will also assume that all items have positive value, \emph{i.e} $v_i > 0$
+for all $i$ (otherwise we can remove these items without changing the problem,
+since we will never want to buy them anyway).
+
+
+\begin{itemize}
+    \item[a.] Let us consider a feasible solution $\bx\in\R^n$ of the
+        Fractional Knapsack Problem. Show that $\bx\in\R^n$ is optimal if and
+        only if there exists $\by\in\R^n$ and $\xi\in\R$ such that:
+        \begin{gather*}
+            \xi\geq 0,\; \by\geq 0\\
+            c_i\xi + y_i\geq v_i,\;1\leq i\leq n\\
+            y_i>0\Rightarrow x_i = 1,\; 1\leq i\leq n\\
+            x_i>0\Rightarrow c_i\xi + y_i = v_i,\; 1\leq i\leq n\\
+            \xi>0\Rightarrow \sum_{i=1}^n c_ix_i = b
+        \end{gather*}
+\end{itemize}
+We will now focus on characterizing an optimal solution $\bx\in\R^n$. Let us
+consider one such solution $\bx\in\R^n$. \textbf{Warning:} this problem is
+decomposed in many small questions, but most questions should only take a few
+lines to solve.
+\begin{itemize}
+    \item[b.] Show that when $\frac{v_i}{c_i}>\xi$ or $c_i = 0$ then $x_i
+        = 1$.
+    \item[c.] Show that when $c_i\neq 0$ and $\frac{v_i}{c_i}< \xi$ then $x_i
+        = 0$.
+\end{itemize}
+For simplicity, we will assume that the ratios $\frac{v_i}{c_i}$ are distinct
+across all items. In other words, for distinct indices $i\neq j$, we have that
+$\frac{v_i}{c_i}\neq\frac{v_j}{c_j}$. This is not a very restrictive
+assumption, and the analysis which follows can be adapted to accommodate ties.
+\begin{itemize}
+    \item[d.] Let us denote by $I$ the set of indices such that
+        $\frac{v_i}{c_i}>\xi$, and let us assume that there exists $j$ such
+        that $\frac{v_j}{c_j} = \xi$; if such a $j$ exists, it is necessarily
+        unique. Show that if $\sum_{i\in I}c_i + c_j \leq b$ then $x_j = 1$.
+    \item[e.] Assume that $\sum_{i\in I}c_i + c_j > b$ ($j$ is the same index
+        as in part d.), show that:
+        \begin{displaymath}
+            x_j = \frac{b-\sum_{i\in I}c_i}{c_j}
+        \end{displaymath}
+    \item[f.] Combining parts a. to f. explain how to construct an optimal
+        solution to the Fractional Knapsack Problem.
+\end{itemize}
+
+\color{blue}
+
+\begin{itemize}
+\item[a.]
+
+Let 
+$A = 
+\begin{pmatrix}
+-\bc^T \\
+I \\
+-I \\
+\end{pmatrix}$,
+$\textbf{b} = 
+\begin{pmatrix}
+b \\
+\b0 \\
+\b{-1} \\
+\end{pmatrix}$,
+$\bc' = -\textbf{v}^T$,
+$\textbf{x} = 
+\begin{pmatrix}
+x_1 \\
+\vdots \\
+x_n
+\end{pmatrix}$
+.
+
+Then the primal LP can be written as:
+
+$min \ \bc'^T \bx$, subject to $A\bx \geq \textbf{b}, \bx\geq 0$.
+
+Then, the dual LP can be written as:
+
+$max \ \textbf{b}^T \by'$ subject to $A^T \by' =\bc', \by' \geq 0$.
+
+Let
+$\by' = 
+\begin{pmatrix}
+\xi \\
+z_1 \\
+\vdots \\
+z_n \\
+y_1 \\
+\vdots \\
+y_n
+\end{pmatrix}$.
+
+Directly from the dual condition, we have 
+$$\by > 0, \xi >0$$
+For $1 \leq i \leq n$, we have from $A^T \by' =\bc'$ that
+\begin{align*}
+& -c_i \xi + z_i - y_i = -v_i &\\
+& \Leftrightarrow c_i \xi + y_i - z_i = v_i &\\
+& \Leftrightarrow c_i \xi + y_i \geq v_i 
+\end{align*}
+
+From both weak and strong duality, we have
+$$-\textbf{v}^T \bx = \by^T A \bx = \textbf{b}^T \by$$
+Hence, 
+$$\by^T A \bx = \textbf{b}^T \by$$
+This means, if $\by' > 0$, $A\bx = \textbf{b}$. Thus,
+
+if $\xi > 0$, $\sum_{i=1}^n c_i x_i = b$ and
+
+if $y_i > 0$, $x_i=1$  for $1 \leq i \leq n$.
+
+Finally, we show the remaining $x_i>0\Rightarrow c_i\xi + y_i = v_i$. Let's use the contrapositive of the complementary slackness. First of all, we have complementary slackness from the strong duality since there exists $x$ that is feasible in (P) and so it must be the case that there's a $y$ feasible for (D) with $c^Tx=b^Ty$. Then, we have that $\forall i \ y'_i > 0 \Rightarrow a_i^T x = b_i^T$. The contrapositive of this is $\forall i \  a_i^T x > b_i^T \Rightarrow y'_i = 0$. Applying this for the $a_i$'s corresponding to $z$'s in $y'$, we have $x_i > 0\Rightarrow z_i=0$ for all $z_i$'s. Because we have $c_i \xi + y_i - z_i = v_i$ as we've seen, it follows that $c_i \xi + y_i = v_i$. 
+
+Since complementary slackness is an if and only if result, the proofs above will hold even in the converse case. Therefore, we proved the proposition.
+
+\item[b.]
+\begin{align*}
+&\frac{v_i}{c_i} > \xi \ \text{or} \ c_i = 0 &\\
+\Rightarrow& y_i > 0 &\\
+&(\because  \text{$c_i\xi + y_i\geq v_i$. So when $c_i = 0$, $y_i\geq v_i > 0$ and when $\frac{v_i}{c_i} > \xi$, $y_i > 0$ }) &\\
+\Rightarrow & x_i =1
+\end{align*}
+
+\item[c.]
+\begin{align*}
+&c_i\neq0,\frac{v_i}{c_i} < \xi &\\
+&\Rightarrow v_i < c_i \xi \ \text{and} \ c_i\neq0 &\\
+&\Rightarrow v_i < c_i \xi + y_i \ \text{and} \ c_i\neq0 \ (\because \ y_i \geq 0)&\\
+&\Rightarrow c_i \xi + y_i \neq v_i &\\
+&\Rightarrow x_i = 0 \ (\because \ \text{contraposition of $x_i > 0 \Rightarrow c_i \xi + y_i = v_i$})
+\end{align*}
+
+\item[d.]
+Since we assume that there exists $i$ such that $\xi = \frac{v_i}{c_i}$ and $v_i > 0$ always, it must be the case that $\xi >0$. Hence, we assume that for the remaining of the problem.
+Using the results of b and c, we have,
+$$\sum_{i=1}^n c_i x_i = \sum_{i\in I} c_i x_i + c_j x_j + \sum_{k\in K} c_k x_k = \sum_{i\in I} c_i + c_j x_j$$
+On the other hand, we assumed that $\sum_{i\in I} c_i  + c_j  \leq b$. Moreover, we have $b=\sum_{i=1}^n c_i x_i$ from $\xi >0$. So,
+
+$$b= \sum_{i\in I} c_i + c_j x_j \leq \sum_{i\in I} c_i  + c_j  \leq b$$
+Hence, $\sum_{i\in I} c_i  + c_j  x_j= b$ and so $x_j = 1$
+
+\item[e.]
+We can again assume that $\xi >0$.
+We have that if $\xi > 0$, $\sum_{i=1}^n c_i x_i =b$.  
+
+Similarly to d, using the results from b and c, $\sum_{i\in I} c_i  + c_j x_j  = b$
+
+Hence, $x_j = \frac{b-\sum_{i\in I} c_i}{c_j}$.
+
+\item[f.]
+First, sort items by $\frac{v_i}{c_i}$ for all $1 \geq i \geq n$ in descending order. Then, buy the entirety of each item, starting from the ones with high $\frac{v_i}{c_i}$, until you can't buy the entirety of items with lower $\frac{v_i}{c_i}$. Finally buy the fraction of the item with the next highest $\frac{v_i}{c_i}$ so as to use up the rest of the remaining budget.
+
+\end{itemize}
+
+\color{black}
+
+\paragraph{4. Predicting wine quality.}
+
+In this problem we will use Linear Programming to predict wine quality (as
+judged by oenologists) from chemical measurements. The dataset is available at 
+\url{http://rasmuskyng.com/am221_spring18/psets/hw3/wines.csv}. In each line, the first 11 columns
+contain the results from various chemical tests performed on the wine, and the
+last column is the evaluation (a score between 0 and 10) of the wine.
+
+For wine sample $i$, let us denote by $y_i\in\R$ its score and by
+$\bx_i\in\R^{11}$ its chemical properties. We will construct a linear model to
+predict $y_i$ as a function of $\bx_i$, that is, we want to find
+$\ba\in\R^{11}$ and $b\in\R$ such that:
+\begin{displaymath}
+    y_i\simeq \ba^\intercal \bx_i + b
+\end{displaymath}
+The quality of the model will be evaluated using the $\ell_1$ norm, \emph{i.e}
+we want to find a solution to this optimization problem:
+\begin{displaymath}
+    \min_{\substack{\ba\in\R^{11}\\ b\in\R}} \frac{1}{n}\sum_{i=1}^n \left|y_i - \ba^\intercal \bx_i - b\right|
+\end{displaymath}
+
+\begin{itemize}
+    \item[a.] Remember from class that the above problem is equivalent to the
+        following linear program:
+        \begin{displaymath}
+            \begin{aligned}
+            \min_{\substack{\ba\in\R^{11}\\ b\in\R\\\bz\in\R^n}}
+            &\;\frac{1}{n}\sum_{i=1}^n z_i\\
+            \text{s.t.}&\; z_i\geq y_i - \ba^\intercal \bx_i - b, 1\leq i\leq n\\
+                    &\; z_i\geq\ba^\intercal \bx_i + b - y_i, 1\leq i \leq n
+        \end{aligned}
+        \end{displaymath}
+        Explain how to rewrite this problem in matrix form:
+        \begin{displaymath}
+            \begin{aligned}
+                \min_{\bd\in\R^{12+n}}
+            &\;\bc^\intercal\bd\\
+            \text{s.t.}&\; A\bd\leq \bb
+        \end{aligned}
+        \end{displaymath}
+        In particular, give the dimensions and definitions of $\bc, A$ and $\bb$.
+    \item[b.] Use an LP solver  (we recommend using CVXOPT in Python,
+      CVX in Matlab or JuMP \& Clp in Julia) to solve the
+        above problem and report your code as well as the optimal value of the
+        problem. Note that the value of the problem is exactly the average
+        absolute error of the linear model on the dataset. Does it seem to be
+        within an acceptable range?
+\end{itemize}
+
+\begin{itemize}
+\color{blue}
+\item[a.] Let 
+$A = 
+\begin{pmatrix}
+\bx_1^T & 1 & -1 & 0 & \hdots & 0\\
+\vdots & \vdots & \vdots & \vdots & \vdots \\
+\bx_n^T & 1 & 0 & 0 & \hdots & -1\\
+-\bx_1^T & -1 & -1 & 0 & \hdots & 0 \\
+\vdots & \vdots & \vdots & \vdots & \vdots \\
+\bx_n^T & -1 & 0 & 0 & \hdots & -1 \\
+\end{pmatrix}$. 
+
+$A$ is a $2n \times 12+n$ matrix, where the first 12 columns are $\bx^T$ and $-\bx^T$ stacked vertically, and the next column is $n$ 1's and $n$ -1's stacked vertically, and the last $n$ columns are two $-I$ ($I$ is an identity matrix) stacked vertically.
+
+
+$\textbf{b} = 
+\begin{pmatrix}
+\by \\
+-\by \\
+\end{pmatrix}$, which is a vector of length $2n$.
+
+$\bc = \begin{pmatrix}
+0 \\
+\vdots \\
+0 \\
+\frac{1}{n} \\
+\vdots \\
+\frac{1}{n}
+\end{pmatrix}$, which is a vector of length $12+n$ and the first $12$ elements are $0$, the rest are $\frac{1}{n}$.
+
+$\textbf{d} = 
+\begin{pmatrix}
+\ba \\
+b \\
+\bz
+\end{pmatrix}$, which is a vector of length $12+n$, where $\ba,b,\bz$ are stacked vertically.
+.
+\item[b.]
+The full code is provided in 
+The optimal cost of the primal is $0.49375$, which seems to be reasonable.
+\end{itemize}
+\color{black}
+\end{document}

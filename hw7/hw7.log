@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.9.2)  7 FEB 2018 20:34
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.9.2)  21 MAR 2018 10:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**hw2.tex
-(./hw2.tex
+**hw7.tex
+(./hw7.tex
 LaTeX2e <2017-04-15>
 Babel <3.10> and hyphenation patterns for 84 language(s) loaded.
 (/usr/local/texlive/2017/texmf-dist/tex/latex/base/article.cls
@@ -283,25 +283,32 @@ Package: algorithmic 2009/08/24 v0.1 Document Style `algorithmic'
 \ALC@tlm=\skip50
 \algorithmicindent=\skip51
 )
+(/usr/local/texlive/2017/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2017/04/05 v2.0i Standard LaTeX package
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/base/t1enc.def
+File: t1enc.def 2017/04/05 v2.0i Standard LaTeX file
+LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
+))
+Package hyperref Info: Option `colorlinks' set `true' on input line 15.
 \c@theorem=\count116
+ (./hw7.aux)
+\openout1 = `hw7.aux'.
 
-(./hw2.aux)
-\openout1 = `hw2.aux'.
-
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 172.
-LaTeX Font Info:    ... okay on input line 172.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 172.
-LaTeX Font Info:    ... okay on input line 172.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 172.
-LaTeX Font Info:    ... okay on input line 172.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 172.
-LaTeX Font Info:    ... okay on input line 172.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 172.
-LaTeX Font Info:    ... okay on input line 172.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 172.
-LaTeX Font Info:    ... okay on input line 172.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 172.
-LaTeX Font Info:    ... okay on input line 172.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 197.
+LaTeX Font Info:    ... okay on input line 197.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 197.
+LaTeX Font Info:    ... okay on input line 197.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 197.
+LaTeX Font Info:    ... okay on input line 197.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 197.
+LaTeX Font Info:    ... okay on input line 197.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 197.
+LaTeX Font Info:    ... okay on input line 197.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 197.
+LaTeX Font Info:    ... okay on input line 197.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 197.
+LaTeX Font Info:    ... okay on input line 197.
 
 (/usr/local/texlive/2017/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -334,7 +341,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 \AtBeginShipoutBox=\box31
-Package hyperref Info: Link coloring OFF on input line 172.
+Package hyperref Info: Link coloring ON on input line 197.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -344,77 +351,103 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count123
 )
-LaTeX Info: Redefining \ref on input line 172.
-LaTeX Info: Redefining \pageref on input line 172.
-LaTeX Info: Redefining \nameref on input line 172.
+LaTeX Info: Redefining \ref on input line 197.
+LaTeX Info: Redefining \pageref on input line 197.
+LaTeX Info: Redefining \nameref on input line 197.
 
-(./hw2.out) (./hw2.out)
+(./hw7.out) (./hw7.out)
 \@outlinefile=\write3
-\openout3 = `hw2.out'.
+\openout3 = `hw7.out'.
 
 
-Overfull \hbox (5.42793pt too wide) in paragraph at lines 175--175
+Overfull \hbox (5.38902pt too wide) in paragraph at lines 200--200
  [] 
  []
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 178.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 206.
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 206.
+LaTeX Font Info:    Try loading font information for U+msa on input line 206.
+
 (/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 178.
+LaTeX Font Info:    Try loading font information for U+msb on input line 206.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-Underfull \hbox (badness 10000) in paragraph at lines 184--187
+) [1
+
+{/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+Underfull \hbox (badness 10000) in paragraph at lines 310--311
 
  []
 
-[1
+[2] [3] [4] [5]
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 481.
 
-{/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-[2] [3] [4] <iris.png, id=46, 433.62pt x 289.08pt>
-File: iris.png Graphic file (type png)
- <use iris.png>
-Package pdftex.def Info: iris.png used on input line 434.
-(pdftex.def)             Requested size: 346.89647pt x 231.2643pt.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 442.
- [5 <./iris.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 442.
- (./hw2.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 442.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 442.
-Package rerunfilecheck Info: File `hw2.out' has not changed.
+ (/usr/local/texlive/2017/texmf-dist/tex/latex/base/t1cmtt.fd
+File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+[6]
+LaTeX Font Info:    Try loading font information for T1+cmss on input line 533.
+
+ (/usr/local/texlive/2017/texmf-dist/tex/latex/base/t1cmss.fd
+File: t1cmss.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+) [7]
+<hw7.png, id=70, 390.45876pt x 266.9975pt>
+File: hw7.png Graphic file (type png)
+ <use hw7.png>
+Package pdftex.def Info: hw7.png used on input line 567.
+(pdftex.def)             Requested size: 390.4578pt x 266.99683pt.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 581.
+ [8 <./hw7.png>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 581.
+
+(./hw7.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 581.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 581.
+Package rerunfilecheck Info: File `hw7.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 442.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 581.
  ) 
 Here is how much of TeX's memory you used:
- 6424 strings out of 492995
- 91399 string characters out of 6132705
- 191941 words of memory out of 5000000
- 9888 multiletter control sequences out of 15000+600000
- 10983 words of font info for 42 fonts, out of 8000000 for 9000
+ 6688 strings out of 492995
+ 94599 string characters out of 6132705
+ 186283 words of memory out of 5000000
+ 10130 multiletter control sequences out of 15000+600000
+ 16400 words of font info for 45 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 28i,10n,26p,787b,397s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
-></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb><
-/usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></
-usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></u
-sr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr
-/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/l
-ocal/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/loc
-al/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/
-texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/tex
-live/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texl
-ive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texliv
-e/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive
-/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/
+ 28i,19n,26p,274b,407s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
+</usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><
+/usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></u
+sr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></us
+r/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr
+/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/l
+ocal/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/loc
+al/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local
+/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/te
+xlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texli
+ve/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texliv
+e/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/
 2017/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texl
-ive/2017/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on hw2.pdf (5 pages, 187045 bytes).
+ive/2017/texmf-dist/fonts/type1/public/amsfonts/symbols/msam7.pfb></usr/local/t
+exlive/2017/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/loc
+al/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb></usr/local
+/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/local/t
+exlive/2017/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local/tex
+live/2017/texmf-dist/fonts/type1/public/cm-super/sfss1095.pfb></usr/local/texli
+ve/2017/texmf-dist/fonts/type1/public/cm-super/sfti1095.pfb></usr/local/texlive
+/2017/texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb>
+Output written on hw7.pdf (8 pages, 267250 bytes).
 PDF statistics:
- 104 PDF objects out of 1000 (max. 8388607)
- 79 compressed objects within 1 object stream
- 12 named destinations out of 1000 (max. 500000)
+ 147 PDF objects out of 1000 (max. 8388607)
+ 113 compressed objects within 2 object streams
+ 17 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 

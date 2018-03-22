@@ -1,0 +1,577 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage{algorithm,algorithmic}
+\usepackage[T1]{fontenc}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+
+
+\newcommand{\INPUT}{\item[{\bf Input:}]}
+\newcommand{\OUTPUT}{\item[{\bf Output:}]}
+\newcommand{\RR}{{\mathbb R}}
+\newcommand{\myvec}[1]{\mathbf{#1}}
+\newcommand{\ignore}[1]{}%
+
+
+\DeclareMathOperator*{\E}{\mathbb{E}}
+\let\Pr\relax
+\DeclareMathOperator*{\Pr}{\mathbb{P}}
+%\DeclareMathOperator*{\myv}{\mathbf{#1}}
+\newcommand{\mv}[1]{\mathbf{#1}}
+\newcommand{\mynorm}[1]{\|{#1}\|}
+
+
+\newcommand{\eps}{\varepsilon}
+\newcommand{\inprod}[1]{\left\langle #1 \right\rangle}
+
+\newcommand{\handout}[5]{
+  \noindent
+  \begin{center}
+  \framebox{
+    \vbox{
+      %\hbox to 5.78in { {\bf AM 221: Advanced Optimization } \hfill #2 }
+            \hbox to 6.38in { {\bf AM 221: Advanced Optimization } \hfill #2 }
+      \vspace{4mm}
+      %\hbox to 5.78in { {\Large \hfill #5  \hfill} }
+            \hbox to 6.38in { {\Large \hfill #5  \hfill} }
+      \vspace{2mm}
+            \hbox to 6.38in { {\em #3 \hfill #4} }
+      %\hbox to 5.78in { {\em #3 \hfill #4} }
+    }
+  }
+  \end{center}
+  \vspace*{4mm}
+}
+
+\newcommand{\lecture}[3]{\handout{#1}{#2}{#3}{Lecture #1}}
+\newcommand{\homework}[3]{\handout{#1}{#2}{#3}{Problem Set #1}}
+\newcommand{\sect}[3]{\handout{#1}{#2}{#3}{Section #1}}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{observation}[theorem]{Observation}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{assumption}[theorem]{Assumption}
+
+\newtheorem*{theorem*}{Theorem}
+\newtheorem*{corollary*}{Corollary}
+\newtheorem*{conjecture*}{Conjecture}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem*{thm*}{Theorem}
+\newtheorem*{prop*}{Proposition}
+\newtheorem*{obs*}{Observation}
+\newtheorem*{definition*}{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{example}{Example}
+\newtheorem*{rem*}{Remark}
+\newtheorem*{rec*}{Recommendation}
+
+
+% 1-inch margins, from fullpage.sty by H.Partl, Version 2, Dec. 15, 1988.
+\topmargin 0pt
+\advance \topmargin by -\headheight
+\advance \topmargin by -\headsep
+\textheight 8.9in
+\oddsidemargin 0pt
+\evensidemargin \oddsidemargin
+\marginparwidth 0.5in
+\textwidth 6.5in
+
+\parindent 0in
+\parskip 1.5ex
+
+%Basics
+\newcommand{\new}[1]{{\em #1\/}}		% New term (set in italics).
+
+\newcommand{\boxdef}[1]
+{
+\fbox{
+\begin{minipage}{42em}
+\begin{definition*}
+{#1}
+\end{definition*}
+\end{minipage}
+}
+}
+
+\newcommand{\boxthm}[1]
+{
+\fbox{
+\begin{minipage}{42em}
+\begin{theorem*}
+{#1}
+\end{theorem*}
+\end{minipage}
+}
+}
+
+\newcommand{\boxfact}[1]
+{
+\fbox{
+\begin{minipage}{42em}
+%\begin{theorem*}
+\emph{{#1}
+%\end{theorem*}
+}
+\end{minipage}
+}
+}
+
+
+
+
+%Probability
+\newcommand{\prob}[2][]{\text{\bf P}\ifthenelse{\not\equal{}{#1}}{_{#1}}{}\!\left(#2\right)}
+\newcommand{\expect}[2][]{\text{\bf E}\ifthenelse{\not\equal{}{#1}}{_{#1}}{}\!\left[#2\right]}
+\newcommand{\var}[2][]{\text{\bf Var}\ifthenelse{\not\equal{}{#1}}{_{#1}}{}\!\left[#2\right]}
+
+%Sets
+\newcommand{\set}[1]{\{#1\}}			% Set (as in \set{1,2,3})
+\newcommand{\given}{\, : \,}
+\newcommand{\setof}[2]{\{{#1} \given {#2}\}}	% Set (as in \setof{x}{x > 0})
+\newcommand{\compl}[1]{\overline{#1}}		% Complement of ...            
+\newcommand{\zeros}{{\mathbf 0}}
+\newcommand{\ones}{{\mathbf 1}}
+\newcommand{\union}{{\bigcup}}
+\newcommand{\inters}{{\bigcap}}
+
+%Other Math
+\newcommand{\floor}[1]{{\lfloor {#1} \rfloor}}
+\newcommand{\bigfloor}[1]{{\left\lfloor {#1} \right\rfloor}}
+\DeclareMathOperator{\argmax}{argmax}
+\DeclareMathOperator{\argmin}{argmin}
+
+\newcommand{\PRIMAL}{{\textsc{Primal}}}
+\newcommand{\DUAL}{{\textsc{Dual}}}
+
+
+
+%Numbers
+\newcommand{\C}{\mathbb{C}}	                % Complex numbers.
+\newcommand{\N}{\mathbb{N}}                     % Positive integers.
+\newcommand{\Q}{\mathbb{Q}}                     % Rationals.
+\newcommand{\R}{\mathbb{R}}                     % Reals.
+\newcommand{\Z}{\mathbb{Z}}                     % Integers.
+\newcommand{\M}{\mathcal{M}}                     % Matroids.
+\newcommand{\I}{\mathcal{I}}                     % Independent Sets.
+
+%Headings
+\newcommand{\parta}{\textbf{(a)}}
+\newcommand{\partb}{\textbf{(b)}}
+\newcommand{\partc}{\textbf{(c)}}
+\newcommand{\partd}{\textbf{(d)}}
+\newcommand{\parte}{\textbf{(e)}}
+
+
+\newcommand{\bt}{\boldsymbol{\theta}}
+\newcommand{\cl}[1]{\text{\textbf{#1}}}
+\newcommand{\eqdef}{\mathbin{\stackrel{\rm def}{=}}}
+\newcommand{\bx}{\mathbf{x}}
+\newcommand{\bq}{\mathbf{q}}
+\newcommand{\by}{\mathbf{y}}
+\newcommand{\bb}{\mathbf{b}}
+\newcommand{\bu}{\mathbf{u}}
+\newcommand{\bd}{\mathbf{d}}
+\newcommand{\ba}{\mathbf{a}}
+\newcommand{\bc}{\mathbf{c}}
+\newcommand{\bl}{\mathbf{l}}
+\newcommand{\bp}{\mathbf{p}}
+\newcommand{\bw}{\mathbf{w}}
+\newcommand{\bz}{\mathbf{z}}
+
+
+\begin{document}
+\homework{4 --- {\color{red} Due Thursday, Feb. 22th at 23:59}}{Spring
+  2018}{Kojin Oshiba}
+
+%\renewcommand{\abstractname}{}
+\paragraph{Instructions:}
+All your solutions should be prepared in \LaTeX \ and the
+PDF and .tex should be submitted to Canvas. 
+	Please submit all your files as ONE archive of filetype zip, 
+        tgz, or tar.gz.
+For each question, a
+well-written and
+correct answer will be selected a sample solution for the entire class to
+enjoy.  If you prefer that we do not use your solutions, please indicate this
+clearly on the first page of your assignment. 
+
+\paragraph{1. Simplex example}
+Consider the following linear program:
+\begin{align*}
+\min\ -x_1+2x_2&\\
+\text{s.t. } 3x_1+x_2+x_3&= 6\\
+x_1-2x_2+x_4&= 1\\
+x_1,x_2,x_3,x_4&\ge 0
+\end{align*}
+
+\begin{itemize}
+    \item[a.] Run the simplex algorithm on the linear program to find
+      an optimal point. Start from the vertex $(x_1,x_2,x_3,x_4) =
+      (0,0,6,1)$. List the vertex visited at each round.
+     \item[b.] What is the optimal value of the primal program?
+     \item[c.] Write down the dual of the linear program.
+     \item[d.] State an optimal solution to the dual and explain why
+       it proves that the simplex algorithm found an optimal soluton.
+\end{itemize}
+
+\color{blue}
+\begin{itemize}
+    \item[a.] 
+    \textbf{Iter 1.}
+    \begin{align*}
+    \bar{\bc}_N^\intercal&=\bc^\intercal_N-\bc^\intercal_B A_B^{-1} A_N &\\
+    &= 
+\begin{pmatrix}
+-1 & 2
+\end{pmatrix} -
+\begin{pmatrix}
+0 & 0
+\end{pmatrix}
+\begin{pmatrix}
+1 & 0 \\
+0 & 1
+\end{pmatrix}
+\begin{pmatrix}
+3 & 1 \\
+1 & -2
+\end{pmatrix} &\\
+&= \begin{pmatrix}
+-1 & 2
+\end{pmatrix}
+    \end{align*}
+    
+ \begin{align*}
+\bx_B=\bar{\textbf{b}} &= A_B^{-1}\textbf{b} &\\
+&= \begin{pmatrix}
+1 & 0 \\
+0 & 1
+\end{pmatrix}
+\begin{pmatrix}
+6 \\ 1
+\end{pmatrix} &\\
+&= \begin{pmatrix}
+6 \\ 1
+\end{pmatrix}
+ \end{align*}
+
+Select $1 \in N$, since $\bar{c}_1 < 0$.
+\begin{align*}
+\bd_1 = A_B^{-1}A_1&= \begin{pmatrix}
+d_{13} \\
+d_{14}
+\end{pmatrix} &\\
+&= \begin{pmatrix}
+1 & 0 \\
+0 & 1
+\end{pmatrix}
+\begin{pmatrix}
+63& 1
+\end{pmatrix} &\\
+&=  \begin{pmatrix}
+3 \\
+1
+\end{pmatrix} 
+\end{align*}
+\begin{align*}
+k&=argmin\{\frac{\bar{b}_3}{d_{13}},\frac{\bar{b}_4}{d_{14}}\} &\\
+&=argmin\{\frac{6}{3},\frac{1}{1}\} &\\
+&= 4
+\end{align*}
+So, the next
+$$B=\{1,3\},N=\{2,4\}$$
+    \textbf{Iter 2.}
+    \begin{align*}
+    \bar{\bc}_N^\intercal&=\bc^\intercal_N-\bc^\intercal_B A_B^{-1} A_N &\\
+    &= 
+\begin{pmatrix}
+2 & 0
+\end{pmatrix} -
+\begin{pmatrix}
+-1 & 0
+\end{pmatrix}
+\begin{pmatrix}
+0 & 1 \\
+1 & -3
+\end{pmatrix}
+\begin{pmatrix}
+1 & 0 \\
+-2 & 1
+\end{pmatrix} &\\
+&= \begin{pmatrix}
+0 & 1
+\end{pmatrix}
+    \end{align*}
+and hence the optimal solution is,
+ \begin{align*}
+\bx_B=\bar{\textbf{b}} &= A_B^{-1}\textbf{b} &\\
+&= \begin{pmatrix}
+0 & 1 \\
+1 & -3
+\end{pmatrix}
+\begin{pmatrix}
+6 \\ 1
+\end{pmatrix} &\\
+&= \begin{pmatrix}
+1 \\ 3
+\end{pmatrix}
+ \end{align*}
+
+The vertices visited are $(0,0,6,1)$ on the first iteration and $(1,0,3,1)$ on the second interation.
+
+     \item[b.]
+     
+     $$-x_1+2x_2=-1$$
+     \item[c.] 
+     $$max_{y_1,y_2} 6y_1+y_2$$
+     s.t.
+     $$3y_1+y_2\leq -1$$
+     $$y_1-2y_2 \leq 2$$
+     $$y_1,y_2\leq 0$$
+     \item[d.] 
+     The optimal solution to the dual is $\begin{pmatrix}
+0 & -1
+\end{pmatrix}$. We know that this is optimal because, $\by^\intercal=\bc^\intercal_B A_B^{-1}=\begin{pmatrix}
+-1 & 0
+\end{pmatrix} \begin{pmatrix}
+0 & 1 \\
+1 & -3 
+\end{pmatrix} = \begin{pmatrix}
+0 & -1
+\end{pmatrix} $, with the optimal value being $-1$. There are feasible solutions to both the primal and the dual, and hence, we can apply the strong duality theorem. From the theorem, we have that the optimal values of the two LPs are the same. Since $\begin{pmatrix}
+0 & -1
+\end{pmatrix}$ gives us the same optimal value as the primal, we know that it is the optimal solution.
+\end{itemize}
+\color{black}
+
+
+\paragraph{2. Max-Flow Min-Cut.}
+In this problem we will study \emph{flow networks}. A \emph{flow network} is
+defined by a finite set of vertices $V$ with two distinguished vertices, the
+\emph{source} $s$ and the \emph{sink} $t$. Each edge $(u,v)\in
+V\times V$ has a \emph{capacity} $c_{uv}\in\R^+$. Finally the source $s$ has no
+incoming capacity, \emph{i.e} $c_{us} = 0$ for $u\in V$ and the sink $t$ has no
+outgoing capacity, \emph{i.e} $c_{tu} = 0$ for $u\in V$.
+
+A \emph{flow} of the network is a family $(f_{uv})_{(u,v)\in V\times V}$ of
+real numbers satisfying the following constraints:
+\begin{itemize}
+    \item \emph{Positivity:} $f_{uv}\geq 0$ for all $(u,v)\in V\times V$.
+    \item \emph{Capacity constraint:} for all $(u,v)\in V\times V$, $f_{uv}\leq c_{uv}$.
+    \item \emph{Flow conservation:} for all $u\in V\setminus\{s,t\}$,
+    $\sum_{v\in V}f_{vu} = \sum_{v\in V} f_{uv}$.
+\end{itemize}
+The amount of flow \emph{leaving} $s$ is $\sum_{u\in V} f_{su}$ and is called
+the \emph{value of the flow} $f$. The goal of the \emph{maximum flow problem}
+is to find a flow $f$ satisfying the three conditions above whose value is
+maximal.
+
+\begin{itemize}
+    \item[a.] Show that the value of the flow $f$ is equal to $\sum_{v\in V}
+        f_{vt}$. Hence, the value of the flow could equivalently be defined as
+        the amount of flow entering $t$.
+    \item[b.] Write the maximum flow problem as a linear program. Is this LP
+        feasible? Is it bounded?
+\end{itemize}
+
+An $s-t$ \emph{cut} of $G$ is a partition of $V$ into two sets: $V = S\cup T$
+with $S\cap T = \emptyset$, such that $s\in S$ and $t\in T$. The \emph{cost}
+$c$ of an $s-t$ cut is defined by $c(S, T) := \sum_{(u,v)\in S\times T}
+c_{uv}$. The goal of the \emph{minimum cut problem} is to find an $s-t$ cut of
+minimal cost.
+
+\begin{itemize}
+    \item[d.] Formulate a $0/1$-integer program for the minimum cut problem
+        (recall that $0/1$-integer programs and their relaxations where covered
+        in Section 1). Let us name this problem \textsc{MinimumCut}. Write the
+        LP relaxation of \textsc{MinimumCut}. We will name this relaxation
+        \textsc{MinimumCut-LP}.
+    \item[e.] Derive the dual of the maximum flow LP that you wrote in b. and
+        show that it is equivalent to \textsc{MinimumCut-LP}. Show that the
+        optimal value of \textsc{MinimumCut} is an upper bound on the value of
+        the optimal flow.
+    \item[f.] Assuming that \textsc{MinimumCut} and \textsc{MinimumCut-LP} have
+        the same optimal value [\textbf{bonus credits} if you prove this fact],
+        prove the famous \emph{max-flow min-cut theorem}:
+        \begin{center}
+            \emph{The maximum value of a flow is equal to the minimal cost of
+            an $s-t$ cut.}
+        \end{center}
+\end{itemize}
+
+\color{blue}
+\begin{itemize}
+\item[a.] From flow conservation, 
+$$\sum_{v\in V \textbackslash \{s,t\}} (\sum_{u \in V} f_{uv} - \sum_{u \in V} f_{vu}) = 0$$
+Hence, $$\sum_{u \in V} f_{su} = \sum_{u \in V}f_{su} - \sum_{v\in V \textbackslash \{s,t\}} (\sum_{u \in V} f_{uv} - \sum_{u \in V} f_{vu})$$
+On the right hand side, all edges except those entering the sink has both inflow and outflow in the equation. Hence, again from flow conservation,
+$$ \sum_{u \in V}f_{su} - \sum_{v\in V \textbackslash \{s,t\}} (\sum_{u \in V} f_{uv} - \sum_{u \in V} f_{vu}) = \sum_{v \in V} f_{vu}$$
+Hence, we proved that 
+$$\sum_{u \in V} f_{su}= \sum_{v \in V} f_{vu}$$
+
+\item[b.] 
+$$max \ f$$
+subject to 
+$$f_{uv}\geq 0, \forall (u,v) \in V\times V$$
+$$f_{uv} \leq c_{uv}, \forall (u,v) \in V\times V$$
+$$\sum_{v\in V} f_{vu} -\sum_{v\in V} f_{uv} = 0, \forall u \in  V \textbackslash \{s,t\}$$
+
+\item[d.]
+$$min \ \sum_e c_e y_e$$
+subject to 
+$$\sum_{e\in P} y_e \geq 1, \forall P$$
+$$y_e \in \{0,1\}, \forall e \in V\times V$$
+
+The linear relaxation of this LP is
+
+$$min \ \sum_e c_e y_e$$
+subject to 
+$$\sum_{e\in P} y_e \geq 1, \forall P$$
+$$y_e \geq 0, \forall e \in V\times V$$
+
+\textbf{Here's why we can make such relaxation:}
+
+The solution of LP only lies in the vertices, so we can make the condition 
+$$y_e \in \{0,1\}, \forall e \in V\times V$$
+to be 
+$$1 \geq y_e \geq 0, \forall e \in V\times V$$
+Furthermore, the objective
+$$min \ \sum_e c_e y_e$$
+indicates that the smaller the $y_e$ is, the better. Meaning that if the original integer program has an optimal solution, than there exists a same optimal solution even if the constraint is 
+$$y_e \geq 0, \forall e \in V\times V$$.
+
+\item[e.]
+(b) can be written as 
+$$max \ \sum_{p\in P} f_p$$
+subject to
+$$\sum_{P:e\in P} f_p \leq c_e, \forall e$$
+$$f_p \geq 0, \forall p \in P$$
+
+This follows directly from the flow decomposition theorem. The flow decomposition theorem basically says that we can rewrite flow constraints of edges using flow constraints of the paths. I am not going to prove this theorem as this is a known fact in graph theory and providing the proof for this problem is too much.
+
+The dual of this LP is:
+
+$$min \ \sum_e c_e y_e$$
+subject to 
+$$\sum_{e\in P} y_e \geq 1, \forall P$$
+$$y_e \geq 0, \forall e \in V\times V$$
+
+This is exactly the linear relaxation of the min-cut integer program from (d).
+
+To show that the optimal value of \textsc{MinimumCut} is an upper bound on the value of the optimal flow, we use the weak duality:
+$\sum_{p\in P} f_p \leq \sum_e c_e y_e$ or all feasible $f_p,y_e$ in (P) and (D). Hence,
+$$\sum_{p \in P} f^*_p \leq \sum_e c_e y^*_e \leq \sum_e c_e y_e$$
+
+\item[f.]
+The primal is feasible as above. The dual is also feasible by letting $y_e=1$ for all edges.
+Hence, from strong duality, we have that the objective of the primal is equal to the objective of the dual. Thus, it must be the case that $$\sum_{p\in P} f_p^* = \sum_e c_e y_e^*$$
+
+\end{itemize}
+\color{black}
+
+\paragraph{3. Optimality criteria.}
+Let $f$ be a differentiable convex function from $\R^n$ to $\R$. We consider
+the following optimization problem:
+\begin{displaymath}
+    \min_{\bx\in C} f(\bx)
+\end{displaymath}
+where $C\subseteq \R^n$ is a closed convex set.
+\begin{itemize}
+    \item[a.] Show that $\bx^*\in C$ is an optimal solution to the above problem
+        if and only if:
+        \begin{equation}
+            \label{eq:c}
+            \tag{P}
+            \forall \by\in C,\; \nabla f(\bx^*)^\intercal (\by-\bx^*) \geq 0
+        \end{equation}
+    \item[b.] Show that when $\nabla f(\bx^*)\neq 0$ this implies that $\bx^*$
+        lies on the boundary of $C$ and that $\nabla f(\bx^*)$ defines
+        a supporting hyperplane of $C$ at $\bx^*$. Remember that the boundary
+        $\delta(C)$ of a closed set $C$ is defined by:
+        \begin{displaymath}
+            \delta(C)\eqdef \left\{\bx\in C \,|\, \forall r > 0,
+            B(\bx,r)\nsubseteq C\right\}
+        \end{displaymath}
+        where $B(\bx,r)$ denotes the $\ell_2$-ball of center $\bx$ and radius
+        $r$.
+    \item[c.] Show that when $C=\R^n$, $\bx^*\in\R^n$ satisfies condition \eqref{eq:c} of part a. iff:
+        \begin{displaymath}
+            \nabla f(\bx^*) = 0
+        \end{displaymath}
+        Then observe (you don't have to prove it) that by combining part a. and
+        c. we obtain the following theorem.
+        
+        \begin{theorem}
+        $\bx^*\in\R^n$ is an optimal solution to the problem:
+        \begin{displaymath}
+            \min_{\bx\in\R^n} f(\bx)
+        \end{displaymath}
+        if and only if $\nabla f(\bx^*) = 0$.
+    \end{theorem}
+\end{itemize}
+
+\color{blue}
+\begin{enumerate}
+\item[a.]
+(i) $\bx^* \in C$ is optimal, (ii) $\forall \by \in C, \nabla f(\bx^*)^\intercal (\by-\bx^*) \geq 0$.
+
+\textbf{Proof of (i) $\Rightarrow$ (ii)}
+
+Suppose for contradiction $$\exists \by \in C, \nabla f(\bx^*)^\intercal (\by-\bx^*) < 0$$
+ Because $C$ is convex, 
+ $$\bx^*+\lambda(\by-\bx^*)\in C, \forall C \in [0,1]$$
+ Let $g(\lambda)=f(\bx^*+\lambda(\by-\bx^*))$. Then, 
+ $$g'(\lambda) = (\by-\bx^*)^\intercal \nabla f(\bx^*+\lambda(\by-\bx^*))$$
+So,
+ $$g'(0) = (\by-\bx^*)^\intercal \nabla f(\bx^*)$$
+ This means $\exists \epsilon, \epsilon > 0$ small enough such that
+ $$g(\lambda) < g(0), \forall \lambda \in (0,\epsilon)$$
+ This is because the gradient is negative around $\lambda =0$ and so the function is decreasing within some small interval around $\lambda=0$.
+ Hence, we have
+ $$f(\bx^* + \lambda (\by-\bx^*)) < f(\bx^*), \forall \lambda \in (0,\epsilon)$$
+This means $x^*$ is not as optimal $\bx^* + \lambda (\by-\bx^*)$, which contradicts with the assumption that $\bx^*$ is optimal.
+Hence, 
+$$\forall \by \in C, \nabla f(\bx^*)^\intercal (\by-\bx^*) \geq 0$$
+
+\textbf{Proof of (ii) $\Rightarrow$ (i)}
+From the first order characterization of convex functions,
+$$\forall \by \in C, f(\by) \geq f(\bx^*) + \nabla f(\bx^*)^\intercal (\by-\bx^*)$$
+Also, from the assumption, we have
+$$\forall \by \in C, \nabla f(\bx^*)^\intercal (\by-\bx^*) \geq 0$$
+Combining these two, we have
+$$\forall \by \in C, f(\by) \geq f(\bx^*)$$
+Hence, $\bx^*$ is optimal.
+
+\item[b.]
+We prove the contraposition. 
+
+We have from (a) that 
+$$\forall \by \in C, f(\by) \geq f(\bx^*)$$
+
+If $\bx^*$ lies on the interior of $C$, there exists $\by=\bx^*-\lambda \nabla f(\bx^*)$ for a small enough $\lambda > 0$ such that $\by \in C$.  Plugging this in to the above inequality, we have
+
+$$-\lambda \nabla f(\bx^*)^\intercal \nabla f(\bx^*) \geq 0$$
+
+Since $-\lambda < 0$ it must be the case that $\nabla f(\bx^*) = 0$. Hence, we proved the contraposition.
+
+\item[c.]
+
+Suppose for contradiction that $\nabla f(x\bx^*) \neq 0$. Then, from b., we have that $\bx^*$ lies on the boundary of $C$. However, since $C=\mathbb{R^n}$, we have $\delta(C)=\phi$. Hence, contradiction. Therefore, it must be the case that $\nabla f(x\bx^*) = 0$.
+
+\end{enumerate}
+\color{black}
+\end{document}
