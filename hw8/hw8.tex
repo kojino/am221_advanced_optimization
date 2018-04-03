@@ -1,0 +1,445 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage{algorithm,algorithmic}
+\usepackage[T1]{fontenc}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+
+
+\newcommand{\INPUT}{\item[{\bf Input:}]}
+\newcommand{\OUTPUT}{\item[{\bf Output:}]}
+\newcommand{\RR}{{\mathbb R}}
+\newcommand{\myvec}[1]{\mathbf{#1}}
+\newcommand{\ignore}[1]{}%
+
+
+\DeclareMathOperator*{\E}{\mathbb{E}}
+\let\Pr\relax
+\DeclareMathOperator*{\Pr}{\mathbb{P}}
+%\DeclareMathOperator*{\myv}{\mathbf{#1}}
+\newcommand{\mv}[1]{\mathbf{#1}}
+\newcommand{\mynorm}[1]{\|{#1}\|}
+
+
+\newcommand{\eps}{\varepsilon}
+\newcommand{\inprod}[1]{\left\langle #1 \right\rangle}
+
+\newcommand{\handout}[5]{
+  \noindent
+  \begin{center}
+  \framebox{
+    \vbox{
+      %\hbox to 5.78in { {\bf AM 221: Advanced Optimization } \hfill #2 }
+            \hbox to 6.38in { {\bf AM 221: Advanced Optimization } \hfill #2 }
+      \vspace{4mm}
+      %\hbox to 5.78in { {\Large \hfill #5  \hfill} }
+            \hbox to 6.38in { {\Large \hfill #5  \hfill} }
+      \vspace{2mm}
+            \hbox to 6.38in { {\em #3 \hfill #4} }
+      %\hbox to 5.78in { {\em #3 \hfill #4} }
+    }
+  }
+  \end{center}
+  \vspace*{4mm}
+}
+
+\newcommand{\lecture}[3]{\handout{#1}{#2}{#3}{Lecture #1}}
+\newcommand{\homework}[3]{\handout{#1}{#2}{#3}{Problem Set #1}}
+\newcommand{\sect}[3]{\handout{#1}{#2}{#3}{Section #1}}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{observation}[theorem]{Observation}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{assumption}[theorem]{Assumption}
+
+\newtheorem*{theorem*}{Theorem}
+\newtheorem*{corollary*}{Corollary}
+\newtheorem*{conjecture*}{Conjecture}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem*{thm*}{Theorem}
+\newtheorem*{prop*}{Proposition}
+\newtheorem*{obs*}{Observation}
+\newtheorem*{definition*}{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{example}{Example}
+\newtheorem*{rem*}{Remark}
+\newtheorem*{rec*}{Recommendation}
+
+
+% 1-inch margins, from fullpage.sty by H.Partl, Version 2, Dec. 15, 1988.
+\topmargin 0pt
+\advance \topmargin by -\headheight
+\advance \topmargin by -\headsep
+\textheight 8.9in
+\oddsidemargin 0pt
+\evensidemargin \oddsidemargin
+\marginparwidth 0.5in
+\textwidth 6.5in
+
+\parindent 0in
+\parskip 1.5ex
+
+%Basics
+\newcommand{\new}[1]{{\em #1\/}}		% New term (set in italics).
+
+\newcommand{\boxdef}[1]
+{
+\fbox{
+\begin{minipage}{42em}
+\begin{definition*}
+{#1}
+\end{definition*}
+\end{minipage}
+}
+}
+
+\newcommand{\boxthm}[1]
+{
+\fbox{
+\begin{minipage}{42em}
+\begin{theorem*}
+{#1}
+\end{theorem*}
+\end{minipage}
+}
+}
+
+\newcommand{\boxfact}[1]
+{
+\fbox{
+\begin{minipage}{42em}
+%\begin{theorem*}
+\emph{{#1}
+%\end{theorem*}
+}
+\end{minipage}
+}
+}
+
+
+
+
+%Probability
+\newcommand{\prob}[2][]{\text{\bf P}\ifthenelse{\not\equal{}{#1}}{_{#1}}{}\!\left(#2\right)}
+\newcommand{\expect}[2][]{\text{\bf E}\ifthenelse{\not\equal{}{#1}}{_{#1}}{}\!\left[#2\right]}
+\newcommand{\var}[2][]{\text{\bf Var}\ifthenelse{\not\equal{}{#1}}{_{#1}}{}\!\left[#2\right]}
+
+%Sets
+\newcommand{\set}[1]{\{#1\}}			% Set (as in \set{1,2,3})
+\newcommand{\given}{\, : \,}
+\newcommand{\setof}[2]{\{{#1} \given {#2}\}}	% Set (as in \setof{x}{x > 0})
+\newcommand{\compl}[1]{\overline{#1}}		% Complement of ...            
+\newcommand{\zeros}{{\mathbf 0}}
+\newcommand{\ones}{{\mathbf 1}}
+\newcommand{\union}{{\bigcup}}
+\newcommand{\inters}{{\bigcap}}
+
+%Other Math
+\newcommand{\floor}[1]{{\lfloor {#1} \rfloor}}
+\newcommand{\bigfloor}[1]{{\left\lfloor {#1} \right\rfloor}}
+\DeclareMathOperator{\argmax}{argmax}
+\DeclareMathOperator{\argmin}{argmin}
+
+\newcommand{\PRIMAL}{{\textsc{Primal}}}
+\newcommand{\DUAL}{{\textsc{Dual}}}
+
+
+
+%Numbers
+\newcommand{\C}{\mathbb{C}}	                % Complex numbers.
+\newcommand{\N}{\mathbb{N}}                     % Positive integers.
+\newcommand{\Q}{\mathbb{Q}}                     % Rationals.
+\newcommand{\R}{\mathbb{R}}                     % Reals.
+\newcommand{\Z}{\mathbb{Z}}                     % Integers.
+\newcommand{\M}{\mathcal{M}}                     % Matroids.
+\newcommand{\I}{\mathcal{I}}                     % Independent Sets.
+
+%Headings
+\newcommand{\parta}{\textbf{(a)}}
+\newcommand{\partb}{\textbf{(b)}}
+\newcommand{\partc}{\textbf{(c)}}
+\newcommand{\partd}{\textbf{(d)}}
+\newcommand{\parte}{\textbf{(e)}}
+
+
+\newcommand{\bt}{\boldsymbol{\theta}}
+\newcommand{\cl}[1]{\text{\textbf{#1}}}
+\newcommand{\eqdef}{\mathbin{\stackrel{\rm def}{=}}}
+\newcommand{\bx}{\mathbf{x}}
+\newcommand{\bq}{\mathbf{q}}
+\newcommand{\by}{\mathbf{y}}
+\newcommand{\bb}{\mathbf{b}}
+\newcommand{\bu}{\mathbf{u}}
+\newcommand{\bd}{\mathbf{d}}
+\newcommand{\ba}{\mathbf{a}}
+\newcommand{\bc}{\mathbf{c}}
+\newcommand{\bl}{\mathbf{l}}
+\newcommand{\bp}{\mathbf{p}}
+\newcommand{\bw}{\mathbf{w}}
+\newcommand{\bz}{\mathbf{z}}
+
+
+\begin{document}
+\homework{8 --- {\color{red} Due Wednesday, April. 4th at 23:59}}{Spring
+  2018}{Dr. Rasmus Kyng}
+
+%\renewcommand{\abstractname}{}
+\paragraph{Instructions:}
+
+\begin{itemize}
+\item 
+All your solutions should be prepared in \LaTeX \ and the
+PDF and .tex should be submitted to Canvas. 
+	Please submit all your files as ONE archive of filetype zip, 
+        tgz, or tar.gz.
+\item
+Name the file
+  {[your-first-name]}\_{[your-last-name]}.{[filetype]}.
+  For example, I would call my submission
+  rasmus\_kyng.zip. 
+\item 
+INCLUDE your name in the submisson pdf and any files with code.
+\item 
+{\color{red}
+If the TFs cannot easily deduce your identity from your files alone, they may
+decide not to grade your submission.
+}
+\item 
+For each question, a
+well-written and
+correct answer will be selected a sample solution for the entire class to
+enjoy.  If you prefer that we do not use your solutions, please indicate this
+clearly on the first page of your assignment. 
+\end{itemize}
+
+
+\paragraph{1. Gradient descent with a noisy oracle.}
+
+In this problem, we will show that the gradient descent algorithm can be used
+when optimizing a strongly convex function given an approximate oracle for its
+gradient.
+
+Let us consider a twice-differentiable strongly convex function $f:\R^n\to\R$,
+\emph{i.e} we have:
+\begin{displaymath}
+    m I_n \preceq \nabla^2 f(\bx) \preceq M I_n,\; \bx\in \R^n
+\end{displaymath}
+for some constants $m, M > 0$. The function $f$ is unknown to us. Instead, for
+any $\bx\in\R^n$, we can query an oracle for the value of the gradient of $f$
+at $\bx\in\R^n$. The oracle is erroneous in the following sense: let us denote
+by $\tilde{\nabla}f(\bx)$ the value returned by the oracle at point $\bx$, then
+we have:
+\begin{displaymath}
+|| \tilde{\nabla}f(\bx) - \nabla f(\bx) || \leq \delta || \nabla f(\bx) ||
+    % \nabla f(\bx)^\intercal \by - \delta \leq
+    % \tilde{\nabla}f(\bx)^\intercal \by
+    % \leq \nabla f(\bx)^\intercal \by + \delta,\;\;\by\in\R^n
+\end{displaymath}
+for some $\delta > 0$. Such an oracle is called $\delta$-erroneous.
+
+We now consider the gradient descent algorithm from Lecture 9 where the update
+at each iteration is computed using the erroneous oracle: denoting by
+$\bx^{(k)}$ the solution at iteration $k$, the solution at iteration $k+1$ is
+given by:
+\begin{displaymath}
+    \bx^{(k+1)} = \bx^{(k)} - t\tilde{\nabla} f(\bx^{(k)})
+\end{displaymath}
+where the step size is constant set to $t=\frac{1}{M}$.
+
+We say that a solution $\bx^{'}$ has accuracy $\eps$ for $f$ if $f(\bx^{'})
+- f(\bx^*)\leq \eps$, where $\bx^*$ is the minimizer of $f$. By adapting the
+analysis of the gradient descent algorithm from Lecture 9, prove the following
+statement:
+
+\begin{theorem*}
+% If we run the gradient decent algorithm from a starting point
+% $\bx^{(0)}$ s.t. $||\bx^{(0)} - \bx^*|| \leq R$,  
+%     then
+   For any $\eps > 0$, the
+    gradient descent algorithm using a $\delta$-erroneous oracle with $\delta
+    \leq 0.1$ computes a solution of accuracy $\eps$ in at most $10
+    $ times as many
+    iterations as we proved are sufficient for the standard gradient descent algorithm \emph{i.e} the one
+    which uses the exact gradient, i.e. 
+   show that $10 \frac{M}{m} \log \left(\frac{f(\bx^{(0)}) - f(\bx^*)}{\epsilon}\right)$ iterations suffice.
+\end{theorem*}
+
+\remark{The constant 10 was chosen rather arbitrarily, it is not tight.}
+
+\paragraph{2. Duality and SVMs.}
+
+In this problem, we will refine our analysis of the primal and dual
+formulations of the support vector machine optimization problem of Lecture 13.
+Remember that in this problem we have a dataset consisting of two clusters of
+data points in $\R^d$: positively labeled data points $\{\bx_i,\; i\in I\}$ and
+negatively labeled data points $\{\bx_j,\; j\in J\}$. The goal is to find
+an affine hyperplane $(\ba, b)\in \R^d\times\R$ such that:
+\begin{gather*}
+    \ba^\intercal \bx_i  + b > 0,\; i\in I\\
+    \ba^\intercal \bx_j  + b < 0,\; j\in J
+\end{gather*}
+The primal problem is written as:
+    \begin{align*}%\label{eq:primal}
+        \min_{\ba\in\R^d,\, b\in\R}&\;\frac{\|\ba\|^2}{4}\\
+        \text{s.t.}&\; \ba^\intercal\bx_i + b \geq 1,\; i\in I\\
+                   &\; \ba^\intercal \bx_j + b \leq -1,\; j\in J
+    \end{align*}
+and we computed the dual in class:
+    \begin{align*}%\label{eq:dual}
+        \max_{\lambda\in\R^{|I|},\, \mu\in\R^{|J|}}&\;\frac{1}{\big\|\sum_{i\in I}\lambda_i \bx_i
+    - \sum_{j\in J}\mu_j \bx_j\big\|^2}\\
+    \text{s.t.}&\;\sum_{i\in I}\lambda_i = \sum_{j\in J}\mu_j = 1\\
+               &\lambda\geq 0,\;\mu\geq 0
+    \end{align*}
+We assume that Slater's condition holds so that we have strong duality.
+
+\begin{itemize}
+    \item[a.] Let us denote by $(\lambda, \mu)$ a dual-optimal solution and by
+        $(\ba, b)$ a primal-optimal solution. Show that:
+        \begin{displaymath}
+            \text{either } \lambda_i = 0 \quad \mathrm{or} \quad \ba^\intercal
+            \bx_i + b = 1,\;\; i\in I
+        \end{displaymath}
+        similarly, show that:
+        \begin{displaymath}
+            \text{either } \mu_j = 0 \quad \mathrm{or} \quad \ba^\intercal
+            \bx_j + b = -1,\;\; j\in J
+        \end{displaymath}
+        Give a geometric interpretation.
+
+    \item[b.] Using part a., explain how a primal-optimal solution could be
+        computed from a dual-optimal solution.
+\end{itemize}
+
+\paragraph{3. Revisiting the Maximum Coverage Problem}
+
+Remember the Maximum Coverage Problem from Section 1. In this problem there is
+a universe of elements $\mathcal{U} = \{1,\dots,m\}$ and you are given as input
+a collection of $n$ subsets $S_1,\dots, S_n$ of $\mathcal{U}$ ($S_i\subseteq
+\mathcal{U}$) and a budget $k\in\N$. The goal is select a collection
+$\mathcal{S}$ of at most $k$ of the sets $S_1,\dots,S_n$ such as to maximize
+the number of elements of $\mathcal{U}$ contained in the union of the sets in
+$\mathcal{S}$. In other words, the goal is to solve:
+\begin{displaymath}
+    \max_{|\mathcal{S}|\leq k}\left|\bigcup_{S_i\in\mathcal{S}} S_i\right|
+\end{displaymath}
+
+One of the relaxations of this problem we considered in Section 1 was the
+following:
+    \begin{equation}
+        \tag{P}
+        \label{eq:p}
+        \begin{aligned}
+            \max_{\bx} &\quad \sum_{j=1}^m \min\Bigg\{1,\sum_{i:j\in S_i} x_i\Bigg\}\\
+            \text{s.t} &\quad x_i\geq 0\quad 1\leq i\leq n\\
+                       &\quad \sum_{i=1}^n x_i\leq k
+        \end{aligned}
+    \end{equation}
+
+\begin{itemize}
+    \item[a.]  Sow that the objective function in problem \eqref{eq:p} is
+        concave. How could you use an algorithm for minimizing a convex
+        function to solve this relaxation?
+    \item[b.] Show that problem \eqref{eq:p} can be reformulated as a linear
+        program.
+\end{itemize}
+
+
+\paragraph{4. Barrier method.}
+
+Let us briefly review the barrier method seen in section 8. Consider the
+following optimization problem with $m$ inequality constraints:
+\begin{displaymath}
+\begin{aligned}
+    \min_{\bx\in\R^n} &\;f(\bx)\\
+    \text{s.t.}&\; f_i(\bx)\leq 0,\; 1\leq i\leq m
+\end{aligned}
+\end{displaymath}
+This problem is transformed into the following unconstrained problem using the
+barrier function $\hat{I}_t(u) = -\frac{1}{t}\log (-u)$:
+\begin{displaymath}
+\begin{aligned}
+    \min_{\bx\in\R^n} &\; t f(\bx) - \sum_{i=1}^m \log\big(-f_i(\bx)\big)\\
+\end{aligned}
+\end{displaymath}
+Let us denote by $\bx^*(t)$ the optimal solution to this problem. Then the
+barrier method simply consists in solving the transformed problem for
+increasing values of $t$:
+
+\begin{algorithm}
+    \caption{Barrier method with parameter $\mu > 1$}
+    \label{alg:bls}
+    \algsetup{indent=2em}
+    \begin{algorithmic}[1]
+        \STATE $t\gets 1$, $\bx\gets$ feasible solution
+        \WHILE{$\frac{m}{t}\geq \eps$}
+        \STATE $\bx\gets \bx^*(t)$ \quad 
+%\Commnt{\emph{(the $\bx$ from the previous iteration        is used as the starting feasible solution)}}
+            \STATE $t\gets \mu t$
+        \ENDWHILE
+        \RETURN $\bx$
+    \end{algorithmic}
+\end{algorithm}
+
+In this problem we will use the barrier method to compute the support vector
+machine classifier for the forged banknotes dataset available at:
+\url{http://rasmuskyng.com/am221_spring18/psets/hw7/banknotes.data}.
+In each line, the first four columns contain measurements from a banknote (real numbers) and the last column
+is a binary (0 or 1) variable indicating if the banknote was forged. Denoting
+by $\bx^i\in\R^4$ the measurements from banknote $i$, the goal is to construct
+a classifier which takes $\bx^i$ as input and predicts the last column
+$y^i\in\{0, 1\}$.
+
+First, convert the labels to $\hat{y}^i\in\{-1, 1\}$, i.e. $\hat{y}^i
+= 2y^i - 1$.
+%
+As seen in class, finding a separating hyperplane now amounts to
+finding $\bw\in\R^d$ and $b \in \R$ such that
+$\hat{y}^i (\bw^\intercal\bx_i +b)\geq 1$ , for $1\leq i\leq n$, where $\bx_1,\dots\bx_n$ are
+the (modified) data points.
+
+We consider a ``soft margin'' version of the SVM optimization problem
+(also seen in the previous homework).
+The optimization problem is the following
+\begin{equation}
+    \label{eq:bar}
+    \begin{aligned}
+        \min_{\bw\in\R^d,\, b \in  \R, \xi\in\R^n}&\; \frac{1}{2}\|\bw\|^2
+        + \lambda\sum_{i=1}^n\xi_i\\
+        \text{s.t} &\; \hat{y}^i(\bw^\intercal\bx_i +b) + \xi_i \geq 1 ,\;1\leq i\leq n\\
+                   &\; \xi_i\geq 0,\;1\leq i\leq n
+    \end{aligned}
+\end{equation}
+
+
+\begin{itemize}
+    \item[a.] Write code to implement the barrier method described in Algorithm
+        1 for the optimization problem \eqref{eq:bar}. For the internal
+          optimization $\bx\gets \bx^*(t)$, you are free to reuse either your
+          implementation of the gradient descent algorithm or of Newton's
+          method from previous problem sets. In fact you are encouraged to
+          experiment with both!
+    \item[b.] Report the accuracy (fraction of correctly classified data
+        points) for the optimal hyperplane found by the code you wrote in part
+        a. For the penalty parameter $\lambda$, reuse the optimal value
+        you found in Problem Set 7 (or experiment with different values if you
+        haven't done Problem Set 7). What is the impact of the parameter $\mu$
+        on the convergence of your implementation?
+\end{itemize}
+
+\end{document}
