@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.9.2)  30 MAR 2018 20:42
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.9.2)  4 APR 2018 23:02
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -292,8 +292,7 @@ LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
 ))
 Package hyperref Info: Option `colorlinks' set `true' on input line 15.
 \c@theorem=\count116
-
-No file hw8.aux.
+ (./hw8.aux)
 \openout1 = `hw8.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 197.
@@ -310,6 +309,7 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 197.
 LaTeX Font Info:    ... okay on input line 197.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 197.
 LaTeX Font Info:    ... okay on input line 197.
+
 (/usr/local/texlive/2017/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count117
@@ -354,6 +354,8 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 197.
 LaTeX Info: Redefining \pageref on input line 197.
 LaTeX Info: Redefining \nameref on input line 197.
+
+(./hw8.out) (./hw8.out)
 \@outlinefile=\write3
 \openout3 = `hw8.out'.
 
@@ -380,74 +382,810 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 206.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
-{/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]
-
-LaTeX Warning: Reference `eq:p' on page 3 undefined on input line 355.
-
-
-LaTeX Warning: Reference `eq:p' on page 3 undefined on input line 358.
+{/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
+ [4]
+Overfull \hbox (15.24619pt too wide) in paragraph at lines 423--424
+[]\T1/cmr/m/n/10.95 The third line fol-lows from the sec-ond line be-cause $[]\
+OT1/cmr/m/n/10.95 (1\OML/cmm/m/it/10.95 ; [][] ^^U\OT1/cmr/bx/n/10.95 x[]\OT1/c
+mr/m/n/10.95 )$ \T1/cmr/m/n/10.95 is ei-ther $\OT1/cmr/m/n/10.95 1$ \T1/cmr/m/n
+/10.95 or $[][] \OML/cmm/m/it/10.95 ^^U\OT1/cmr/bx/n/10.95 x[]$\T1/cmr/m/n/10.9
+5 ,
+ []
 
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 385.
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 401.
+put line 464.
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 480.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-) [3]pdfTeX warning (ext4): destination with the same identifier (name{equation
+) [5]pdfTeX warning (ext4): destination with the same identifier (name{equation
 .0.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.419 \begin{equation}
+l.498 \begin{equation}
                       pdfTeX warning (ext4): destination with the same identifi
 er (name{equation.0.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.419 \begin{equation}
+l.498 \begin{equation}
                       pdfTeX warning (ext4): destination with the same identifi
 er (name{equation.0.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.419 \begin{equation}
+l.498 \begin{equation}
                       pdfTeX warning (ext4): destination with the same identifi
 er (name{equation.0.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.419 \begin{equation}
+l.498 \begin{equation}
                       
+Overfull \hbox (27.26486pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 1 | objective: 136865.62103624135 | classification acc
+uracy: 0.37244897959183676[] 
+ []
 
-LaTeX Warning: Reference `eq:bar' on page 4 undefined on input line 432.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 445.
-[4]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 445.
+Overfull \hbox (21.60649pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 1.1 | objective: 136529.417169686 | classification acc
+uracy: 0.5342565597667639[] 
+ []
+
+
+Overfull \hbox (112.14043pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 1.2100000000000002 | objective: 136192.2125845217 | cl
+assification accuracy: 0.6399416909620991[] 
+ []
+
+
+Overfull \hbox (117.7988pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 1.3310000000000004 | objective: 135854.28418061612 | c
+lassification accuracy: 0.7004373177842566[] 
+ []
+
+[6]
+Overfull \hbox (112.14043pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 1.4641000000000006 | objective: 135515.7755352815 | cl
+assification accuracy: 0.7419825072886297[] 
+ []
+
+
+Overfull \hbox (117.7988pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 1.6105100000000008 | objective: 135176.77923031317 | c
+lassification accuracy: 0.7638483965014577[] 
+ []
+
+
+Overfull \hbox (112.14043pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 1.771561000000001 | objective: 134837.36406482928 | cl
+assification accuracy: 0.7806122448979592[] 
+ []
+
+
+Overfull \hbox (117.7988pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 1.9487171000000014 | objective: 134497.58434500627 | c
+lassification accuracy: 0.7981049562682215[] 
+ []
+
+
+Overfull \hbox (117.7988pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 2.1435888100000016 | objective: 134157.48430887505 | c
+lassification accuracy: 0.8068513119533528[] 
+ []
+
+
+Overfull \hbox (106.48206pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 2.357947691000002 | objective: 133817.1008436097 | cla
+ssification accuracy: 0.8192419825072886[] 
+ []
+
+
+Overfull \hbox (112.14043pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 2.5937424601000023 | objective: 133476.4652601572 | cl
+assification accuracy: 0.8279883381924198[] 
+ []
+
+
+Overfull \hbox (106.48206pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 2.853116706110003 | objective: 133135.6044981562 | cla
+ssification accuracy: 0.8309037900874635[] 
+ []
+
+
+Overfull \hbox (117.7988pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 3.1384283767210035 | objective: 132794.54197736568 | c
+lassification accuracy: 0.8418367346938775[] 
+ []
+
+
+Overfull \hbox (117.7988pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 3.4522712143931042 | objective: 132453.29822176174 | c
+lassification accuracy: 0.8469387755102041[] 
+ []
+
+
+Overfull \hbox (112.14043pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 3.797498335832415 | objective: 132111.89133174712 | cl
+assification accuracy: 0.8534985422740525[] 
+ []
+
+
+Overfull \hbox (112.14043pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 4.177248169415656 | objective: 131770.33735120686 | cl
+assification accuracy: 0.8556851311953353[] 
+ []
+
+
+Overfull \hbox (112.14043pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 4.594972986357222 | objective: 131428.65055941133 | cl
+assification accuracy: 0.8600583090379009[] 
+ []
+
+
+Overfull \hbox (112.14043pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 5.054470284992944 | objective: 131086.84370767354 | cl
+assification accuracy: 0.8637026239067055[] 
+ []
+
+
+Overfull \hbox (112.14043pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 5.559917313492239 | objective: 130744.92821437202 | cl
+assification accuracy: 0.8673469387755102[] 
+ []
+
+
+Overfull \hbox (106.48206pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 6.115909044841463 | objective: 130402.91432789678 | cl
+assification accuracy: 0.869533527696793[] 
+ []
+
+
+Overfull \hbox (106.48206pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 6.72749994932561 | objective: 130060.81126439998 | cla
+ssification accuracy: 0.8717201166180758[] 
+ []
+
+
+Overfull \hbox (112.14043pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 7.400249944258172 | objective: 129718.62732541031 | cl
+assification accuracy: 0.8731778425655977[] 
+ []
+
+
+Overfull \hbox (112.14043pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 8.140274938683989 | objective: 129376.36999910967 | cl
+assification accuracy: 0.8746355685131195[] 
+ []
+
+
+Overfull \hbox (112.14043pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 8.954302432552389 | objective: 129034.04604817541 | cl
+assification accuracy: 0.8760932944606414[] 
+ []
+
+
+Overfull \hbox (112.14043pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 9.849732675807628 | objective: 128691.66158644333 | cl
+assification accuracy: 0.8760932944606414[] 
+ []
+
+[7]
+Overfull \hbox (117.7988pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 10.834705943388391 | objective: 128349.22214617081 | c
+lassification accuracy: 0.8775510204081632[] 
+ []
+
+
+Overfull \hbox (117.7988pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 16.252058915082586 | objective: 128006.59674384505 | c
+lassification accuracy: 0.8775510204081632[] 
+ []
+
+
+Overfull \hbox (112.14043pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 24.37808837262388 | objective: 127663.84731847458 | cl
+assification accuracy: 0.8775510204081632[] 
+ []
+
+
+Overfull \hbox (106.48206pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 36.56713255893582 | objective: 127321.0150638374 | cla
+ssification accuracy: 0.8775510204081632[] 
+ []
+
+
+Overfull \hbox (112.14043pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 54.85069883840373 | objective: 126978.12744488848 | cl
+assification accuracy: 0.8775510204081632[] 
+ []
+
+
+Overfull \hbox (100.82368pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 82.2760482576056 | objective: 126635.2027984988 | clas
+sification accuracy: 0.8782798833819242[] 
+ []
+
+
+Overfull \hbox (117.7988pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 123.41407238640839 | objective: 126292.25337927244 | c
+lassification accuracy: 0.8782798833819242[] 
+ []
+
+
+Overfull \hbox (117.7988pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 185.12110857961258 | objective: 125949.28738480997 | c
+lassification accuracy: 0.8782798833819242[] 
+ []
+
+
+Overfull \hbox (117.7988pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 277.68166286941886 | objective: 125606.31030662653 | c
+lassification accuracy: 0.8782798833819242[] 
+ []
+
+
+Overfull \hbox (117.7988pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 416.52249430412826 | objective: 125263.32583610328 | c
+lassification accuracy: 0.8782798833819242[] 
+ []
+
+
+Overfull \hbox (112.14043pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 624.7837414561924 | objective: 124920.33648554892 | cl
+assification accuracy: 0.8782798833819242[] 
+ []
+
+
+Overfull \hbox (112.14043pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 937.1756121842886 | objective: 124577.34408019487 | cl
+assification accuracy: 0.8782798833819242[] 
+ []
+
+
+Overfull \hbox (112.14043pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 1405.763418276433 | objective: 124234.35051672532 | cl
+assification accuracy: 0.8790087463556852[] 
+ []
+
+
+Overfull \hbox (117.7988pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 2108.6451274146493 | objective: 123891.35685854408 | c
+lassification accuracy: 0.8797376093294461[] 
+ []
+
+
+Overfull \hbox (112.14043pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 3162.967691121974 | objective: 123548.36238182496 | cl
+assification accuracy: 0.8811953352769679[] 
+ []
+
+
+Overfull \hbox (112.14043pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 4744.451536682961 | objective: 123205.36730142016 | cl
+assification accuracy: 0.8811953352769679[] 
+ []
+
+
+Overfull \hbox (112.14043pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 7116.677305024441 | objective: 122862.37181748544 | cl
+assification accuracy: 0.8811953352769679[] 
+ []
+
+
+Overfull \hbox (112.14043pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 10675.015957536662 | objective: 122519.3760639305 | cl
+assification accuracy: 0.8811953352769679[] 
+ []
+
+
+Overfull \hbox (117.7988pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 16012.523936304991 | objective: 122176.38013028956 | c
+lassification accuracy: 0.8811953352769679[] 
+ []
+
+
+Overfull \hbox (117.7988pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 24018.785904457487 | objective: 121833.38407643854 | c
+lassification accuracy: 0.8811953352769679[] 
+ []
+
+
+Overfull \hbox (112.14043pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 36028.17885668623 | objective: 121490.38794242527 | cl
+assification accuracy: 0.8819241982507289[] 
+ []
+
+
+Overfull \hbox (112.14043pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 54042.26828502935 | objective: 121147.39175503905 | cl
+assification accuracy: 0.8811953352769679[] 
+ []
+
+
+Overfull \hbox (112.14043pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 81063.40242754403 | objective: 120804.39553220168 | cl
+assification accuracy: 0.8811953352769679[] 
+ []
+
+
+Overfull \hbox (117.7988pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 121595.10364131605 | objective: 120461.39928590394 | c
+lassification accuracy: 0.8819241982507289[] 
+ []
+
+[8]
+Overfull \hbox (117.7988pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 182392.65546197406 | objective: 120118.40302417018 | c
+lassification accuracy: 0.8826530612244898[] 
+ []
+
+
+Overfull \hbox (112.14043pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 273588.9831929611 | objective: 119775.40675236995 | cl
+assification accuracy: 0.8826530612244898[] 
+ []
+
+
+Overfull \hbox (106.48206pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 547177.9663859222 | objective: 119432.4104694656 | cla
+ssification accuracy: 0.8826530612244898[] 
+ []
+
+
+Overfull \hbox (117.7988pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 1094355.9327718443 | objective: 119089.41418229898 | c
+lassification accuracy: 0.8826530612244898[] 
+ []
+
+
+Overfull \hbox (117.7988pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 2188711.8655436886 | objective: 118746.41789338531 | c
+lassification accuracy: 0.8833819241982507[] 
+ []
+
+
+Overfull \hbox (112.14043pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 4377423.731087377 | objective: 118403.42160399725 | cl
+assification accuracy: 0.8841107871720116[] 
+ []
+
+
+Overfull \hbox (112.14043pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 8754847.462174755 | objective: 118060.42531469913 | cl
+assification accuracy: 0.8848396501457726[] 
+ []
+
+
+Overfull \hbox (112.14043pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 17509694.92434951 | objective: 117717.42519839175 | cl
+assification accuracy: 0.8848396501457726[] 
+ []
+
+
+Overfull \hbox (106.48206pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 35019389.84869902 | objective: 117374.4250817147 | cla
+ssification accuracy: 0.8848396501457726[] 
+ []
+
+
+Overfull \hbox (112.14043pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 70038779.69739804 | objective: 117031.42496508779 | cl
+assification accuracy: 0.8848396501457726[] 
+ []
+
+
+Overfull \hbox (117.7988pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 140077559.39479607 | objective: 116688.42484848999 | c
+lassification accuracy: 0.8848396501457726[] 
+ []
+
+
+Overfull \hbox (117.7988pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 280155118.78959215 | objective: 116345.42473177887 | c
+lassification accuracy: 0.8848396501457726[] 
+ []
+
+
+Overfull \hbox (112.14043pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 560310237.5791843 | objective: 116002.42461507906 | cl
+assification accuracy: 0.8848396501457726[] 
+ []
+
+
+Overfull \hbox (117.7988pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 1120620475.1583686 | objective: 115659.42449840144 | c
+lassification accuracy: 0.8848396501457726[] 
+ []
+
+
+Overfull \hbox (112.14043pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 2241240950.316737 | objective: 115316.42438174725 | cl
+assification accuracy: 0.8848396501457726[] 
+ []
+
+
+Overfull \hbox (112.14043pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 4482481900.633474 | objective: 114973.42426511573 | cl
+assification accuracy: 0.8848396501457726[] 
+ []
+
+
+Overfull \hbox (112.14043pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 8964963801.266949 | objective: 114630.42414850737 | cl
+assification accuracy: 0.8848396501457726[] 
+ []
+
+
+Overfull \hbox (117.7988pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 17929927602.533897 | objective: 114287.42403192236 | c
+lassification accuracy: 0.8848396501457726[] 
+ []
+
+
+Overfull \hbox (117.7988pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 35859855205.067795 | objective: 113944.42391536062 | c
+lassification accuracy: 0.8848396501457726[] 
+ []
+
+
+Overfull \hbox (112.14043pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 71719710410.13559 | objective: 113601.42379882222 | cl
+assification accuracy: 0.8848396501457726[] 
+ []
+
+
+Overfull \hbox (112.14043pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 143439420820.27118 | objective: 113258.4236823071 | cl
+assification accuracy: 0.8848396501457726[] 
+ []
+
+
+Overfull \hbox (117.7988pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 286878841640.54236 | objective: 112915.42356581529 | c
+lassification accuracy: 0.8848396501457726[] 
+ []
+
+[9]
+Overfull \hbox (112.14043pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 573757683281.0847 | objective: 112572.42344934672 | cl
+assification accuracy: 0.8848396501457726[] 
+ []
+
+
+Overfull \hbox (117.7988pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 1147515366562.1694 | objective: 112229.42333290147 | c
+lassification accuracy: 0.8848396501457726[] 
+ []
+
+
+Overfull \hbox (106.48206pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 2295030733124.339 | objective: 111886.4232164795 | cla
+ssification accuracy: 0.8848396501457726[] 
+ []
+
+
+Overfull \hbox (112.14043pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 4590061466248.678 | objective: 111543.42310008076 | cl
+assification accuracy: 0.8848396501457726[] 
+ []
+
+
+Overfull \hbox (112.14043pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 9180122932497.355 | objective: 111200.42298370531 | cl
+assification accuracy: 0.8848396501457726[] 
+ []
+
+
+Overfull \hbox (112.14043pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 45900614662486.78 | objective: 110857.42286735312 | cl
+assification accuracy: 0.8848396501457726[] 
+ []
+
+
+Overfull \hbox (106.48206pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 229503073312433.9 | objective: 110514.4227510242 | cla
+ssification accuracy: 0.8848396501457726[] 
+ []
+
+
+Overfull \hbox (117.7988pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 1147515366562169.5 | objective: 110171.42263471855 | c
+lassification accuracy: 0.8848396501457726[] 
+ []
+
+
+Overfull \hbox (117.7988pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 5737576832810848.0 | objective: 109828.42251843613 | c
+lassification accuracy: 0.8848396501457726[] 
+ []
+
+
+Overfull \hbox (134.77391pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 2.868788416405424e+16 | objective: 109485.42240217693 
+| classification accuracy: 0.8848396501457726[] 
+ []
+
+
+Overfull \hbox (134.77391pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 1.434394208202712e+17 | objective: 109142.42228594101 
+| classification accuracy: 0.8848396501457726[] 
+ []
+
+
+Overfull \hbox (123.45717pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 7.17197104101356e+17 | objective: 108799.4221697283 | 
+classification accuracy: 0.8848396501457726[] 
+ []
+
+
+Overfull \hbox (129.11554pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 3.58598552050678e+18 | objective: 108456.42205353882 |
+ classification accuracy: 0.8848396501457726[] 
+ []
+
+
+Overfull \hbox (129.11554pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 1.79299276025339e+19 | objective: 108113.42193737258 |
+ classification accuracy: 0.8848396501457726[] 
+ []
+
+
+Overfull \hbox (129.11554pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 8.96496380126695e+19 | objective: 107770.42182122957 |
+ classification accuracy: 0.8848396501457726[] 
+ []
+
+
+Overfull \hbox (134.77391pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 4.482481900633475e+20 | objective: 107427.42170510975 
+| classification accuracy: 0.8848396501457726[] 
+ []
+
+
+Overfull \hbox (140.43228pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 2.2412409503167375e+21 | objective: 107084.42158901317
+ | classification accuracy: 0.8848396501457726[] 
+ []
+
+
+Overfull \hbox (140.43228pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 1.1206204751583688e+22 | objective: 106741.42147293978
+ | classification accuracy: 0.8848396501457726[] 
+ []
+
+
+Overfull \hbox (140.43228pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 5.6031023757918434e+22 | objective: 106398.42135688958
+ | classification accuracy: 0.8848396501457726[] 
+ []
+
+
+Overfull \hbox (134.77391pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 2.8015511878959216e+23 | objective: 106055.4212408626 
+| classification accuracy: 0.8848396501457726[] 
+ []
+
+
+Overfull \hbox (134.77391pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 1.4007755939479608e+24 | objective: 105712.4211248588 
+| classification accuracy: 0.8848396501457726[] 
+ []
+
+[10]
+Overfull \hbox (134.77391pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 7.003877969739804e+24 | objective: 105369.42100887818 
+| classification accuracy: 0.8848396501457726[] 
+ []
+
+
+Overfull \hbox (134.77391pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 3.501938984869902e+25 | objective: 105026.42089292077 
+| classification accuracy: 0.8848396501457726[] 
+ []
+
+
+Overfull \hbox (134.77391pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 1.750969492434951e+26 | objective: 104683.42077698653 
+| classification accuracy: 0.8848396501457726[] 
+ []
+
+
+Overfull \hbox (134.77391pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 8.754847462174755e+26 | objective: 104340.42066107546 
+| classification accuracy: 0.8848396501457726[] 
+ []
+
+
+Overfull \hbox (134.77391pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 4.377423731087377e+27 | objective: 103997.42054518756 
+| classification accuracy: 0.8848396501457726[] 
+ []
+
+
+Overfull \hbox (140.43228pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 2.1887118655436885e+28 | objective: 103654.42042932284
+ | classification accuracy: 0.8848396501457726[] 
+ []
+
+
+Overfull \hbox (140.43228pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 1.0943559327718443e+29 | objective: 103311.42031348129
+ | classification accuracy: 0.8848396501457726[] 
+ []
+
+
+Overfull \hbox (134.77391pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 5.471779663859221e+29 | objective: 102968.42019766285 
+| classification accuracy: 0.8848396501457726[] 
+ []
+
+
+Overfull \hbox (134.77391pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 2.735889831929611e+30 | objective: 102625.42008186759 
+| classification accuracy: 0.8848396501457726[] 
+ []
+
+
+Overfull \hbox (134.77391pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 2.735889831929611e+31 | objective: 102282.41996609548 
+| classification accuracy: 0.8848396501457726[] 
+ []
+
+
+Overfull \hbox (129.11554pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 2.735889831929611e+32 | objective: 101939.4198503465 |
+ classification accuracy: 0.8848396501457726[] 
+ []
+
+
+Overfull \hbox (134.77391pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 2.7358898319296114e+33 | objective: 101596.4197346207 
+| classification accuracy: 0.8848396501457726[] 
+ []
+
+
+Overfull \hbox (134.77391pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 2.735889831929611e+34 | objective: 101253.41961891798 
+| classification accuracy: 0.8848396501457726[] 
+ []
+
+
+Overfull \hbox (134.77391pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 2.735889831929611e+35 | objective: 100910.41950323842 
+| classification accuracy: 0.8841107871720116[] 
+ []
+
+
+Overfull \hbox (134.77391pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 2.735889831929611e+36 | objective: 100567.41938758196 
+| classification accuracy: 0.8841107871720116[] 
+ []
+
+
+Overfull \hbox (140.43228pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 2.7358898319296115e+37 | objective: 100224.41927194865
+ | classification accuracy: 0.8841107871720116[] 
+ []
+
+
+Overfull \hbox (134.77391pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 2.7358898319296115e+38 | objective: 99881.41915633842 
+| classification accuracy: 0.8841107871720116[] 
+ []
+
+
+Overfull \hbox (134.77391pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 2.7358898319296115e+39 | objective: 99538.41904075131 
+| classification accuracy: 0.8841107871720116[] 
+ []
+
+
+Overfull \hbox (129.11554pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 2.7358898319296115e+40 | objective: 99195.4189251873 |
+ classification accuracy: 0.8841107871720116[] 
+ []
+
+
+Overfull \hbox (129.11554pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 2.7358898319296115e+41 | objective: 98852.4188096464 |
+ classification accuracy: 0.8841107871720116[] 
+ []
+
+
+Overfull \hbox (129.11554pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 2.7358898319296114e+42 | objective: 98509.4186941286 |
+ classification accuracy: 0.8841107871720116[] 
+ []
+
+
+Overfull \hbox (134.77391pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 2.7358898319296114e+43 | objective: 98166.41857863391 
+| classification accuracy: 0.8841107871720116[] 
+ []
+
+[11]
+Overfull \hbox (134.77391pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 2.7358898319296113e+44 | objective: 97823.41846316229 
+| classification accuracy: 0.8833819241982507[] 
+ []
+
+
+Overfull \hbox (134.77391pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 2.7358898319296113e+45 | objective: 97480.41834771374 
+| classification accuracy: 0.8833819241982507[] 
+ []
+
+
+Overfull \hbox (134.77391pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 2.7358898319296115e+46 | objective: 97137.41823228828 
+| classification accuracy: 0.8833819241982507[] 
+ []
+
+
+Overfull \hbox (134.77391pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 2.7358898319296115e+47 | objective: 96794.41811688589 
+| classification accuracy: 0.8833819241982507[] 
+ []
+
+
+Overfull \hbox (134.77391pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 2.7358898319296115e+48 | objective: 96451.41800150656 
+| classification accuracy: 0.8833819241982507[] 
+ []
+
+
+Overfull \hbox (134.77391pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 2.7358898319296116e+49 | objective: 96108.41788615032 
+| classification accuracy: 0.8833819241982507[] 
+ []
+
+
+Overfull \hbox (134.77391pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 2.7358898319296115e+50 | objective: 95765.41777081713 
+| classification accuracy: 0.8833819241982507[] 
+ []
+
+
+Overfull \hbox (134.77391pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 2.7358898319296116e+51 | objective: 95422.41765550697 
+| classification accuracy: 0.8833819241982507[] 
+ []
+
+
+Overfull \hbox (129.11554pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 2.735889831929612e+52 | objective: 95079.41754021989 |
+ classification accuracy: 0.8833819241982507[] 
+ []
+
+
+Overfull \hbox (134.77391pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 2.7358898319296115e+53 | objective: 94736.41742495586 
+| classification accuracy: 0.8833819241982507[] 
+ []
+
+
+Overfull \hbox (134.77391pt too wide) in paragraph at lines 798--798
+ []\T1/cmtt/m/n/10.95 t: 2.7358898319296115e+54 | objective: 94393.41730971485 
+| classification accuracy: 0.8833819241982507[] 
+ []
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 802.
+[12]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 802.
  (./hw8.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 445.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 445.
-
-
-Package rerunfilecheck Warning: File `hw8.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `hw8.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  D41D8CD98F00B204E9800998ECF8427E;0.
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 445.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 802.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 802.
+Package rerunfilecheck Info: File `hw8.out' has not changed.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 802.
  ) 
 Here is how much of TeX's memory you used:
- 6689 strings out of 492995
- 94137 string characters out of 6132705
- 184969 words of memory out of 5000000
+ 6703 strings out of 492995
+ 94236 string characters out of 6132705
+ 187533 words of memory out of 5000000
  10140 multiletter control sequences out of 15000+600000
  14835 words of font info for 43 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 28i,13n,26p,231b,506s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 28i,13n,26p,522b,508s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
 </usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><
 /usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></u
@@ -469,10 +1207,10 @@ e/2017/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb></usr/local/texlive/
 2017/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local/texlive/20
 17/texmf-dist/fonts/type1/public/cm-super/sfti1095.pfb></usr/local/texlive/2017
 /texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb>
-Output written on hw8.pdf (4 pages, 261536 bytes).
+Output written on hw8.pdf (12 pages, 282721 bytes).
 PDF statistics:
- 130 PDF objects out of 1000 (max. 8388607)
- 102 compressed objects within 2 object streams
- 20 named destinations out of 1000 (max. 500000)
+ 166 PDF objects out of 1000 (max. 8388607)
+ 130 compressed objects within 2 object streams
+ 28 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

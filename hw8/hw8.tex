@@ -196,7 +196,7 @@
 
 \begin{document}
 \homework{8 --- {\color{red} Due Wednesday, April. 4th at 23:59}}{Spring
-  2018}{Dr. Rasmus Kyng}
+  2018}{Kojin Oshiba}
 
 %\renewcommand{\abstractname}{}
 \paragraph{Instructions:}
@@ -281,6 +281,35 @@ statement:
 
 \remark{The constant 10 was chosen rather arbitrarily, it is not tight.}
 
+\color{blue}
+First, we have 
+\begin{align*}
+& || \tilde{\nabla}f(\bx) - \nabla f(\bx) || \leq \delta || \nabla f(\bx) || &\\
+\Rightarrow & || \tilde{\nabla}f(\bx) - \nabla f(\bx) ||^2 \leq \delta^2 || \nabla f(\bx) ||^2 &\\
+\Rightarrow & \nabla f(\bx^{(k)})^\intercal \tilde{\nabla}f(\bx^{(k)}) \geq \frac{|| \tilde{\nabla}f(\bx)||^2+(1-\delta^2) ||\nabla f(\bx) ||^2}{2}&\\
+\end{align*}
+Hence,
+\begin{align*}
+f(\bx^{(k+1)}) &= f(\bx^{(k)}-t\tilde{\nabla}f(\bx^{(k)})) &\\
+&\leq f(\bx^{(k)}) + \nabla f(\bx^{(k)})^\intercal (-t \tilde{\nabla}f(\bx^{(k)})) + \frac{M}{2}||-t\tilde{\nabla}f(\bx^{(k)})||^2 &\\
+&\leq f(\bx^{(k)}) -\frac{t}{2}(|| \tilde{\nabla}f(\bx)||^2+(1-\delta^2) ||\nabla f(\bx) ||^2)+\frac{Mt^2}{2}||\tilde{\nabla}f(\bx^{(k)})||^2 &\\
+&=f(\bx^{(k)})-\frac{1-\delta^2}{2M}||f(\bx^{(k)})||^2 \quad (\because t=\frac{1}{M})
+\end{align*}
+Analogous to the proof of Lecture 9 on page 6, we thus have
+$$k \geq \frac{\log\Big(\frac{f(x^{0})-\alpha^*}{\epsilon}\Big)}{\log\Big(\frac{1}{1-\frac{m(1-\delta^2)}{M}}\Big)}$$
+
+What we have left to show is 
+$$\frac{1}{\log\Big(\frac{1}{1-\frac{m(1-\delta^2)}{M}}\Big)} \geq 10 \frac{M}{m} \Leftrightarrow 1-\frac{m(1-\delta^2)}{M} \leq e^{-\frac{m}{10M}}$$
+
+This can be shown easily because,
+
+$$e^{-\frac{m}{10M}} \geq 1-\frac{m}{10M} = 1-\frac{0.1m}{M}$$
+
+$$1-\frac{m(1-\delta^2)}{M} \leq 1-\frac{0.99m}{M} \leq 1-\frac{0.1m}{M}$$
+This concludes the proof.
+\color{black}
+
+
 \paragraph{2. Duality and SVMs.}
 
 In this problem, we will refine our analysis of the primal and dual
@@ -326,6 +355,24 @@ We assume that Slater's condition holds so that we have strong duality.
         computed from a dual-optimal solution.
 \end{itemize}
 
+\color{blue}
+\begin{itemize}
+\item[a.] Since strong duality holds, KKT conditions are necessary. Hence, from condition (8) in Lecture 14, we have 
+$$\lambda_i(1-\ba^\intercal \bx_i-b) = 0, \forall i \in I $$
+$$\mu_j(1+\ba^\intercal \bx_j+b) = 0, \forall j \in J $$
+This implies what we want to show.
+
+\item[b.] From equation (14) in Lecture 13, $$\frac{\ba}{2}+\sum_{j\in J} \mu_j \bx_j - \sum_{i\in I}\lambda_i \bx_i = 0 \Leftrightarrow \ba = 2(\sum_{j\in J} \mu_j \bx_j - \sum_{i\in I}\lambda_i \bx_i)$$
+
+Once we know $\ba$, we can find $b$ as follows:
+$$b=-\frac{\min_{i\in I}\ba^\intercal \bx_i + \max{j \in J}\ba^\intercal \bx_i}{2}$$
+
+This is becasue $b$ is half the difference between the point in $I$ that is on the support vector, which is $\argmin_{i\in I}\ba^\intercal \bx_i$ and point in $J$ that is on the other support vector, which is $\argmax_{j\in J}\ba^\intercal \bx_j$.
+
+\end{itemize}
+\color{black}
+
+
 \paragraph{3. Revisiting the Maximum Coverage Problem}
 
 Remember the Maximum Coverage Problem from Section 1. In this problem there is
@@ -358,6 +405,38 @@ following:
     \item[b.] Show that problem \eqref{eq:p} can be reformulated as a linear
         program.
 \end{itemize}
+
+\color{blue}
+\begin{itemize}
+\item[a.]
+Let the objective be $f(\bx)$.
+\begin{align*}
+f(\lambda \bx_1 + (1-\lambda)\bx_2) &= \sum_{j=1}^m \min(1,\sum_{i:j \in S_i} \lambda \bx_{1,i} + (1-\lambda) \bx_{2,i}) &\\
+&\geq \sum_{j=1}^m \min(1,\sum_{i:j \in S_i} \lambda \bx_{1,i}) + \sum_{j=1}^m \min(1,\sum_{i:j \in S_i} (1-\lambda) \bx_{2,i}) &\\
+&\geq  \lambda \sum_{j=1}^m \min(1,\sum_{i:j \in S_i} \bx_{1,i}) + (1-\lambda) \sum_{j=1}^m \min(1,\sum_{i:j \in S_i} \bx_{2,i}) &\\
+&= \lambda f(\bx_1) + (1-\lambda) f(\bx_2)
+\end{align*}
+
+Hence, $f(\bx)$ is concave.
+The second line follows from the first line because $ \lambda \bx_{1,i}, (1-\lambda) \bx_{2,i}$ are both positive and hence summing the minimums separately as in the second line would result in a lower value overall.
+
+The third line follows from the second line because $\min(1,\sum_{i:j \in S_i}\lambda \bx_{1,i})$ is either $1$ or $\sum_{i:j \in S_i} \lambda \bx_{1,i}$, whereas $\lambda \min(1,\sum_{i:j \in S_i} \bx_{1,i})$ is either $\lambda$ or $\sum_{i:j \in S_i} \lambda \bx_{1,i}$. Since $\lambda \in [0,1]$, we have that the former is always greater than or equal to the latter. We can similarly compare $\min(1,\sum_{i:j \in S_i} (1-\lambda) \bx_{2,i})$ and $(1-\lambda) \min(1,\sum_{i:j \in S_i} \bx_{2,i})$.
+
+Therefore, we can negate the objective to make it an objective to minimize a convex function and apply gradient descent, or other optimization methods we learned in class.
+
+\item[b.]
+
+We can replace $\min\big\{1,\sum_{i:j\in S_i} x_i\big\}$ with $y_j$'s and add linear constraints on $y_j$'s. The reformulated LP is thus,
+
+
+        \begin{align*}
+            \max_{\bx} & \quad \sum_{j=1}^m y_j \\
+            \text{s.t} & \quad y_j \leq 1, y_j \leq \sum_{i:j\in S_i} x_i\\
+                       &\quad x_i\geq 0\quad 1\leq i\leq n\\
+                       &\quad \sum_{i=1}^n x_i\leq k
+        \end{align*}
+\end{itemize}
+\color{black}
 
 
 \paragraph{4. Barrier method.}
@@ -441,5 +520,283 @@ The optimization problem is the following
         haven't done Problem Set 7). What is the impact of the parameter $\mu$
         on the convergence of your implementation?
 \end{itemize}
+
+\color{blue}
+\begin{itemize}
+\item[a.] The code is under hw8.py. Basically, I converted the SVM optimization problem to barrier method optimization problem. Then, I implemented gradient descent using PyTorch.
+
+\item[b.] For the sake of time, I run each $\mu$ for $25$ iterations and report the final accuracy. The lower $\mu$ is the higher the accuracy because the barrier method is more careful in searching the optimal solution. But since $t$ increases slowly, the convergence is slower.
+
+The optimal accuracy is about $88.48\%$ is consistent across different $\mu$'s (assuming you run the method for sufficient number of iterations. Below, I provide the row outputs for some of the $\mu$ values. See the code for the optimal hyperparameters chosen.
+
+\begin{verbatim}
+Mu: 1.1
+0
+t: 1 | objective: 136865.62103624135 | classification accuracy: 0.37244897959183676
+1
+t: 1.1 | objective: 136529.417169686 | classification accuracy: 0.5342565597667639
+2
+t: 1.2100000000000002 | objective: 136192.2125845217 | classification accuracy: 0.6399416909620991
+3
+t: 1.3310000000000004 | objective: 135854.28418061612 | classification accuracy: 0.7004373177842566
+4
+t: 1.4641000000000006 | objective: 135515.7755352815 | classification accuracy: 0.7419825072886297
+5
+t: 1.6105100000000008 | objective: 135176.77923031317 | classification accuracy: 0.7638483965014577
+6
+t: 1.771561000000001 | objective: 134837.36406482928 | classification accuracy: 0.7806122448979592
+7
+t: 1.9487171000000014 | objective: 134497.58434500627 | classification accuracy: 0.7981049562682215
+8
+t: 2.1435888100000016 | objective: 134157.48430887505 | classification accuracy: 0.8068513119533528
+9
+t: 2.357947691000002 | objective: 133817.1008436097 | classification accuracy: 0.8192419825072886
+10
+t: 2.5937424601000023 | objective: 133476.4652601572 | classification accuracy: 0.8279883381924198
+11
+t: 2.853116706110003 | objective: 133135.6044981562 | classification accuracy: 0.8309037900874635
+12
+t: 3.1384283767210035 | objective: 132794.54197736568 | classification accuracy: 0.8418367346938775
+13
+t: 3.4522712143931042 | objective: 132453.29822176174 | classification accuracy: 0.8469387755102041
+14
+t: 3.797498335832415 | objective: 132111.89133174712 | classification accuracy: 0.8534985422740525
+15
+t: 4.177248169415656 | objective: 131770.33735120686 | classification accuracy: 0.8556851311953353
+16
+t: 4.594972986357222 | objective: 131428.65055941133 | classification accuracy: 0.8600583090379009
+17
+t: 5.054470284992944 | objective: 131086.84370767354 | classification accuracy: 0.8637026239067055
+18
+t: 5.559917313492239 | objective: 130744.92821437202 | classification accuracy: 0.8673469387755102
+19
+t: 6.115909044841463 | objective: 130402.91432789678 | classification accuracy: 0.869533527696793
+20
+t: 6.72749994932561 | objective: 130060.81126439998 | classification accuracy: 0.8717201166180758
+21
+t: 7.400249944258172 | objective: 129718.62732541031 | classification accuracy: 0.8731778425655977
+22
+t: 8.140274938683989 | objective: 129376.36999910967 | classification accuracy: 0.8746355685131195
+23
+t: 8.954302432552389 | objective: 129034.04604817541 | classification accuracy: 0.8760932944606414
+24
+t: 9.849732675807628 | objective: 128691.66158644333 | classification accuracy: 0.8760932944606414
+
+
+Mu: 1.5
+0
+t: 10.834705943388391 | objective: 128349.22214617081 | classification accuracy: 0.8775510204081632
+1
+t: 16.252058915082586 | objective: 128006.59674384505 | classification accuracy: 0.8775510204081632
+2
+t: 24.37808837262388 | objective: 127663.84731847458 | classification accuracy: 0.8775510204081632
+3
+t: 36.56713255893582 | objective: 127321.0150638374 | classification accuracy: 0.8775510204081632
+4
+t: 54.85069883840373 | objective: 126978.12744488848 | classification accuracy: 0.8775510204081632
+5
+t: 82.2760482576056 | objective: 126635.2027984988 | classification accuracy: 0.8782798833819242
+6
+t: 123.41407238640839 | objective: 126292.25337927244 | classification accuracy: 0.8782798833819242
+7
+t: 185.12110857961258 | objective: 125949.28738480997 | classification accuracy: 0.8782798833819242
+8
+t: 277.68166286941886 | objective: 125606.31030662653 | classification accuracy: 0.8782798833819242
+9
+t: 416.52249430412826 | objective: 125263.32583610328 | classification accuracy: 0.8782798833819242
+10
+t: 624.7837414561924 | objective: 124920.33648554892 | classification accuracy: 0.8782798833819242
+11
+t: 937.1756121842886 | objective: 124577.34408019487 | classification accuracy: 0.8782798833819242
+12
+t: 1405.763418276433 | objective: 124234.35051672532 | classification accuracy: 0.8790087463556852
+13
+t: 2108.6451274146493 | objective: 123891.35685854408 | classification accuracy: 0.8797376093294461
+14
+t: 3162.967691121974 | objective: 123548.36238182496 | classification accuracy: 0.8811953352769679
+15
+t: 4744.451536682961 | objective: 123205.36730142016 | classification accuracy: 0.8811953352769679
+16
+t: 7116.677305024441 | objective: 122862.37181748544 | classification accuracy: 0.8811953352769679
+17
+t: 10675.015957536662 | objective: 122519.3760639305 | classification accuracy: 0.8811953352769679
+18
+t: 16012.523936304991 | objective: 122176.38013028956 | classification accuracy: 0.8811953352769679
+19
+t: 24018.785904457487 | objective: 121833.38407643854 | classification accuracy: 0.8811953352769679
+20
+t: 36028.17885668623 | objective: 121490.38794242527 | classification accuracy: 0.8819241982507289
+21
+t: 54042.26828502935 | objective: 121147.39175503905 | classification accuracy: 0.8811953352769679
+22
+t: 81063.40242754403 | objective: 120804.39553220168 | classification accuracy: 0.8811953352769679
+23
+t: 121595.10364131605 | objective: 120461.39928590394 | classification accuracy: 0.8819241982507289
+24
+t: 182392.65546197406 | objective: 120118.40302417018 | classification accuracy: 0.8826530612244898
+
+
+Mu: 2
+0
+t: 273588.9831929611 | objective: 119775.40675236995 | classification accuracy: 0.8826530612244898
+1
+t: 547177.9663859222 | objective: 119432.4104694656 | classification accuracy: 0.8826530612244898
+2
+t: 1094355.9327718443 | objective: 119089.41418229898 | classification accuracy: 0.8826530612244898
+3
+t: 2188711.8655436886 | objective: 118746.41789338531 | classification accuracy: 0.8833819241982507
+4
+t: 4377423.731087377 | objective: 118403.42160399725 | classification accuracy: 0.8841107871720116
+5
+t: 8754847.462174755 | objective: 118060.42531469913 | classification accuracy: 0.8848396501457726
+6
+t: 17509694.92434951 | objective: 117717.42519839175 | classification accuracy: 0.8848396501457726
+7
+t: 35019389.84869902 | objective: 117374.4250817147 | classification accuracy: 0.8848396501457726
+8
+t: 70038779.69739804 | objective: 117031.42496508779 | classification accuracy: 0.8848396501457726
+9
+t: 140077559.39479607 | objective: 116688.42484848999 | classification accuracy: 0.8848396501457726
+10
+t: 280155118.78959215 | objective: 116345.42473177887 | classification accuracy: 0.8848396501457726
+11
+t: 560310237.5791843 | objective: 116002.42461507906 | classification accuracy: 0.8848396501457726
+12
+t: 1120620475.1583686 | objective: 115659.42449840144 | classification accuracy: 0.8848396501457726
+13
+t: 2241240950.316737 | objective: 115316.42438174725 | classification accuracy: 0.8848396501457726
+14
+t: 4482481900.633474 | objective: 114973.42426511573 | classification accuracy: 0.8848396501457726
+15
+t: 8964963801.266949 | objective: 114630.42414850737 | classification accuracy: 0.8848396501457726
+16
+t: 17929927602.533897 | objective: 114287.42403192236 | classification accuracy: 0.8848396501457726
+17
+t: 35859855205.067795 | objective: 113944.42391536062 | classification accuracy: 0.8848396501457726
+18
+t: 71719710410.13559 | objective: 113601.42379882222 | classification accuracy: 0.8848396501457726
+19
+t: 143439420820.27118 | objective: 113258.4236823071 | classification accuracy: 0.8848396501457726
+20
+t: 286878841640.54236 | objective: 112915.42356581529 | classification accuracy: 0.8848396501457726
+21
+t: 573757683281.0847 | objective: 112572.42344934672 | classification accuracy: 0.8848396501457726
+22
+t: 1147515366562.1694 | objective: 112229.42333290147 | classification accuracy: 0.8848396501457726
+23
+t: 2295030733124.339 | objective: 111886.4232164795 | classification accuracy: 0.8848396501457726
+24
+t: 4590061466248.678 | objective: 111543.42310008076 | classification accuracy: 0.8848396501457726
+
+
+Mu: 5
+0
+t: 9180122932497.355 | objective: 111200.42298370531 | classification accuracy: 0.8848396501457726
+1
+t: 45900614662486.78 | objective: 110857.42286735312 | classification accuracy: 0.8848396501457726
+2
+t: 229503073312433.9 | objective: 110514.4227510242 | classification accuracy: 0.8848396501457726
+3
+t: 1147515366562169.5 | objective: 110171.42263471855 | classification accuracy: 0.8848396501457726
+4
+t: 5737576832810848.0 | objective: 109828.42251843613 | classification accuracy: 0.8848396501457726
+5
+t: 2.868788416405424e+16 | objective: 109485.42240217693 | classification accuracy: 0.8848396501457726
+
+6
+t: 1.434394208202712e+17 | objective: 109142.42228594101 | classification accuracy: 0.8848396501457726
+7
+t: 7.17197104101356e+17 | objective: 108799.4221697283 | classification accuracy: 0.8848396501457726
+8
+t: 3.58598552050678e+18 | objective: 108456.42205353882 | classification accuracy: 0.8848396501457726
+9
+t: 1.79299276025339e+19 | objective: 108113.42193737258 | classification accuracy: 0.8848396501457726
+10
+t: 8.96496380126695e+19 | objective: 107770.42182122957 | classification accuracy: 0.8848396501457726
+11
+t: 4.482481900633475e+20 | objective: 107427.42170510975 | classification accuracy: 0.8848396501457726
+12
+t: 2.2412409503167375e+21 | objective: 107084.42158901317 | classification accuracy: 0.8848396501457726
+13
+t: 1.1206204751583688e+22 | objective: 106741.42147293978 | classification accuracy: 0.8848396501457726
+14
+t: 5.6031023757918434e+22 | objective: 106398.42135688958 | classification accuracy: 0.8848396501457726
+15
+t: 2.8015511878959216e+23 | objective: 106055.4212408626 | classification accuracy: 0.8848396501457726
+16
+t: 1.4007755939479608e+24 | objective: 105712.4211248588 | classification accuracy: 0.8848396501457726
+17
+t: 7.003877969739804e+24 | objective: 105369.42100887818 | classification accuracy: 0.8848396501457726
+18
+t: 3.501938984869902e+25 | objective: 105026.42089292077 | classification accuracy: 0.8848396501457726
+19
+t: 1.750969492434951e+26 | objective: 104683.42077698653 | classification accuracy: 0.8848396501457726
+20
+t: 8.754847462174755e+26 | objective: 104340.42066107546 | classification accuracy: 0.8848396501457726
+21
+t: 4.377423731087377e+27 | objective: 103997.42054518756 | classification accuracy: 0.8848396501457726
+22
+t: 2.1887118655436885e+28 | objective: 103654.42042932284 | classification accuracy: 0.8848396501457726
+23
+t: 1.0943559327718443e+29 | objective: 103311.42031348129 | classification accuracy: 0.8848396501457726
+24
+t: 5.471779663859221e+29 | objective: 102968.42019766285 | classification accuracy: 0.8848396501457726
+
+
+Mu: 10
+10
+0
+t: 2.735889831929611e+30 | objective: 102625.42008186759 | classification accuracy: 0.8848396501457726
+1
+t: 2.735889831929611e+31 | objective: 102282.41996609548 | classification accuracy: 0.8848396501457726
+2
+t: 2.735889831929611e+32 | objective: 101939.4198503465 | classification accuracy: 0.8848396501457726
+3
+t: 2.7358898319296114e+33 | objective: 101596.4197346207 | classification accuracy: 0.8848396501457726
+4
+t: 2.735889831929611e+34 | objective: 101253.41961891798 | classification accuracy: 0.8848396501457726
+5
+t: 2.735889831929611e+35 | objective: 100910.41950323842 | classification accuracy: 0.8841107871720116
+6
+t: 2.735889831929611e+36 | objective: 100567.41938758196 | classification accuracy: 0.8841107871720116
+7
+t: 2.7358898319296115e+37 | objective: 100224.41927194865 | classification accuracy: 0.8841107871720116
+8
+t: 2.7358898319296115e+38 | objective: 99881.41915633842 | classification accuracy: 0.8841107871720116
+9
+t: 2.7358898319296115e+39 | objective: 99538.41904075131 | classification accuracy: 0.8841107871720116
+10
+t: 2.7358898319296115e+40 | objective: 99195.4189251873 | classification accuracy: 0.8841107871720116
+11
+t: 2.7358898319296115e+41 | objective: 98852.4188096464 | classification accuracy: 0.8841107871720116
+12
+t: 2.7358898319296114e+42 | objective: 98509.4186941286 | classification accuracy: 0.8841107871720116
+13
+t: 2.7358898319296114e+43 | objective: 98166.41857863391 | classification accuracy: 0.8841107871720116
+14
+t: 2.7358898319296113e+44 | objective: 97823.41846316229 | classification accuracy: 0.8833819241982507
+15
+t: 2.7358898319296113e+45 | objective: 97480.41834771374 | classification accuracy: 0.8833819241982507
+16
+t: 2.7358898319296115e+46 | objective: 97137.41823228828 | classification accuracy: 0.8833819241982507
+17
+t: 2.7358898319296115e+47 | objective: 96794.41811688589 | classification accuracy: 0.8833819241982507
+18
+t: 2.7358898319296115e+48 | objective: 96451.41800150656 | classification accuracy: 0.8833819241982507
+19
+t: 2.7358898319296116e+49 | objective: 96108.41788615032 | classification accuracy: 0.8833819241982507
+20
+t: 2.7358898319296115e+50 | objective: 95765.41777081713 | classification accuracy: 0.8833819241982507
+21
+t: 2.7358898319296116e+51 | objective: 95422.41765550697 | classification accuracy: 0.8833819241982507
+22
+t: 2.735889831929612e+52 | objective: 95079.41754021989 | classification accuracy: 0.8833819241982507
+23
+t: 2.7358898319296115e+53 | objective: 94736.41742495586 | classification accuracy: 0.8833819241982507
+24
+t: 2.7358898319296115e+54 | objective: 94393.41730971485 | classification accuracy: 0.8833819241982507
+\end{verbatim}
+\end{itemize}
+\color{black}
 
 \end{document}
